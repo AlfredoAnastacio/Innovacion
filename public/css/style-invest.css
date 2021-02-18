@@ -1,0 +1,291 @@
+@charset "utf-8";
+@import url("Style.acc.css");
+
+/*        DESKTOP         */
+
+/*   BODY   */
+
+body {
+	/*background-image: url("../images/wallins.jpg");*/
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
+.container .main #form1 center p {
+	font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif;
+}
+.container .main center p {
+	font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif;
+}
+
+/*   FORM   */
+
+.main {
+    padding-top: 0px;
+}
+
+p.tittle-header {
+    position: absolute;
+    margin-top: -100px;
+    font-weight: 400;
+    font-size: 30px;
+    color: #fff;
+    font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
+	margin-left: 600px;
+}
+
+input.back {
+    position: absolute;
+    width: 30px;
+    padding: 15px;
+}
+
+.mail {
+    background-image: url(../images/mail.png);
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    background-size: 35px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+.mail input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.mail input:focus {
+  outline: none;
+}
+
+.pass {
+    background-image: url("../images/pass.png");
+    background-repeat: no-repeat;
+    background-position: 4px center;
+	background-size: 25px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+.pass input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.pass input:focus {
+  outline: none;
+}
+
+.sing {
+display: flex;
+    align-items: center;
+    width: 310px;
+    padding-left: 32px;
+    height: 49px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+    background-color: #2699FB;
+    color: #fff;
+    font-size: 17px;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif"
+}
+
+.singb {
+display: flex;
+    text-align:center;
+    width: 337px;
+    padding-left: 70px;
+    height: 49px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+    background-color: #2699FB;
+    color: #fff;
+    font-size: 17px;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif"
+}
+
+td.code-qr {
+    padding-left: 137px;
+}
+
+tr.qr-text {
+    text-align: center;
+}
+
+.number-formb {
+    border-bottom: 2px solid #DADADA;
+}
+
+p.singa {
+    font-weight: 600;
+    color: #fff;
+    font-size: 24px;
+}
+
+p.forget {
+	color: #000;
+    line-height: 2px;
+    padding-top: 5px;
+}
+
+.campo-name{
+	border-bottom: 2px solid #2699FB;	
+}
+
+table.items {
+    border-radius: 0px;
+    padding-left: 0px;
+}
+
+td.ico-wallet {
+    text-align: center;
+}
+
+select.select-a {
+    display: flex;
+    align-items: center;
+    width: 340px;
+    height: 48px;
+    padding-left: 42px;
+    border: 2px solid #DADADA;
+    border-radius: 60px;
+    font-size: 19px;
+}
+
+
+td.bicoin {
+    text-align: center;
+}
+
+select.select-a::selection {
+  color: aqua;
+}
+
+td.select-one {
+    padding-left: 0px;
+}
+
+table.name-b {
+    text-align: center;
+	padding-bottom: 30px;
+}
+
+.items-b {
+    padding-top: 40px;
+}
+
+table.forms-a {
+    padding-top: 70px;
+	text-align: center;
+}
+
+tr.number-form {
+    text-align: center;
+}
+
+tr.people-web {
+    text-align: center;
+}
+
+tr.level {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: #2699FB;
+}
+
+tr.image-people {
+    text-align: center;
+}
+
+.name-af {
+    padding-left: 80px;
+    -webkit-box-shadow: 0px 1px 24px 7px rgba(0,0,0,0.27); 
+	box-shadow: 0px 1px 24px 7px rgba(0,0,0,0.27);
+    border-radius: 3px;
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+tr.afilied-num {
+    text-align: right;
+    padding-top: 20px;
+}
+
+td.afilied-name {
+    padding-top: 20px;
+}
+
+.name {
+    background-image: url("../images/pin.png");
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    background-size: 18px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+
+
+
+.name input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.name input:focus {
+  outline: none;
+}
+
+
+/*        DESKTOP         */
+
+/*   MOBILE   */
+
+@media (max-width:600px){
+	
+body {
+	background-repeat: no-repeat;
+	background-size: 100% 150%;
+}	
+	
+	.sing{
+		padding-left: 30px;
+	}
+	
+	.back{
+		position: absolute;
+    	width: 10px;
+    	padding: 4px;
+	}
+	
+
+}
+
+@media (max-width: 414px){
+	p.tittle-header {
+    position: absolute;
+    margin-top: -85px;
+    font-weight: 400;
+    font-size: 30px;
+    color: #fff;
+    font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
+    mar
+	
+}

@@ -1,0 +1,138 @@
+@charset "utf-8";
+
+/*        DESKTOP         */
+
+/*   BODY   */
+
+body {
+	background-image: url("../images/wallins.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
+
+.container .main #form1 center p {
+	font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif;
+}
+.container .main center p {
+	font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif;
+}
+
+/*   FORM   */
+
+.main {
+    padding-top: 0px;
+}
+
+.mail {
+    background-image: url(../images/mail.png);
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    background-size: 35px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+.mail input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.mail input:focus {
+  outline: none;
+}
+
+.pass {
+    background-image: url("../images/pass.png");
+    background-repeat: no-repeat;
+    background-position: 4px center;
+	background-size: 25px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+.pass input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.pass input:focus {
+  outline: none;
+}
+
+.sing {
+    display: flex;
+    align-items: center;
+    width: 310px;
+    padding-left: 125px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+    background-color: #2699FB;
+    color: #fff;
+}
+
+p.singa {
+    font-weight: 600;
+    color: #fff;
+    font-size: 24px;
+}
+
+p.forget {
+	color: #000;
+    line-height: 2px;
+    padding-top: 5px;
+}
+
+.name {
+    background-image: url("../images/pin.png");
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    background-size: 18px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+.name input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.name input:focus {
+  outline: none;
+}
+
+
+/*        DESKTOP         */
+
+/*   MOBILE   */
+
+@media (max-width: 600px) {
+	
+body {
+	background-image: url("../images/wall1.png");
+	background-repeat: no-repeat;
+	background-size: 100% 150%;
+}	
+	
+	.sing{
+		padding-left: 125px;
+	}	
+	
+}
+
+

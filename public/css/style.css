@@ -1,0 +1,116 @@
+@charset "utf-8";
+@import url("Style-register.css");
+
+/*        DESKTOP         */
+
+/*   BODY   */
+
+body {
+	background-image: url("../images/wall.png");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
+
+.container .main #form1 center p {
+	font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif;
+}
+.container .main center p {
+	font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif;
+}
+
+/*   FORM   */
+
+.main {
+    padding-top: 95px;
+}
+
+.mail {
+    background-image: url(../images/mail.png);
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    background-size: 35px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+.mail input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.mail input:focus {
+  outline: none;
+}
+
+.pass {
+    background-image: url("../images/pass.png");
+    background-repeat: no-repeat;
+    background-position: 4px center;
+	background-size: 25px;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-left: 48px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+
+}
+.pass input {
+  width: 100%;
+  font-size: 0.9em;
+  border: none;
+}
+.pass input:focus {
+  outline: none;
+}
+
+.sing {
+    display: flex;
+    align-items: center;
+    width: 310px;
+    padding-left: 125px;
+    height: 44px;
+    border: 0px solid rgba(9, 113, 163, 1);
+    border-radius: 10px;
+    background-color: #2699FB;
+    color: #fff;
+}
+
+p.singa {
+    font-weight: 600;
+    color: #fff;
+    font-size: 24px;
+}
+
+p.forget {
+	color: #fff;
+    line-height: 2px;
+    padding-top: 5px;
+}
+
+
+
+
+/*        DESKTOP         */
+
+/*   MOBILE   */
+
+@media (max-width: 600px) {
+	
+body {
+	background-image: url("../images/wall2.png");
+	background-repeat: no-repeat;
+	background-size: 100% 150%;
+}	
+	
+	.sing{
+		padding-left: 135px;
+	}	
+	
+}

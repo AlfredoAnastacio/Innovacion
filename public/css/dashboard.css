@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+body {
+    font-size: .875rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 90px;
+    z-index: 100;
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        top: 5rem;
+    }
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 169px);
+    /*height: 100vh*/
+    ;
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+.sidebar .nav-link {
+    font-weight: 400;
+    color: #333;
+}
+
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+}
+
+.sidebar .nav-link.active {
+    color: #707070;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+    color: inherit;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+    top: .25rem;
+    left: 1rem;
+}
+
+.navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+}
+
+.form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.logoimg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    /*margin-left: 90px;*/
+    background: #fff;
+    padding: 30px 40px;
+    /*width: 310px;*/
+    width: 100%;
+    height: 136px;
+}
+
+.container-fluid {
+    background-image: url(../images/fondo1.png) !important;
+    /*background-position: center -122px;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.spacer {
+    height: 136px;
+    width: 23%;
+}
+
+.mainrow {
+    /*padding-left: 88px;*/
+    padding-left: 15%;
+}
+
+.bg-blue2 {
+    background-color: #2699FB;
+}
+
+nav#sidebarMenu {
+    z-index: 9999;
+}
+
+.sidebar-sticky.pt-3 {
+    background-color: #2699FB;
+}
+
+ul.nav.flex-column {
+    text-align: center;
+}
+
+ul.nav.flex-column a {
+    color: #fff;
+}
+
+a.nav-title {
+    font-size: 30px;
+    padding: 15px;
+    display: block;
+}
+
+a.nav-link.active {
+    background-color: #fff;
+
+
+}
+
+a.nav-link {
+    background-color: #53ACF8;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: 1.3em;
+    transition: all 0.5s;
+
+}
+
+a.nav-link:hover {
+    background-color: #83c2f7;
+
+
+}
+
+nav h1 {
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.contenido {
+    width: 90%;
+    background-color: #fff;
+    /*height: 1200px;*/
+}
+
+.cuenta {
+    width: 400px;
+    /*border: 1px solid;*/
+}
+
+.azul {
+    color: #2699FB;
+}
+
+.griz {
+    color: #707070;
+}
+
+.azulbg {
+    background-color: #2699FB;
+}
+
+.borde {
+    border-right: 2px solid #2699FB;
+}
+
+.arco {
+    border-radius: 10px 10px 0 0;
+}
+
+hr.azul {
+    border-top: 2px solid #2699FB;
+    margin: 6px;
+}
+
+.progress {
+    width: 150px;
+    height: 150px;
+    background: none;
+    position: relative;
+}
+
+.progress::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 6px solid #eee;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress>span {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.progress .progress-left {
+    left: 0;
+}
+
+.progress .progress-bar {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-width: 12px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+}
+
+.progress .progress-left .progress-bar {
+    left: 100%;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-left: 0;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+}
+
+.progress .progress-right {
+    right: 0;
+}
+
+.progress .progress-right .progress-bar {
+    left: -100%;
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 80px;
+    border-right: 0;
+    -webkit-transform-origin: center right;
+    transform-origin: center right;
+}
+
+.progress .progress-value {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.scuare {
+    border: 1px solid rgb(0 0 0 / 16%);
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+    border-radius: 0 0 10px 10px ;
+}
+table.table.table-striped.text-center {
+    /* border: 1px solid rgb(0 0 0 / 16%); */
+    /*border-right: 1px solid rgb(0 0 0 / 16%);
+    border-left: 1px solid rgb(0 0 0 / 16%);
+    border-bottom: 1px solid rgb(0 0 0 / 16%);*/
+    box-shadow: 0 3px 6px 2px rgb(0 0 0 / 16%);
+}
+a.campana {
+    width: 56px;
+}
+
+.campana span.numero {
+    background-color: #2699fb;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    /* width: 76px; */
+    /* height: 34px; */
+    position: relative;
+    padding: 6px 4px;
+    right: -24px;
+    top: -39px;
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: 400;
+}
+
+
+
+
+.table td,
+.table th {
+    border-top: none;
+}
+
+.table.table-striped tr {
+    background-color: #E2E2E2;
+}
+
+p.footer {
+    background-color: #fff;
+    font-size: 0.95em;
+}
+
+.abajo {
+    position: relative;
+    top: -35px;
+}
+
+footer p {
+    display: none;
+}
+
+.box .rounded {
+    border-radius: 10px !important;
+    box-shadow: 0 12px 16px rgb(3 3 3 / 10%);
+        font-size: 1.5em;
+    font-weight: 300;
+}
+
+select.custom-select.griz {
+    border-radius: 25px;
+    font-size: 1.4em;
+}
+button.box {
+    border-radius: 10px !important;
+    box-shadow: 0 12px 16px rgb(3 3 3 / 10%);
+    font-size: 1.5em;
+    font-weight: 300;
+    border: none;
+}
+
+input.orange {
+    color: #ECB081;
+    font-weight: 600;
+    font-size: 1.1em;
+    border-color: #707070;
+}
+.editar input {
+    font-size: 1.5em;
+    width: 100%;
+}
+.salida .row {
+    height: 100vh;
+}
+.container-fluid.salida, .container-fluid.inscripcion {
+    background-position: center;
+}
+
+.salida section{
+    display: grid; 
+    max-width: 300px;
+}
+
+.container-fluid.inscripcion .campos {
+    height: 100vh;
+}
+.burbuja {
+    background-color: #fff;
+    border-radius: 10px;
+}
+.inscripcion input{
+    font-size: 1.3em;
+    padding: 9px 0;
+}
+
+.burbuja img{
+    padding-top: 4px;
+}
+.inscripcion .campos{
+        background-color: rgb(255 255 255 / 50%);
+}
+/*p.foot {
+    position: absolute;
+    bottom: -30px;
+}*/
+p.foot.text-center {
+    position: absolute;
+    bottom: 11px;
+}
+@media screen and (max-width: 991px) and (min-width: 766px) {
+    .mainrow {
+        padding-left: 26%;
+    }
+
+    .contenido {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 765px) {
+    .spacer {
+        height: 136px;
+        width: 0;
+    }
+
+    .contenido {
+        width: 100%;
+
+    }
+
+    .mainrow {
+        padding-left: 0;
+    }
+
+    .sidebar {
+
+        left: 0;
+
+    }
+
+    footer p {
+        display: block;
+    }
+    nav.navbar:after {
+    content: url(../images/mundoblanco.png);
+    display: block;
+    width: 157px;
+    height: 171px;
+    position: absolute;
+    right: 0px;
+    top: -36px;
+    overflow-x: hidden;
+}
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        background: #fff;
+    }
+
+    .cuenta {
+        width: 100%;
+    }
+
+    .borde {
+        /* border-right:none;*/
+    }
+}
+
+
+.file-field.medium .file-path-wrapper {
+    height: 3rem; }
+    .file-field.medium .file-path-wrapper .file-path {
+    height: 2.8rem; }
+    
+    .file-field.big-2 .file-path-wrapper {
+    height: 3.7rem; }
+    .file-field.big-2 .file-path-wrapper .file-path {
+    height: 3.5rem; }
