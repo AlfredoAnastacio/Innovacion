@@ -31,6 +31,10 @@ Route::get('status/{id}','StatusController@show')->middleware('auth')->name('sta
 Route::resource('user','UserController')->middleware('auth');
 Route::get('user/{id}/show','UserController@sh')->middleware('auth');
 
+Route::resource('payform', 'FormPayController')->middleware('auth');
+
+
+
 Route::get('refers', 'RefersController@index')->middleware('auth')->name('tree');
 Route::get('pay', 'PaysController@index')->middleware('auth')->name('pay');
 Route::redirect('/', '/login', 301);
@@ -67,3 +71,7 @@ Route::post('/pays', 'PaysController@annotateImage');
 
 
 Route::get('/register/{referralCode}', 'RefersController@link')->name('referral.link');
+
+
+//--------------------- Bitcoin --------------
+Route::get('/paybtc/{userid}', 'PaysController@bitpay')->name('bitstore');

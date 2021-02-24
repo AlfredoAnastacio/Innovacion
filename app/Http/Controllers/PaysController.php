@@ -110,7 +110,7 @@ class PaysController extends Controller
 
                     if($verified_investment != NULL)
                     {
-                        $investment_level = $verified_investment->status;
+                        $investment_level = $verified_investment->state;
 
                         if($investment_level == $range_name)
                         {
@@ -202,13 +202,62 @@ class PaysController extends Controller
             return view('Pages.GreetingsInvestment',compact('user_id','range_pay'));
 
         }
-      
 
-        public function index()
+
+        public function bitpay($user_id)
         {
 
-            return view('Pays.index');
+            $user_id= (int) $user_id;
+
+            if(Auth::id() == $user_id)
+            {
+
+                $verified_investment = Investment::where('user_id',$user_id)->latest()->first();
+                $range_id = Status::where('user_id',$user_id)->first()->range;
+                $range = Range::where('range_id',$range_id)->first();    
+                $range_pay = $range->total_investment;
+                $range_name = $range->range;
+                $deny_investment = 0;
+                
+                if($verified_investment != NULL)
+                {
+                    $investment_level = $verified_investment->state;
+                    
+                    if($investment_level == $range_name)
+                    {
+                        $deny_investment = 1;
+                    }
+                    
+                }
+                
+                
+                if(!$deny_investment)
+                {
+                    
+                 
+                    
+                
+                        $investments = new Investment();
+                        $investments->user_id = $user_id;
+                        $investments->pay = $range_pay;
+                        $investments->state = $range_name;
+                        $investments->save();
+                        
+                   
+                    
+                 }
+                
+                
+            }
+            return view('Pages.GreetingsInvestment',compact('user_id','range_pay'));
         }
+            
+            
+            public function index()
+            {
+                
+                return view('Pays.index');
+            }
 
         
 }

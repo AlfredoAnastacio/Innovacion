@@ -55,27 +55,13 @@
                         <h5 class="text-center mt-n2 griz">Haga su pago en Bitcoin</h5>
                         <img class="mx-auto d-block mt-1 pt-2 mb-3" src="{{asset('images/BitcoinWallet.png')}}">
 
-                        <form>
-                            <div class="form-group">
-                                <select class="custom-select griz">
-                                    <option selected>US $15  Rango Plata</option>
-                                    <option value="1">US $60  Rango Oro</option>
-                                    <option value="2">US $150  Rango Platino</option>
-                                    <option value="3">US $300  Rango Diamante</option>
-                                </select>
-                            </div>
-                        </form>
-
+                  
 
 
                         <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
-                            Generar dirección de pago
-
-                        </button>
-
-                        <h5 class="text-center griz">Envio a la siguiente dirección </h5>
-                        <input class="w-100 text-center orange border-top-0 border-right-0 border-left-0" type="text" value="abc123ABC123abc123ABC123abc123ABC12" name="">
-                        <p class="text-center">Recuerde que esta dirección es única<br>para esta transacción</p>
+                            <a href="https://bitinvoice.innovacionfd.com/buy.php?id={{Auth::id()}}">Generar dirección de pago</a>
+  
+                          </button>
 
 
 

@@ -25,6 +25,13 @@
                     CUENTA
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a id="pay" class="nav-link" href="{{ url('payform/'. Auth::id())}}">
+                    <span data-feather="bar-chart-2"></span>
+                   CANAL DE PAGO
+                </a>
+            </li>
             <li class="nav-item">
                 <a id="perfil" class="nav-link" href="{{ url('user/'. Auth::id()) . '/show' }}">
                     <span data-feather="users"></span>
