@@ -21,6 +21,7 @@ class CreatePaysAlertsTable extends Migration
             $table->float('total_pay', 9, 5);
             $table->string('status_pay')->default('Sin pagar');
             $table->integer('range_id');
+            $table->integer('tree');
             $table->timestamps();
         });
     }

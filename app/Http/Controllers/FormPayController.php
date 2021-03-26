@@ -91,7 +91,6 @@ class FormPayController extends Controller
         $contents = Storage::disk('local')->get('banks.json');
         $contents= json_decode($contents);
         $length = count($contents);
-      
         return view('User.editpaychannel', compact('user','contents','length'));
     }
 

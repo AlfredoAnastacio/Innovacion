@@ -30,9 +30,18 @@
         @include('layouts.navbar')
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-3">
             <div class="">
-                <div class="contenido pt-5 ">
+                <div class="contenido pt-5 ml-5 ">
                    
-                        <div class="chart" id="custom-colored"> --@-- </div>
+                    @for ($i=1 ; $i <= $sponsorTree; $i++ )
+    
+                    <a href="{{ url('refers/' .$i ) }}" class="box azulbg w-100  pt-3 mb-3 pb-3 text-white text-center tree" role="button">
+                        
+                       Ver árbol {{$i}}
+                    </a>
+                    
+                    
+                    @endfor
+                    
                    
                 </div>
             </div>
@@ -43,29 +52,8 @@
     </div>
 </div>
 
-<div id="refers" data-field-id="{{$array}}"></div>
-<div id="amount" data-field-id="{{$amount}}"></div>
 
 
-
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script>
-    window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
-</script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-
-<script src="{{asset('js/dashboard.js')}}"></script>
-</body>
-
-<script src="{{asset('js/raphael.js')}}"></script>
-<script src="{{asset('js/Treant.js')}}"></script>
-
-<script src="{{asset('js/custom-colored.js')}}"></script>
-<script>
-    new Treant( chart_config );
-</script>
 
 
 <script type="text/javascript">
@@ -76,7 +64,7 @@
              
             
              
-    $("#tree").last().addClass("active");
+    $("#tree-user").last().addClass("active");
      
     
      

@@ -18,6 +18,7 @@ class CreateRefersTable extends Migration
             $table->integer('user_id');
             $table->integer('sponsor_id');
             $table->integer('refer_by_admin')->default(0);
+            $table->integer('tree_sponsor')->default(1);
             $table->timestamps();
         });
     }

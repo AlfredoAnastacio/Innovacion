@@ -9,17 +9,18 @@ class Refer extends Model
     protected $table = 'refers';
 
     protected $fillable = [
-        'sponsor_id','user_id','refer_by_admin'
+        'sponsor_id','user_id','refer_by_admin','tree_sponsor'
     ];
 
     public $timestamps = false;
 
     //Obtiene los Referidos del usuario
-    public static function getRefers($user_id,$op)
+    public static function getRefers($user_id,$op,$tree)
     {
 
+      
 
-        $refers[1] = Refer::where('sponsor_id',$user_id)->with('user')->get();  // Referidos directos (Nivel 1)
+        $refers[1] = Refer::where('sponsor_id',$user_id)->where('tree_sponsor',$tree)->with('user')->get();  // Referidos directos (Nivel 1)
 
        
         $total_refers = count($refers[1]);
@@ -78,7 +79,7 @@ class Refer extends Model
 
             else{
 
-                $refers = Refer::where('sponsor_id',$refer)->with('user')->get();
+                $refers = Refer::where('sponsor_id',$refer)->where('tree_sponsor',1)->with('user')->get();
                 $all_refers = $all_refers->concat($refers);
 
             }

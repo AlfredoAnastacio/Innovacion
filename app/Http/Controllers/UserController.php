@@ -50,7 +50,10 @@ class UserController extends Controller
         $range = Range::where('range_id',(int) $user->range->range)->first();
         $sponsor = Refer::where('user_id',$id)->first();
         $range_name = $range->range;
-        
+
+        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
+
+  
         
         $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
         
@@ -58,21 +61,41 @@ class UserController extends Controller
         
         $commissions_total = Commission::amountCommission($id);
         
+        if($sponsorTree == NULL)
+        {
+             $sponsorTree =1;
 
-        $refers = Refer::getRefers($id,0);
+        }
+
+        else{
+
+            $sponsorTree = $sponsorTree->tree_sponsor;
+        }
         
-        Alerts::investmentAlert($id,$refers);
+            for($t=1; $t <= $sponsorTree; $t++)
+            {
+                
+                
+                $refers = Refer::getRefers($id,0,$t);
+                
+                Alerts::investmentAlert($id,$refers);
+            }
+            
+           
+            
+            
+            $total_refers = Refer::getRefers($id,1,$sponsorTree);
+            $amount = count($refers);
        
-        $pays_completed= PaysCompleted::getPays($id,$user->range->range,1);
-        $total_pays= PaysCompleted::getPays($id,$user->range->range,2);
 
-
-        $total_refers = Refer::getRefers($id,1);
-        $amount = count($refers);
 
         
 
-        return view('User.dashboard',compact('user','range','sponsor','investments_total','commissions_total','pays_completed','amount','total_refers','total_pays'));
+         $pays_completed= PaysCompleted::getPays($id,$user->range->range,1);
+            $total_pays= PaysCompleted::getPays($id,$user->range->range,2);
+
+        return view('User.dashboard',compact('user','range','sponsor','investments_total','commissions_total',
+        'pays_completed','amount','total_refers','total_pays','sponsorTree'));
 
        }
 

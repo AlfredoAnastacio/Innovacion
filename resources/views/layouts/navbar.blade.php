@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a id="tree" class="nav-link" href="{{ route('tree') }}">
+                <a id="tree-user" class="nav-link" href="{{ route('tree') }}">
                     <span data-feather="bar-chart-2"></span>
                     MI RED
                 </a>

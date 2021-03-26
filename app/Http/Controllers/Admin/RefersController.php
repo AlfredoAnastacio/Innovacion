@@ -79,8 +79,28 @@ class RefersController extends Controller
 
         if($request->sponsor_id != 1) 
         {
-            $verified_refers = Refer::where('sponsor_id',$request->sponsor_id)->get();
-            $verified_refers = count($verified_refers);
+           
+            if(Refer::where('sponsor_id',$request->sponsor_id)->exists())
+            {
+                $sponsorTree = Refer::where('sponsor_id',$request->sponsor_id)->orderBy('tree_sponsor','desc')->first();
+                $sponsors = Refer::where('sponsor_id',$request->sponsor_id)->where('tree_sponsor',$sponsorTree->tree_sponsor)->get();
+               
+                $total = sizeof($sponsors);
+                if($total < 2)
+                {
+                    $treeSponsor = $sponsorTree->tree_sponsor; 
+
+                }
+
+                else{
+
+                    $treeSponsor = $sponsorTree->tree_sponsor + 1; 
+                    
+
+                }                    
+
+
+            }  
 
         }
 
@@ -88,9 +108,14 @@ class RefersController extends Controller
             $verified_sponsor=1;
         }
 
+
+        $requestData =  (array_merge($request->all(), ['tree_sponsor' => $treeSponsor,
+
+        ]));
+
         $verified_sponsor = Refer::where('user_id',$request->user_id)->exists();
         
-        if($verified_refers < 2 && !$verified_sponsor)
+        if(!$verified_sponsor)
         {
             Refer::create($requestData);
 
@@ -196,20 +221,37 @@ class RefersController extends Controller
             
             if($verified_sponsor)
             {
+                $sponsorTree = Refer::where('sponsor_id',$request->sponsor_id)->orderBy('tree_sponsor','desc')->first();
+                $sponsors = Refer::where('sponsor_id',$request->sponsor_id)->where('tree_sponsor',$sponsorTree->tree_sponsor)->get();
+               
+                $total = sizeof($sponsors);
+                if($total < 2)
+                {
+                    $treeSponsor = $sponsorTree->tree_sponsor; 
+
+                }
+
+                else{
+
+                    $treeSponsor = $sponsorTree->tree_sponsor + 1; 
+                    
+
+                }  
                 
                 
-                
-                    $verified_sponsor = Refer::where('sponsor_id',$request->sponsor_id)->get();
+                $requestData =  (array_merge($request->all(), ['tree_sponsor' => $treeSponsor,
+
+                ]));
+                    
                     
                
                 
-                if(isset($verified_sponsor) && $verified_sponsor != NULL && count($verified_sponsor) < 2)
-                {
+                
                     $requestData = $request->all();
                     $user = Refer::findOrFail($id);
                     $user->update($requestData);
                     
-                }
+                
                 
             }
     }

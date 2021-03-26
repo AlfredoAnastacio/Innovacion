@@ -19,6 +19,8 @@ class CreateCommissionsTable extends Migration
             $table->integer('commission_level');
             $table->float('total', 9, 6);
             $table->integer('refer_id');
+            $table->integer('tree');
+          
             $table->string('commission_type')->default('Referido');
             $table->timestamps();
         });

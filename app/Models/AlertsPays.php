@@ -11,11 +11,11 @@ class AlertsPays extends Model
 
 
     protected $fillable = [
-        'user_id','level_pay','name','total_pay','status_pay','range_id'
+        'user_id','level_pay','name','total_pay','status_pay','range_id','tree'
     ];
 
 
-    public static function referAmountLevel($refers,$user_id)
+    public static function referAmountLevel($refers,$user_id,$tree)
     {
      
         $iterator=0;
@@ -26,8 +26,8 @@ class AlertsPays extends Model
         
         if(isset($refers[2]))
         {
-            $verified_alert =  AlertsPays::where('user_id','=',$user_id)->where('level_pay','=','Nivel 2')->where('range_id','=',$range_id)->exists();
-            $verified_pay =  PaysCompleted::where('user_id','=',$user_id)->where('level_pay','=','Nivel 2')->where('range_id','=',$range_id)->exists();
+            $verified_alert =  AlertsPays::where('user_id','=',$user_id)->where('level_pay','=','Nivel 2')->where('range_id','=',$range_id)->where('tree',$tree)->exists();
+            $verified_pay =  PaysCompleted::where('user_id','=',$user_id)->where('level_pay','=','Nivel 2')->where('range_id','=',$range_id)->where('tree',$tree)->exists();
 
 
             if(!$verified_alert && !$verified_pay)
@@ -48,8 +48,8 @@ class AlertsPays extends Model
 
                     {
 
-                        $rent = Commission::where('user_id',$user_id)->where('commission_level',2)->sum('total');
-                        self::insertDB($user_id,'Nivel 2',$rent,$name->name,'Sin pagar',$range_id);
+                        $rent = Commission::where('user_id',$user_id)->where('commission_level',2)->where('tree',$tree)->sum('total');
+                        self::insertDB($user_id,'Nivel 2',$rent,$name->name,'Sin pagar',$range_id,$tree);
 
                     }
             
@@ -66,8 +66,8 @@ class AlertsPays extends Model
         {
             
             $iterator=0;
-            $verified_alert =  AlertsPays::where('user_id','=',$user_id)->where('level_pay','=','Nivel 4')->where('range_id','=',$range_id)->exists();
-            $verified_pay =  PaysCompleted::where('user_id','=',$user_id)->where('level_pay','=','Nivel 4')->where('range_id','=',$range_id)->exists();
+            $verified_alert =  AlertsPays::where('user_id','=',$user_id)->where('level_pay','=','Nivel 4')->where('range_id','=',$range_id)->where('tree',$tree)->exists();
+            $verified_pay =  PaysCompleted::where('user_id','=',$user_id)->where('level_pay','=','Nivel 4')->where('range_id','=',$range_id)->where('tree',$tree)->exists();
          if(!$verified_alert && !$verified_pay)
             {   
 
@@ -86,8 +86,8 @@ class AlertsPays extends Model
                 if(count($refers[4]) == 16 && $iterator == 16)
                 {
 
-                    $rent = Commission::where('user_id',$user_id)->where('commission_level',4)->sum('total');
-                    self::insertDB($user_id,'Nivel 4',$rent,$name->name,'Sin pagar',$range_id);               
+                    $rent = Commission::where('user_id',$user_id)->where('commission_level',4)->where('tree',$tree)->sum('total');
+                    self::insertDB($user_id,'Nivel 4',$rent,$name->name,'Sin pagar',$range_id,$tree);               
                 
                 }
             
@@ -101,8 +101,8 @@ class AlertsPays extends Model
         if(isset($refers[7]))
         {
             $iterator=0;
-            $verified_alert =  AlertsPays::where('user_id','=',$user_id)->where('level_pay','=','Nivel 7')->where('range_id','=',$range_id)->exists();
-            $verified_pay =  PaysCompleted::where('user_id','=',$user_id)->where('level_pay','=','Nivel 7')->where('range_id','=',$range_id)->exists();
+            $verified_alert =  AlertsPays::where('user_id','=',$user_id)->where('level_pay','=','Nivel 7')->where('range_id','=',$range_id)->where('tree',$tree)->exists();
+            $verified_pay =  PaysCompleted::where('user_id','=',$user_id)->where('level_pay','=','Nivel 7')->where('range_id','=',$range_id)->where('tree',$tree)->exists();
         if(!$verified_alert && !$verified_pay)
             {
 
@@ -121,8 +121,8 @@ class AlertsPays extends Model
                 if(count($refers[7]) == 128 && $iterator == 128)
                 {
 
-                    $rent = Commission::where('user_id',$user_id)->where('commission_level','=','7')->sum('total');
-                    self::insertDB($user_id,'Nivel 7',$rent,$name->name,'Sin pagar',$range_id);
+                    $rent = Commission::where('user_id',$user_id)->where('commission_level','=','7')->where('tree',$tree)->sum('total');
+                    self::insertDB($user_id,'Nivel 7',$rent,$name->name,'Sin pagar',$range_id,$tree);
 
                 }
                 
@@ -132,7 +132,7 @@ class AlertsPays extends Model
 
     }
 
-    private static function insertDB($user_id,$level,$total_pay,$name,$status,$range_id) 
+    private static function insertDB($user_id,$level,$total_pay,$name,$status,$range_id,$tree) 
 {
     
 
@@ -141,7 +141,8 @@ class AlertsPays extends Model
         'level_pay' => $level,
         'total_pay' => $total_pay,
         'name' => $name,
-        'status_pay' => $status,  
+        'status_pay' => $status, 
+        'tree'  => $tree,
         'range_id'=>$range_id,     
          'created_at' => Carbon::now(),
     ],

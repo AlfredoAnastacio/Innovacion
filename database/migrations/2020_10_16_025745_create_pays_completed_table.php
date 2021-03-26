@@ -21,6 +21,7 @@ class CreatePaysCompletedTable extends Migration
             $table->float('total_pay', 9, 5);
             $table->string('status_pay')->default('Pagado');
             $table->integer('range_id');
+            $table->integer('tree');
             $table->timestamps();
         });
     }

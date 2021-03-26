@@ -62,10 +62,12 @@ class PaysCompletedController extends Controller
         $user_id = (int) Arr::get($requestData,'user_id');
         $level = Arr::get($requestData,'level_pay');
         $level =(int) substr($level,-1);
-        
+        $tree = (int) Arr::get($requestData,'tree');
+      
         PaysCompleted::create($requestData);
+
         
-        Commission::where('user_id',$user_id)->where('commission_level',$level)->update(['commission_type'=>1]);
+        Commission::where('user_id',$user_id)->where('commission_level',$level)->where('tree',$tree)->update(['commission_type'=>1]);
        
         return redirect('admin/payscompleted');
     }

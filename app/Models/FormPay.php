@@ -10,4 +10,6 @@ class FormPay extends Model
     protected $fillable = [
         'user_id','entity','number','type','document'
     ];
+
+    protected $primaryKey = 'user_id';
 }

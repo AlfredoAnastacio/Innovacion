@@ -22,7 +22,7 @@
 
 
 
-        <form method="POST" action="{{ route('payFormCreate') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+        <form method="POST" action="{{ url('payform/' ) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
 
 

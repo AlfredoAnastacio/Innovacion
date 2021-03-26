@@ -22,7 +22,14 @@ public static function refreshCommission($user_id){
 
 
     $user = $user_id;
-    $refers = Refer::getRefers($user,2);
+    $sponsorTree = Refer::where('sponsor_id',$user)->orderBy('tree_sponsor','desc')->first();
+
+    if($sponsorTree != NULL)
+    {
+     $sponsorTree = $sponsorTree->tree_sponsor;
+        for($t=1; $t <= $sponsorTree; $t++)
+        {
+    $refers = Refer::getRefers($user,2,$t);
     
     if(Refer::where('user_id',$user)->first() == NULL)
     {
@@ -40,19 +47,20 @@ public static function refreshCommission($user_id){
 
 
           
-            Commission::selfCommissions($investments,$levels,$user);
+            Commission::selfCommissions($investments,$levels,$user,$t);
           
 
 
     }
 
-
-    self::refreshStatus($user_id);
+    self::refreshStatus($user_id,$t);
+        }
+    }
 
 }
 
 
-private static function refreshStatus($user_id)
+private static function refreshStatus($user_id,$tree)
 {
          $update_status = new Status();
            $investments = new Investment();
@@ -63,15 +71,15 @@ private static function refreshStatus($user_id)
            $range =  (int)$user->range;
            $range_name=Range::where('range_id',$range)->first();
 
-           $refers =$refers_list->getRefers($user_id,0);
+           $refers =$refers_list->getRefers($user_id,0,$tree);
          
            if($user_id !=1 )
            {
 
-               AlertsPays::referAmountLevel($refers,$user_id);
+               AlertsPays::referAmountLevel($refers,$user_id,$tree);
            }
            
-           $total_refers = $refers_list->getRefers($user_id,1);
+           $total_refers = $refers_list->getRefers($user_id,1,$tree);
            $iterator=0;
 
            $pay = $investments->where('user_id','=',$user_id)->where('state',$range_name->range)->latest()->exists();
@@ -104,7 +112,7 @@ private static function refreshStatus($user_id)
                        
 
                         $range_name=Range::where('range_id',$range)->first();
-                        $verified_pay = PaysCompleted::where('user_id',$user_id)->where('level_pay',$range_name->range)->where('range_id',$range)->exists();
+                        $verified_pay = PaysCompleted::where('user_id',$user_id)->where('level_pay',$range_name->range)->where('range_id',$range)->where('tree',$tree)->exists();
 
                         if($verified_pay)
                         {
@@ -131,8 +139,8 @@ private static function refreshStatus($user_id)
 
                             
                             
-                            $refers_list->where('sponsor_id','=',$user_id)->delete();
-                            $commissions->where('user_id','=',$user_id)->delete();
+                            $refers_list->where('sponsor_id','=',$user_id)->where('tree_sponsor',$tree)->delete();
+                            $commissions->where('user_id','=',$user_id)->where('tree',$tree)->delete();
 
                         }
                         
@@ -165,19 +173,19 @@ private static function refreshStatus($user_id)
     
 
  
-        self::refreshAlert($user_id);
+        self::refreshAlert($user_id,$tree);
 
 
 }
 
 
-private static function refreshAlert($user_id)
+private static function refreshAlert($user_id,$tree)
 
 {
     if($user_id != 1)
     {
 
-        $refers = Refer::getRefers($user_id,0);
+        $refers = Refer::getRefers($user_id,0,$tree);
 
         Alerts::investmentAlert($user_id,$refers);
     }

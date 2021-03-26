@@ -10,7 +10,7 @@ class PaysCompleted extends Model
 
 
     protected $fillable = [
-        'user_id','level_pay','name','total_pay','status_pay','range_id'
+        'user_id','level_pay','name','total_pay','status_pay','range_id','tree'
     ];
 
 

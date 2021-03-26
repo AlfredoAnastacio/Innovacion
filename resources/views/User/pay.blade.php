@@ -59,7 +59,7 @@
 
 
                         <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
-                            <a href="https://bitinvoice.innovacionfd.com/buy.php?id={{Auth::id()}}">Generar dirección de pago</a>
+                            <a  href="https://bitinvoice.innovacionfd.com/buy.php?id={{Auth::id()}}">Generar dirección de pago</a>
   
                           </button>
 

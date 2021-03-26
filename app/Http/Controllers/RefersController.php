@@ -23,9 +23,21 @@ class RefersController extends Controller
     {
 
         $id = Auth::id();
-        $refers = Refer::getRefers($id, 0);
+        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
+        if($sponsorTree == NULL)
+        {
 
-        $amount = count($refers);
+                $sponsorTree = 1;
+        }
+
+        else{
+
+            $sponsorTree = $sponsorTree->tree_sponsor;
+        }
+
+       // $refers = Refer::getRefers($id, 0,$sponsorTree);
+
+      /*  $amount = count($refers);
         $array = array();
         $aux = collect();
         for ($i = 1; $i <= $amount; $i++) {
@@ -43,10 +55,10 @@ class RefersController extends Controller
             $array[$i] = $aux;
     }
 
-        $array = json_encode($refers);
+        $array = json_encode($refers); */
 
 
-        return view('User.tree', compact('array','amount'));
+        return view('User.tree', compact('sponsorTree'));
     }
 
 
@@ -109,17 +121,19 @@ class RefersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user_id)
+    public function show($tree)
     {
-       if($user_id == Auth::id())
-       {
-       $refers= Refer::getRefers($user_id,0);
+        $user_id = Auth::id();
+
+       
+       $refers= Refer::getRefers($user_id,0,$tree);
        $levels = count($refers);
 
-       return view('Refers.levels',compact('refers','levels'));
-         }
 
-         return back();
+       //return view('Refers.levels',compact('refers','levels'));
+       return view('Refers.tree',compact('refers','tree'));
+
+         
     }
 
 

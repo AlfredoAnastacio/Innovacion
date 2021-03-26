@@ -14,7 +14,7 @@ class Commission extends Model
 
 
     protected $fillable = [
-        'commission_level','user_id','refer_id','total','created_at','commission_type'
+        'commission_level','user_id','refer_id','total','created_at','commission_type', 'tree'
     ];
 
 
@@ -28,7 +28,7 @@ class Commission extends Model
     */
 
 
-    public static function selfCommissions($investments,$levels,$user_id){
+    public static function selfCommissions($investments,$levels,$user_id,$tree){
 
          
         $range_id = Status::where('user_id',$user_id)->first()->range;
@@ -45,8 +45,8 @@ class Commission extends Model
                         if(isset($refer->pay)){
                             
                             
-                            $verified_commission = Commission::where('refer_id','=',$refer->user_id)->where('user_id','=',$user_id)->exists();
-                            $verified_commission_level = Commission::where('refer_id','=',$refer->user_id)->where('user_id','=',$user_id)->where('commission_level',$i)->exists();
+                            $verified_commission = Commission::where('refer_id','=',$refer->user_id)->where('user_id','=',$user_id)->where('tree',$tree)->exists();
+                            $verified_commission_level = Commission::where('refer_id','=',$refer->user_id)->where('user_id','=',$user_id)->where('commission_level',$i)->where('tree',$tree)->exists();
 
                             
                             $level_inversion = Investment::where('user_id',$refer->user_id)->where('state',$range_name)->exists();
@@ -74,7 +74,7 @@ class Commission extends Model
                                 
                                 
     
-                                self::insertDB($user_id,$i,$refer->pay*$commission,$refer->user_id,0);
+                                self::insertDB($user_id,$i,$refer->pay*$commission,$refer->user_id,0,$tree);
                             }
                             
                             
@@ -89,7 +89,7 @@ class Commission extends Model
 
 
 
-private static function insertDB($user_id,$level,$total,$refer_id,$type)  // Método para insertar comisiones en la Base de Datos
+private static function insertDB($user_id,$level,$total,$refer_id,$type,$tree)  // Método para insertar comisiones en la Base de Datos
 {
     DB::table('commissions')->insert([
         ['user_id'=> $user_id,
@@ -97,7 +97,9 @@ private static function insertDB($user_id,$level,$total,$refer_id,$type)  // Mé
         'total' => $total,
         'refer_id' => $refer_id,
         'commission_type' => $type,
+        'tree' => $tree,
          'created_at' => Carbon::now(),
+         
     ],
 
 

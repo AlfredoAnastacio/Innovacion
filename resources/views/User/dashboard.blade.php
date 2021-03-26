@@ -100,6 +100,8 @@
                             <!-- END -->
                             <p class="griz mt-2 mb-0">Personas en su red</p>
                             <h1 class="azul"><b>NIVEL {{$amount}}</b></h1>
+
+                            <h4 class="azul"><b>ÁRBOLES {{$sponsorTree}}</b></h4>
                         </div>
                         <div class="afiliados w-100 d-flex align-items-center justify-content-end pt-3 pb-3 pl-3">
                             <p class="text-uppercase mb-3 pr-4 griz">Rentabilidades pagas</p>
@@ -118,6 +120,10 @@
                                         <th scope="row">
                                             <p class="mb-0"><b> ${{$pay->total_pay}}</b></p>
                                             <p class="mb-0">Por {{$pay->level_pay}}</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="mb-0"><b> Red: {{$pay->tree}}</b></p>
+                                           
                                         </th>
                                         <td class="align-middle">
 

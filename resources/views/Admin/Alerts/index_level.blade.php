@@ -76,7 +76,7 @@
                                                             <th>Fecha Generado</th>
                         
                                                          
-                        
+                                                            <th>Número de Red</th>
                         
                                                             <th>Acciones</th>
                                                         </tr>
@@ -99,6 +99,7 @@
                                                             <th>Fecha Generado</th>
                         
                                                          
+                                                            <th>Número de Red</th>
                         
                         
                                                             <th>Acciones</th>
@@ -151,6 +152,8 @@
                                                             <td>{{ $item->status_pay }}</td>
                                                             
                                                             <td>{{ $item->created_at }}</td>
+
+                                                            <td>{{ $item->tree }}</td>
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>
