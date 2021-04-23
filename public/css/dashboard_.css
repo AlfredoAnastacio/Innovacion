@@ -32,13 +32,6 @@ p {
 
 
 
-h6.title {
-    text-align: center !important;
-    color: #FFFFFF !important;
-}
-
-
-
 @media (max-width: 767.98px) {
     .sidebar {
         top: 5rem;
@@ -65,7 +58,7 @@ h6.title {
 }
 
 .sidebar .nav-link {
-    font-weight: lighter;
+    font-weight: 400;
     color: #333;
 }
 
@@ -101,7 +94,7 @@ h6.title {
 }
 
 .navbar .navbar-toggler {
-    top:1rem;
+    top: .25rem;
     left: 1rem;
 }
 
@@ -122,6 +115,21 @@ h6.title {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
+
+
+.tree{
+
+    margin-left: 5px;
+}
+
+
+
+
+
+
+
+
+
 .logoimg {
     display: flex;
     align-items: center;
@@ -135,21 +143,8 @@ h6.title {
     height: 136px;
 }
 
-/*.container {
-    background: #FFFFFF !important;
-    /*background-color: #2699FB;
-}*/
-
-
-/*h2.menu {
-    text-align: center;
-    margin: auto;
-    padding: 47px 30px;
-    color: #fff;
-}*/
-
 .container-fluid {
-    background-image: url(../images/fondo1.png);
+    background-image: url(../images/fondo1.png) !important;
     /*background-position: center -122px;*/
     background-size: cover;
     background-repeat: no-repeat;
@@ -180,7 +175,6 @@ nav#sidebarMenu {
 
 ul.nav.flex-column {
     text-align: center;
-    list-style: none;
 }
 
 ul.nav.flex-column a {
@@ -188,10 +182,9 @@ ul.nav.flex-column a {
 }
 
 a.nav-title {
-    font-size: 27px;
+    font-size: 30px;
     padding: 15px;
     display: block;
-    font-weight: lighter !important;
 }
 
 a.nav-link.active {
@@ -216,43 +209,6 @@ a.nav-link:hover {
 
 
 }
-
-a.nav-link.img-1::before {
-    content: url(../images/Invertirbalanco.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
-a.nav-link.img-2::before {
-    content: url(../images/Mis-EstructurasBlanco.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
-a.nav-link.img-3::before {
-    content: url(../images/Canlapagoblanco.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
-a.nav-link.img-4::before {
-    content: url(../images/Movimientos-Blanco.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
-a.nav-link.img-5::before {
-    content: url(../images/Perfil-Blanco.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
-a.nav-link.img-6::before {
-    content: url(../images/Salir-Blanco.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
 
 nav h1 {
     font-size: 1.2rem;
@@ -287,10 +243,6 @@ nav h1 {
     border-right: 2px solid #2699FB;
 }
 
-.border-b {
-    border-bottom: 2px solid #2699FB;
-}
-
 .arco {
     border-radius: 10px 10px 0 0;
 }
@@ -300,13 +252,9 @@ hr.azul {
     margin: 6px;
 }
 
-hr.verde {
-    border-top: 1px solid #34ffff;
-}
-
 .progress {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     background: none;
     position: relative;
 }
@@ -384,11 +332,6 @@ table.table.table-striped.text-center {
     border-bottom: 1px solid rgb(0 0 0 / 16%);*/
     box-shadow: 0 3px 6px 2px rgb(0 0 0 / 16%);
 }
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(255,255,255) !important;
-}
-
 a.campana {
     width: 56px;
 }
@@ -420,20 +363,9 @@ a.campana {
     background-color: #E2E2E2;
 }
 
-p.text-white {
-    font-weight: lighter !important;
-    font-size: 1em !important;
-}
-
 p.footer {
     background-color: #fff;
     font-size: 0.95em;
-    color: #1592E6 !important;
-    font-weight: lighter !important;
-}
-
-.p-1 {
-    padding: .40rem!important;
 }
 
 .abajo {
@@ -482,7 +414,7 @@ input.orange {
 }
 
 .salida section{
-    display: grid;
+    display: grid; 
     max-width: 300px;
 }
 
@@ -512,12 +444,7 @@ p.foot.text-center {
     position: absolute;
     bottom: 11px;
 }
-
-.imp-shadow {
-    box-shadow: 0px 4px 16px 5px rgb(69 91 99 / 15%);
-}
-
-@media screen and (max-width: 991px) and (min-width: 768px) {
+@media screen and (max-width: 991px) and (min-width: 766px) {
     .mainrow {
         padding-left: 26%;
     }
@@ -527,7 +454,7 @@ p.foot.text-center {
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 765px) {
     .spacer {
         height: 136px;
         width: 0;
@@ -578,159 +505,12 @@ p.foot.text-center {
 }
 
 
-
-/******** Icon link active ***********/
-
-a.nav-link.active.img-2::before {
-    content: url(../images/Mis-Estructuras-Gris.png);
-    margin-right: 8px;
-}
-
-a.nav-link.active.img-1::before {
-    content: url(../images/Invertir-Gris.png);
-    margin-right: 8px;
-}
-
-a.nav-link.active.img-4::before {
-    content: url(../images/Movimientos-Gris.png);
-    margin-right: 8px;
-}
-
-a.nav-link.active.img-5::before {
-    content: url(../images/perfil-gris.png);
-    margin-right: 8px;
-}
-
-a.nav-link.active.img-3::before {
-    content: url(../images/canal-pago-gris.png);
-    margin-right: 8px;
-}
-
-h1.mx-auto.mt-5 {
-    font-weight: lighter !important;
-}
-
-button.box {
-    font-weight: lighter !important;
-}
-
-a.pagos {
-    color: #FFFFFF !important;
-    margin-left: 8px !important;
-    font-weight: 400 !important;
-    font-size: 30px !important;
-}
-
-img.cb {
-    vertical-align: text-bottom;
-}
-
-.fw {
-    font-weight: bold !important;
-}
-
-.fwl {
-    font-weight: lighter !important;
-}
-
-a.pagos:hover {
-    text-decoration: none;
-}
-
-.pt-7 {
-    padding-top: 1rem!important;
-}
-
-.padd {
-    padding-top: 3rem!important;
-}
-
-h1.text-center.azul.pb-3.imgcb::before {
-    content: url(../images/cuenta-bancaria-azul.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
-h1.text-center.azul.pb-3.imgbv::before {
-    content: url(../images/billetera_virtual_azul.png);
-    margin-right: 8px;
-    vertical-align: sub;
-}
-
-h1.text-center.azul.pb-3.imgcb {
-    font-size: 2rem !important;
-}
-
-h1.text-center.azul.pb-3.imgbv {
-    font-size: 2rem !important;
-}
-
-select.custom-select.select1.griz {
-    font-weight: lighter !important;
-    font-size: 1.2em !important;
-}
-
-.brl {
-    border-radius: 20px !important;
-}
-
-.cl {
-    color: #1592E6 !important;
-}
-
-.pt {
-    padding-top: 3rem !important;
-}
-
-.p-13 {
-    padding: 13px 0 !important;
-}
-
-.fz {
-    font-size: 1.0rem !important;
-    font-weight: lighter!important;
-}
-
-.vinculo {
-    color: #fff!important;
-    font-weight: lighter!important;
-    font-size: 0.9rem!important;
-    float: right;
-    display: flex;
-}
-
-.border-primary {
-    border-color: #1592E6!important;
-}
-
-.qrf {
-    font-size: 1.3rem!important;
-}
-
-.flecha-atras{
-    position: fixed;
-    top: 30px;
-    left: 50%;
-}
-
-.fp-1 {
-    font-weight: 100 !important;
-}
-
-h6.title.ml-5 {
-    margin-left: 59px !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.file-field.medium .file-path-wrapper {
+    height: 3rem; }
+    .file-field.medium .file-path-wrapper .file-path {
+    height: 2.8rem; }
+    
+    .file-field.big-2 .file-path-wrapper {
+    height: 3.7rem; }
+    .file-field.big-2 .file-path-wrapper .file-path {
+    height: 3.5rem; }

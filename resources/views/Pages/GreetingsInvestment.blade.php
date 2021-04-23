@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>invertir</title>
+    <title>Invertir</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
-    
+
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 </head>
 
@@ -22,14 +22,14 @@
     </nav>
     <div class="container-fluid">
         <div class="row mainrow">
-          
+
             @include('layouts.navbar')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-3">
                 <div class="">
                     <div class="contenido pt-5 ">
                         <div class="cuenta mx-auto">
-                            
-                         
+
+
 
                             <h1 class="text-center azul pb-3"><b>GRACIAS POR SU<br>INVERSIÓN</b></h1>
 
@@ -40,11 +40,11 @@
                                     <h2 class="pt-2 mb-1 griz"><b>US {{$pay}}</b></h2>
                                     <h5 class="griz">INVERSION</h5>
                                 </div>
-                                
+
                             </div>
 
-                            <h1 class="text-center azul pb-3"><b>YA PUEDES REFERIR 
-CON TÚ NÚMERO DE 
+                            <h1 class="text-center azul pb-3"><b>YA PUEDES REFERIR
+CON TÚ NÚMERO DE
 USUARIO {{$user_id}}</b></h1>
 
 
@@ -56,13 +56,13 @@ USUARIO {{$user_id}}</b></h1>
 
                             <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center ">
                                 VER TU CUENTA
-                                
+
                             </button>
                             <div class="spacer m-5 p-5"></div>
-                            
 
-              
-                        
+
+
+
                         </div>
                     </div>
                 </div>

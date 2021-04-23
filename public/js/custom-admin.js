@@ -7,7 +7,7 @@ var config = {
         container: "#custom-colored",
 
         nodeAlign: "BOTTOM",
-        
+
         connectors: {
             type: 'step'
         },
@@ -20,7 +20,7 @@ var config = {
     var admin = {
         text: {
             name: "Administrador",
-            
+
         },
         image: '/images/avatar.png'
     }
@@ -28,8 +28,8 @@ var config = {
     var aux=0;
     var user = new Array();
     for (let i = 1; i < amount; i++) {
-        
- 
+
+
         console.log(i)
 
      user[aux] = {
@@ -38,7 +38,7 @@ var config = {
         text:{
             name: users[i].name,
             code: users[i].user_id,
-           
+
         },
         image:'/images/avatar.png'
     }
@@ -46,18 +46,18 @@ var config = {
 
 
     }
-    
+
     var chart_config = [
         config,
         admin
     ];
 
     for (let i = 0; i < user.length; i++) {
-        
-        
+
+
         chart_config.push(user[i]);
-        
-        
+
+
     }
 
     // Another approach, same result

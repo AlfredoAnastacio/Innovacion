@@ -3,7 +3,7 @@
 
 
 <center>
-    
+
     <p>
 
         <label  for="entity">State</label>
@@ -14,12 +14,12 @@
           @foreach ($contents as $item)
           <option>
 
-                {{$item->title}}    
+                {{$item->title}}
         </option>
         @endforeach
         @endfor
         </select>
-  
+
 
         <p>
             <input name="number" id="number" type="text" class="name"  placeholder="Número cuenta" value="{{ request()->input('number', old('number'))}}">
@@ -28,7 +28,7 @@
       <p>
         <input name="user_id"  type="numeric" class="name" id="number" placeholder="Usuario" value="{{ isset($user_id) ? $user_id : ''}}" hidden>
 <p>
-    
+
         <p>
             <input name="document" id="document" type="numeric" class="name"  placeholder="Document" value="{{ request()->input('document', old('document'))}}">
     <p>
@@ -47,11 +47,11 @@
         <div class="col-md-6">
           <div class="btn-group pull-right mt-10" role="group">
               <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-           
+
           </div>
           <!-- /.btn-group -->
       </div>
-  
+
 
 
 </center>

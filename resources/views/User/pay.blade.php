@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>invertir</title>
+    <title>INNOVACIÓN FINANCIERA | Invertir</title>
     <!-- Bootstrap core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" media="screen">
 
@@ -28,44 +28,45 @@
             <div class="">
                 <div class="contenido pt-5 ">
                     <div class="cuenta mx-auto">
+                        <p class="text-center mt-n2 griz">1. Seleccione la estructura en la que invertirá</p>
 
                         <form role="form" method="POST" action="/pays" enctype="multipart/form-data">
-                            @csrf
+                            <div class="form-group">
+                               <select class="custom-select griz">
+                                  <option selected>Estructura #1</option>
+                                  <option value="1">Estructura #2</option>
+                                  <option value="2">Estructura #3</option>
+                                  <option value="3">Estructura #4</option>
+                               </select>
+                            </div><br><br>
+                            <p class="text-center mt-n2 griz">2. Seleccione el medio para invertir</p>
+                            <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
+                                Cargar comprobante de inversión
+                            </button>
+                            <p class="text-center mt-n2 griz">Suba el comprobante de pago de su inversión</p>
+                            <h5 class="text-center mt-n2 griz">Ó</h5>
+                            <h5 class="text-center mt-n2 griz">Haga su pago en Etherum</h5>
+                            <img class="mx-auto d-block mt-1 pt-2 mb-3" src="{{asset('images/BitcoinWallet.png')}}">
 
-
-                            <h5 class="text-center griz">Total a invertir: $ {{$total_pay}} COP</h5>
-                            <div class="form-group row">
-
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image" name="image" required>
-                                    <label class="custom-file-label" for="customFile">Subir comprobante</label>
-                                  </div>
+                            <div class="form-group">
+                                <select class="custom-select griz">
+                                   <option selected>US $15  Rango Plata</option>
+                                   <option value="1">US $60  Rango Oro</option>
+                                   <option value="2">US $150  Rango Platino</option>
+                                   <option value="3">US $300  Rango Diamante</option>
+                                </select>
                             </div>
-                           
-                                    <button type="submit" class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
-                                        Cargar comprobante de inversión
-                                    </button>
-                             
+
+                            <p class="text-center son-bitcoin">Son 0,0013 Etherums</p>
+                            <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
+                                <a  href="https://bitinvoice.innovacionfd.com/buy.php?id={{Auth::id()}}">Generar dirección de pago</a>
+                              </button>
+                            <h5 class="text-center griz">Envio a la siguiente dirección </h5>
+                            <input class="w-100 text-center orange border-top-0 border-right-0 border-left-0" type="text" value="abc123ABC123abc123ABC123abc123ABC12" name="">
+                            <p class="text-center">Recuerde que esta dirección es única<br>para esta transacción</p>
+                            <img class="mx-auto d-block my-4" src="{{asset('images/qr.png')}}">
+                            <p class="text-center mt-2 mb-5 pb-5">Si lo prefiere escanee el código QR</p>
                         </form>
-                       
-
-
-                        <p class="text-center mt-n2 griz">Suba el comprobante de pago de su inversión</p>
-                        <h5 class="text-center mt-n2 griz">Ó</h5>
-                        <h5 class="text-center mt-n2 griz">Haga su pago en Bitcoin</h5>
-                        <img class="mx-auto d-block mt-1 pt-2 mb-3" src="{{asset('images/BitcoinWallet.png')}}">
-
-                  
-
-
-                        <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
-                            <a  href="https://bitinvoice.innovacionfd.com/buy.php?id={{Auth::id()}}">Generar dirección de pago</a>
-  
-                          </button>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -75,33 +76,16 @@
         </footer>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script>
-    window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
-</script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
-<script src="{{asset('js/dashboard.js')}}"></script>
-</body>
-
-
-
-<script type="text/javascript">
-   
-
-
-        
-             
-            
-             
-    $("#investment").last().addClass("active");
-     
-    
-     
-    
-              
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
     </script>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
+    <script src="{{asset('js/dashboard.js')}}"></script>
+</body>
+    <script type="text/javascript">
+        $("#investment").last().addClass("active");
+    </script>
 </html>

@@ -32,53 +32,53 @@
                         <div class="row px-3 mb-4">
 
                             <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{asset('images/people-blue.png')}}"></div>
-                          
-                                
-                            
+
+
+
                             <div class="col-10"><h5 class="griz mb-0"> {{$data->entity}}</h5>Entidad financiera </div>
-                            
-                            
+
+
                         </div>
                         <div class="row px-3 mb-4">
-                            
+
                             <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col-10"><h5 class="griz mb-0">{{$data->number}}</h5> Número/Dirección</div>
-                            
+
                         </div>
 
                         <div class="row px-3 mb-4">
-                            
+
                             <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col-10"><h5 class="griz mb-0">{{$data->document}}</h5> Documento</div>
-                            
+
                         </div>
                         <div class="row px-3 mb-4">
-                            
+
                             <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{asset('images/card.png')}}"></div>
                             <div class="col-10"><h5 class="griz mb-0">{{$data->type}}</h5> Tipo de cuenta</div>
-                            
-                        </div>
-                        
 
-                        
-                     
-                        
+                        </div>
+
+
+
+
+
                         <button class="box azulbg w-100 pt-3 mb-3 pb-3 mt-5 text-white text-center" role="button">
-                            
-                            
+
+
                             <a href="{{ url('payform/'. Auth::id()) . '/edit' }}" class="box azulbg w-100 pt-3 mb-3 pb-3 mt-5 text-white text-center" role="button">
-                                
+
                                 Editar
                             </a>
-                            
+
                         </button>
-                        
+
                         <div class="spacer m-5 p-5"></div>
-                        
+
                     </div>
-                    
+
                     <div class="spacer m-5 p-5"></div>
-                    
+
                 </div>
             </div>
         </div>
@@ -100,19 +100,19 @@
 
 
 <script type="text/javascript">
-   
 
 
-        
-             
-            
-             
+
+
+
+
+
     $("#pay").last().addClass("active");
-     
-    
-     
-    
-              
-    
+
+
+
+
+
+
     </script>
 </html>

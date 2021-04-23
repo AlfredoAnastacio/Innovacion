@@ -36,6 +36,7 @@ Route::resource('payform', 'FormPayController')->middleware('auth');
 
 
 Route::get('refers', 'RefersController@index')->middleware('auth')->name('tree');
+Route::get('movements', 'MovementsController@index')->middleware('auth')->name('movement');
 Route::get('pay', 'PaysController@index')->middleware('auth')->name('pay');
 Route::redirect('/', '/login', 301);
 
