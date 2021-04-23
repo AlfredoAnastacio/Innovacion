@@ -53,7 +53,7 @@
                             <div class="arco azulbg mt-2 p-2"><h6 class="title">LIDER INNOVADOR</h6></div>
                             <div class="row mb-4 scuare ml-0 mr-0">
                                 <div class="col-6 borde text-center pt-2">
-                                    <img src="{{asset('images/Estructuras azul.png')}}">
+                                    <img src="{{asset('images/Estructuras_azul.png')}}">
                                     <h2 class="pt-2 mb-1 griz"><b>99</b></h2>
                                     <h5 class="griz fz">ESTRUCTURAS</h5>
                                 </div>
