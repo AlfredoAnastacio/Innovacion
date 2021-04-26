@@ -37,77 +37,91 @@
                 <div class="">
                     <div class="contenido pt-5 ">
                         <div class="cuenta mx-auto">
-                            <h6 class="text-center text-uppercase azul"><b>Juan Carlos Gonzalez</b></h6>
+                            <h6 class="text-center text-uppercase azul"><b>{{Auth::user()->name}}</b></h6>
                             <div class="nivel">
                                 <div class="row">
                                     <div class="col-9 pr-0">
-                                        <h6 class="usuario azul pt-1"><b># USUARIO: 1234</b></h6>
+                                        <h6 class="usuario azul pt-1"><b># USUARIO: {{Auth::user()->user_id}}</b></h6>
                                         <hr class="azul">
-                                        <p class="patrocinador"># Patrocinador: 5678</p>
+                                        <p class="patrocinador"># Patrocinador: {{ $sponsorTree}}</p>
                                     </div>
                                     <div class="col-3 text-center pl-0">
-                                        <h2 class="mb-1 griz"><b>99</b></h2>
-                                        <h5 class="griz fz">ESTRUCTURAS</h5>
+                                        <img class="" src="{{asset('images/rentabilidad.png')}}">
+                                        <p class="text-center">{{$range->range}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="arco azulbg mt-2 p-2"><h6 class="title">LIDER INNOVADOR</h6></div>
                             <div class="row mb-4 scuare ml-0 mr-0">
-                                <div class="col-6 borde text-center pt-2">
+                                <div class="col-6 borde text-center pt-3">
                                     <img src="{{asset('images/Estructuras_azul.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>99</b></h2>
+                                    <h2 class="pt-2 mb-1 griz"><b>{{$sponsorTree}}</b></h2>
+                                    @if ($sponsorTree == 1)
+                                        <h5 class="griz fz">ESTRUCTURA</h5>
+                                    @else
                                     <h5 class="griz fz">ESTRUCTURAS</h5>
+                                    @endif
                                 </div>
                                 <div class="col-6 text-center pt-2">
                                     <img src="{{asset('images/rentabilidad.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $9999</b></h2>
+                                    <h2 class="pt-1 mb-1 griz"><b>US ${{$total_pays}}</b></h2>
                                     <h5 class="griz fz">RENTABILIDAD</h5>
                                 </div>
                             </div>
                             <!-- Estructuras -->
-                            <div class="box">
-                                <h6 class="text-center text-uppercase pt-3 mb-3 pb-3 azulbg text-white"><b>Tus estructuras</b>
-                                </h6>
-                            </div>
-                            <div class="arco azulbg mt-2 p-2">
-                                <h6 class="title ml-5">ESTRUCTURA #1<a class="vinculo" href="#">Más info ></a></h6>
-                            </div>
-                            <div class="row mb-4 scuare ml-0 mr-0">
-                                <div class="col-6 borde border-b text-center pt-2">
-                                    <div class="progress mx-auto " data-value='90'>
-                                        <span class="progress-left">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                            <div class="block text-center">
-                                                <img class="b-block"src="{{asset('images/people.png')}}">
-                                                <div class="h2 font-weight-bold griz"><b class="qrf">124</b></div>
+                            @if ($sponsorTree == 0)
+                                <div class="box">
+                                    <h6 class="text-center text-uppercase pt-3 mb-3 pb-3 azulbg text-white"><b>Sin Estructuras</b></h6>
+                                </div>
+                                <div class="row mb-5 scuare ml-0 mr-0"></div>
+                            @else
+                                <div class="box">
+                                    <h6 class="text-center text-uppercase pt-3 mb-3 pb-3 azulbg text-white"><b>Tus estructuras</b>
+                                    </h6>
+                                </div>
+                               @for($i = 0; $i < $sponsorTree; $i++)
+                                    <div class="arco azulbg mt-2 p-2">
+                                        <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}<a class="vinculo" href="#">Más info ></a></h6>
+                                    </div>
+                                    <div class="row mb-4 scuare ml-0 mr-0">
+                                        <div class="col-6 borde border-b text-center pt-2">
+                                            <div class="progress mx-auto " data-value='90'>
+                                                <span class="progress-left">
+                                                    <span class="progress-bar border-primary"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar border-primary"></span>
+                                                </span>
+                                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                                    <div class="block text-center">
+                                                        <img class="b-block"src="{{asset('images/people.png')}}">
+                                                        
+                                                        <div class="h2 font-weight-bold griz"><b class="qrf">124</b></div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
+                                        </div>
+                                        <div class="col-6 border-b text-center pt-2">
+                                            <br>
+                                            <img src="{{asset('images/rango-plata.png')}}">
+                                            <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
+                                        </div>
+                                        <div class="col-6 borde text-center pt-2">
+                                            <img src="{{asset('images/inversion.png')}}">
+                                            <h2 class="pt-2 mb-1 griz"><b>US $300</b></h2>
+                                            <h5 class="griz fz">INVERSION</h5>
+                                        </div>
+                                        <div class="col-6 text-center pt-2">
+                                            <img src="{{asset('images/rentabilidad.png')}}">
+                                            <h2 class="pt-2 mb-1 griz"><b>US $900</b></h2>
+                                            <h5 class="griz fz">RENTABILIDAD</h5>
                                         </div>
                                     </div>
-                                    <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
-                                </div>
-                                <div class="col-6 border-b text-center pt-2">
-                                    <br>
-                                    <img src="{{asset('images/rango-plata.png')}}">
-                                    <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
-                                </div>
-                                <div class="col-6 borde text-center pt-2">
-                                    <img src="{{asset('images/inversion.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $300</b></h2>
-                                    <h5 class="griz fz">INVERSION</h5>
-                                </div>
-                                <div class="col-6 text-center pt-2">
-                                    <img src="{{asset('images/rentabilidad.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $900</b></h2>
-                                    <h5 class="griz fz">RENTABILIDAD</h5>
-                                </div>
-                            </div>
+                               @endfor
+                            @endif
 
-                            <div class="arco azulbg mt-2 p-2"><h6 class="title ml-5">ESTRUCTURA #2<a class="vinculo" href="#">Más info ></a></h6></div>
+                            {{--  <div class="arco azulbg mt-2 p-2"><h6 class="title ml-5">ESTRUCTURA #2<a class="vinculo" href="#">Más info ></a></h6></div>
                             <div class="row mb-4 scuare ml-0 mr-0">
                                 <div class="col-6 borde border-b text-center pt-2">
                                     <div class="progress mx-auto " data-value='90'>
@@ -213,7 +227,7 @@
                                     <h2 class="pt-2 mb-1 griz"><b>US $900</b></h2>
                                     <h5 class="griz fz">RENTABILIDAD</h5>
                                 </div>
-                            </div>
+                            </div>  --}}
                         </div>
                     </div>
                 </div>

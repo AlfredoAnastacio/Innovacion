@@ -6,10 +6,10 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
     <body>
-       
+
     <div class="container-fluid inscripcion">
         <div class="row d-flex justify-content-center align-items-center campos">
-            
+
             <section role="main" class="col-12  align-content-between">
                 <img class="mx-auto d-block " src="{{asset('images/LogoAzul.png')}}">
                 <div class=" pt-5 ">
@@ -38,11 +38,11 @@
         </form>
 
 
-        <p class="foot griz text-center">Innovación Financiera Digital . Copyright 2020</p>  
+        <p class="foot griz text-center">Innovación Financiera Digital . Copyright 2020</p>
     </div>
 
         @if(isset($error_sponsor))
-        
+
         <div class="alert alert-danger" role="alert">
                 <li>{{$error_sponsor}} </li>
 

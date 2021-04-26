@@ -42,71 +42,35 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-       if($id == Auth::id()) {
+    public function show($id) {
+        if ($id == Auth::id()) {
+            $user = User::where('user_id', $id)->with('range')->first();
+            $range = Range::where('range_id',(int) $user->range->range)->first();
+            $sponsor = Refer::where('user_id',$id)->first();
+            $range_name = $range->range;
+            $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
+            $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
+            $investments_total = Investment::amountInvestment($investments);
+            $commissions_total = Commission::amountCommission($id);
+            if ($sponsorTree == NULL) {
+                $sponsorTree =1;
+            } else {
+                $sponsorTree = $sponsorTree->tree_sponsor;
+            }
 
-        $user = User::where('user_id', $id)->with('range')->first();
-        $range = Range::where('range_id',(int) $user->range->range)->first();
-        $sponsor = Refer::where('user_id',$id)->first();
-        $range_name = $range->range;
-
-        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-
-  
-        
-        $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
-        
-        $investments_total = Investment::amountInvestment($investments);
-        
-        $commissions_total = Commission::amountCommission($id);
-        
-        if($sponsorTree == NULL)
-        {
-             $sponsorTree =1;
-
-        }
-
-        else{
-
-            $sponsorTree = $sponsorTree->tree_sponsor;
-        }
-        
-            for($t=1; $t <= $sponsorTree; $t++)
-            {
-                
-                
+            for($t=1; $t <= $sponsorTree; $t++) {
                 $refers = Refer::getRefers($id,0,$t);
-                
                 Alerts::investmentAlert($id,$refers);
             }
-            
-           
-            
-            
             $total_refers = Refer::getRefers($id,1,$sponsorTree);
             $amount = count($refers);
-       
-
-
-        
-
-         $pays_completed= PaysCompleted::getPays($id,$user->range->range,1);
+            $pays_completed= PaysCompleted::getPays($id,$user->range->range,1);
             $total_pays= PaysCompleted::getPays($id,$user->range->range,2);
 
-        return view('User.dashboard',compact('user','range','sponsor','investments_total','commissions_total',
-        'pays_completed','amount','total_refers','total_pays','sponsorTree'));
-
-       }
-
-
-
-
-
+            return view('User.dashboard',compact('user','range','sponsor','investments_total','commissions_total',
+                                                'pays_completed','amount','total_refers','total_pays','sponsorTree'));
+        }
     }
-
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -151,8 +115,8 @@ class UserController extends Controller
         $data_temp = $request->all();
         $user = User::findOrFail(Auth::id());
 
-       
-        
+
+
         $user->fill($data_temp);
         $user->save();
         return redirect()->action('UserController@show',Auth::id());
