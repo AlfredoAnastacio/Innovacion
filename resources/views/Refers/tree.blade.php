@@ -11,7 +11,7 @@
 
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 
-  
+
 </head>
 </head>
 
@@ -22,7 +22,7 @@
     <h1 class="mx-auto mt-5">Cuenta
     <div class="input-group mx-auto">
         <input type="text" class="form-control" id="referralLink" readonly value="{{route('referral.link', ['referralCode' => Auth::id()])}} ">
-    
+
         <div class="input-group-append">
             <button class="btn btn-sm btn-primary" onclick="copyReferralLink()">
                 <i class="fa fa-copy"></i> Copiar
@@ -31,7 +31,7 @@
     </div>
 
 </h1>
-    
+
     @if(Auth::user()->isAdmin())
         <a href="{{ route('users.index') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Administrador</a>
     @endif
@@ -41,7 +41,7 @@
 </nav>
 <div class="container-fluid">
 
-  
+
 
 
     <div class="row mainrow">
@@ -50,7 +50,7 @@
             <div class="">
                 <div class="contenido pt-5 ">
                     <div class="cuenta mx-auto">
-                      
+
                         <div class="row mb-5 pb-5">
                             <div class="col-md-12">
                                 <table class="table table-striped text-center">
@@ -66,25 +66,25 @@
                                     <tr>
                                         <th scope="row">
                                             <p class="mb-0"><b> {{$item->user_id}}</b></p>
-                                            
+
                                         </th>
-                                        
+
                                         <th scope="row">
-                                            
+
                                             <p class="mb-0"><b> {{$item->user->username}}</b></p>
                                         </th>
-                                     
+
                                     </tr>
 
 
-                                  
+
 
                                     </tr>
                                     </tbody>
                                     @endforeach
                                     @endforeach
 
-                                   
+
 
                                 </table>
                             </div>
@@ -108,19 +108,19 @@
 <script src="dashboard.js"></script>
 </body>
 <script type="text/javascript">
-   
 
 
-        
-             
-            
+
+
+
+
    $("#tree-user").last().addClass("active");
- 
 
 
- 
 
-          
+
+
+
 
 </script>
 </html>

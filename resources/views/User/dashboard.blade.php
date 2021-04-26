@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <title>Cuenta</title>
+    <link rel="shortcut icon" href="{{ asset('images/fav_ico.png') }}">
     <!-- Bootstrap core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" media="screen">
 
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 
-  
+
 </head>
 </head>
 
@@ -22,7 +23,7 @@
     <h1 class="mx-auto mt-5">Cuenta
     <div class="input-group mx-auto">
         <input type="text" class="form-control" id="referralLink" readonly value="{{route('referral.link', ['referralCode' => Auth::id()])}} ">
-    
+
         <div class="input-group-append">
             <button class="btn btn-sm btn-primary" onclick="copyReferralLink()">
                 <i class="fa fa-copy"></i> Copiar
@@ -31,7 +32,7 @@
     </div>
 
 </h1>
-    
+
     @if(Auth::user()->isAdmin())
         <a href="{{ route('users.index') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Administrador</a>
     @endif
@@ -41,7 +42,7 @@
 </nav>
 <div class="container-fluid">
 
-  
+
 
 
     <div class="row mainrow">
@@ -123,24 +124,24 @@
                                         </th>
                                         <th scope="row">
                                             <p class="mb-0"><b> Red: {{$pay->tree}}</b></p>
-                                           
+
                                         </th>
                                         <td class="align-middle">
 
-  
+
                                             <p>Hace   {{ \Carbon\Carbon::now()->diffInDays($pay->created_at->toDateString())}} Días</p>
                                         </td>
                                     </tr>
 
 
-                                  
+
 
                                     </tr>
                                     </tbody>
 
                                     @endforeach
 
-                                   
+
 
                                 </table>
                             </div>
@@ -164,28 +165,28 @@
 <script src="dashboard.js"></script>
 </body>
 <script type="text/javascript">
-   
 
 
-        
-             
-            
-             
+
+
+
+
+
 $("#dashboard").last().addClass("active");
- 
+
 
 function copyReferralLink() {
   var input = document.getElementById("referralLink");
 
-  
+
   input.select();
-  input.setSelectionRange(0, 99999); 
+  input.setSelectionRange(0, 99999);
   document.execCommand("copy");
   alert("El enlace para referir ha sido copiado: " + input.value);
 }
- 
 
-          
+
+
 
 </script>
 </html>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <title>Innovación Financiera</title>
-
+    <link rel="shortcut icon" href="{{ asset('images/fav_ico.png') }}">
     <style type="text/css">
       .container .main #form1 center p {
         font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif;

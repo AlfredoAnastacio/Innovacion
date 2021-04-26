@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <title>INNOVACIÓN FINANCIERA | Registro de canal de pago</title>
+    <link rel="shortcut icon" href="{{ asset('images/fav_ico.png') }}">
     <!-- Bootstrap core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" media="screen">
 
