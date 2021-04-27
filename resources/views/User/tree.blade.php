@@ -81,7 +81,7 @@
                                 </div>
                                @for($i = 0; $i < $sponsorTree; $i++)
                                     <div class="arco azulbg mt-2 p-2">
-                                        <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}<a class="vinculo" href="#">Más info ></a></h6>
+                                        <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}<a class="vinculo" href="{{ route('tree.detail', $i+1) }}">Más info ></a></h6>
                                     </div>
                                     <div class="row mb-4 scuare ml-0 mr-0">
                                         <div class="col-6 borde border-b text-center pt-2">
@@ -95,7 +95,7 @@
                                                 <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
                                                     <div class="block text-center">
                                                         <img class="b-block"src="{{asset('images/people.png')}}">
-                                                        
+
                                                         <div class="h2 font-weight-bold griz"><b class="qrf">124</b></div>
                                                     </div>
                                                 </div>
@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="col-6 border-b text-center pt-2">
                                             <br>
-                                            <img src="{{asset('images/rango-plata.png')}}">
+                                            <img src="{{asset('images/rango_plata.png')}}">
                                             <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
                                         </div>
                                         <div class="col-6 borde text-center pt-2">

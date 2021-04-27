@@ -33,8 +33,10 @@ class RefersController extends Controller
         $sponsor = Refer::where('user_id',$id)->first();
         $range_name = $range->range;
         $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
+
         $dataSponsorTrees = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','asc')->get();
         // dd($dataSponsorTrees);
+
         $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
         $investments_total = Investment::amountInvestment($investments);
         $commissions_total = Commission::amountCommission($id);
@@ -43,7 +45,7 @@ class RefersController extends Controller
         } else {
             $sponsorTree = $sponsorTree->tree_sponsor;
         }
-        // dd($sponsorTree);
+
         for($t=1; $t <= $sponsorTree; $t++) {
             $refers = Refer::getRefers($id,0,$t);
             Alerts::investmentAlert($id,$refers);
@@ -144,27 +146,27 @@ class RefersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($tree)
-    {
+    public function show($tree) {
         $user_id = Auth::id();
+        $refers= Refer::getRefers($user_id,0,$tree);
+        $levels = count($refers);
 
-
-       $refers= Refer::getRefers($user_id,0,$tree);
-       $levels = count($refers);
-
-
-       //return view('Refers.levels',compact('refers','levels'));
-       return view('Refers.tree',compact('refers','tree'));
-
-
+        return view('Refers.tree',compact('refers','tree'));
     }
-
 
     public function link($referralCode)
     {
 
         return view('User.create',compact('referralCode'));
 
+    }
+
+    public function detail($tree){
+        $user_id = Auth::id();
+        $refers= Refer::getRefers($user_id,0,$tree);
+        $levels = count($refers);
+
+        return view('Refers.tree',compact('refers','tree'));
     }
 
 }

@@ -43,17 +43,17 @@ class RefersController extends Controller
      */
     public function create(Request $request)
     {
-     
+
         $user_id = $request->user_id;
-       
+
         $verified_sponsor = Refer::where('user_id',$user_id)->exists();
-       
+
         if($verified_sponsor)
-        {   
+        {
             $id = Refer::where('user_id',$user_id)->first()->id;
             return redirect('admin/refers/'.$id . '/edit');
         }
-       
+
         return view('Admin.Refers.create',compact('user_id'));
     }
 
@@ -77,30 +77,30 @@ class RefersController extends Controller
         {
 
 
-        if($request->sponsor_id != 1) 
+        if($request->sponsor_id != 1)
         {
-           
+
             if(Refer::where('sponsor_id',$request->sponsor_id)->exists())
             {
                 $sponsorTree = Refer::where('sponsor_id',$request->sponsor_id)->orderBy('tree_sponsor','desc')->first();
                 $sponsors = Refer::where('sponsor_id',$request->sponsor_id)->where('tree_sponsor',$sponsorTree->tree_sponsor)->get();
-               
+
                 $total = sizeof($sponsors);
                 if($total < 2)
                 {
-                    $treeSponsor = $sponsorTree->tree_sponsor; 
+                    $treeSponsor = $sponsorTree->tree_sponsor;
 
                 }
 
                 else{
 
-                    $treeSponsor = $sponsorTree->tree_sponsor + 1; 
-                    
-
-                }                    
+                    $treeSponsor = $sponsorTree->tree_sponsor + 1;
 
 
-            }  
+                }
+
+
+            }
 
         }
 
@@ -114,7 +114,7 @@ class RefersController extends Controller
         ]));
 
         $verified_sponsor = Refer::where('user_id',$request->user_id)->exists();
-        
+
         if(!$verified_sponsor)
         {
             Refer::create($requestData);
@@ -123,10 +123,10 @@ class RefersController extends Controller
 
         else
         {
-            
+
             if(isset( Refer::where('user_id',$request->user_id)->first()->id))
             {
-    
+
                 $id = Refer::where('user_id',$request->user_id)->first()->id;
                 return redirect('admin/refers/'.$id . '/edit');
             }
@@ -138,7 +138,7 @@ class RefersController extends Controller
         }
 
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -149,7 +149,7 @@ class RefersController extends Controller
     public function show($user_id)
     {
 
-       
+
         $id = $user_id;
         $refers = Refer::getRefers($id, 0);
 
@@ -190,10 +190,10 @@ class RefersController extends Controller
     public function edit($id)
     {
         $refer = Refer::findOrFail($id);
-        
+
         $name = User::where('user_id',$refer->user_id)->first()->name;
         $name_sponsor = User::where('user_id',$refer->sponsor_id)->first()->name;
-    
+
         return view('Admin.Refers.edit', compact('refer','name','name_sponsor'));
     }
 
@@ -217,45 +217,45 @@ class RefersController extends Controller
         }
 
         else{
-            
-            
+
+
             if($verified_sponsor)
             {
                 $sponsorTree = Refer::where('sponsor_id',$request->sponsor_id)->orderBy('tree_sponsor','desc')->first();
                 $sponsors = Refer::where('sponsor_id',$request->sponsor_id)->where('tree_sponsor',$sponsorTree->tree_sponsor)->get();
-               
+
                 $total = sizeof($sponsors);
                 if($total < 2)
                 {
-                    $treeSponsor = $sponsorTree->tree_sponsor; 
+                    $treeSponsor = $sponsorTree->tree_sponsor;
 
                 }
 
                 else{
 
-                    $treeSponsor = $sponsorTree->tree_sponsor + 1; 
-                    
+                    $treeSponsor = $sponsorTree->tree_sponsor + 1;
 
-                }  
-                
-                
+
+                }
+
+
                 $requestData =  (array_merge($request->all(), ['tree_sponsor' => $treeSponsor,
 
                 ]));
-                    
-                    
-               
-                
-                
+
+
+
+
+
                     $requestData = $request->all();
                     $user = Refer::findOrFail($id);
                     $user->update($requestData);
-                    
-                
-                
+
+
+
             }
     }
-        
+
 
             return redirect('admin/users');
     }
