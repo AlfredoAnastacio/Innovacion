@@ -12,8 +12,8 @@
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/Treant.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom-colored.css')}}">
-    
-    
+
+
 </head>
 
 <body>
@@ -27,15 +27,15 @@
 
     <div class="btn-group" role="group">
         <a href="{{url('admin/users')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
-      
+
     </div>
 </nav>
 
 
                 <div class="contenido pt-5 ">
-                   
+
                         <div class="chart" id="custom-colored"> --@-- </div>
-                   
+
                 </div>
 
 
@@ -65,20 +65,20 @@
 
 
 <script type="text/javascript">
-   
 
 
-        
-             
-            
-             
+
+
+
+
+
     $("#tree").last().addClass("active");
-     
-    
-     
-    
-              
-    
+
+
+
+
+
+
     </script>
 
 </html>

@@ -19,10 +19,10 @@ class Refer extends Model
 
         $refers[1] = Refer::where('sponsor_id',$user_id)->where('tree_sponsor',$tree)->with('user')->get();  // Referidos directos (Nivel 1)
 
-
         $total_refers = count($refers[1]);
         $aux=1;
-        for ($i=2;$i<8;$i++) { //Referidos de nivel 2 a 7
+        for ($i=2;$i<8;$i++) { //Referidos de nivel 2 a 7   LO QUE ESTABA
+        // for ($i=2;$i<15;$i++) { //Referidos de nivel 2 a 14
 
             $refers[$i] = collect();
             $refers[$i] = self::iterator($refers[$aux],$op);

@@ -33,15 +33,20 @@
 
                         <form role="form" method="POST" action="/pays" enctype="multipart/form-data">
                             <div class="form-group">
-                               <select class="custom-select griz">
-                                  <option selected>Estructura #1</option>
-                                  <option value="1">Estructura #2</option>
-                                  <option value="2">Estructura #3</option>
-                                  <option value="3">Estructura #4</option>
-                               </select>
+                                <select class="custom-select griz" id="id_tree" name="id_tree">
+                                    @for ($Tree=0; $Tree < $sponsorTree; $Tree++) {
+                                        <option selected value="{{ $Tree + 1 }}">Estructura #{{ $Tree + 1 }}</option>
+                                    @endfor
+                                </select>
                             </div><br><br>
                             <p class="text-center mt-n2 griz">2. Seleccione el medio para invertir</p>
-                            <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
+                            <div class="form-group row">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="image" name="image" required>
+                                    <label class="custom-file-label" for="customFile">Subir comprobante</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
                                 Cargar comprobante de inversión
                             </button>
                             <p class="text-center mt-n2 griz">Suba el comprobante de pago de su inversión</p>

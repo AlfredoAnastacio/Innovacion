@@ -37,41 +37,40 @@ class CommissionsController extends Controller
         if($sponsorTree != NULL)
         {
 
-            
+
             $sponsorTree = $sponsorTree->tree_sponsor;
             for($t=1; $t <= $sponsorTree; $t++)
             {
-                
+
                 $refers = Refer::getRefers($user,2,$t);
-                
+
                 if(Refer::where('user_id',$user)->first() == NULL)
                 {
                     Refer::create(['user_id'=> $user, 'sponsor_id' => 1]);
                 }
-                
-                
+
+
                 $levels = count($refers);  //Cantidad de Referidos por nivel
                 $investments = Investment::getInvestments($refers,$levels);
-                
-                
-                
+
+
                 if(isset($investments) && isset($refers))
                 {
-                    
-                    
-                    
-                    Commission::selfCommissions($investments,$levels,$user,$t);
-                    
-                    
-                    
-                }
                 
+
+
+                    Commission::selfCommissions($investments,$levels,$user,$t);
+
+
+
+                }
+
             }
-            
+
         }
             return redirect()->action('StatusController@show',Auth::id());
         }
-        
+
         /**
          * Display the specified resource.
          *
@@ -80,8 +79,8 @@ class CommissionsController extends Controller
          */
         public function show($id)
         {
-            
+
         }
-        
-        
+
+
 }

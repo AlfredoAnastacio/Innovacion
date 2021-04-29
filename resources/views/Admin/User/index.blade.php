@@ -10,7 +10,7 @@
      @include('Admin.Layouts.head')
     </head>
     <body class="top-navbar-fixed">
-        
+
         <div class="main-wrapper">
 
             <!-- ========== TOP NAVBAR ========== -->
@@ -44,10 +44,10 @@
                                     <h2 class="title">Usuarios Registrados</h2>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -66,7 +66,7 @@
 
                                                 <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
                                                     <thead>
-                                                      
+
                                                         <tr>
                                                             <th>Codigo</th>
                                                             <th>Nombre</th>
@@ -149,7 +149,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->
@@ -167,13 +167,13 @@
 
 
 $(document).ready(function(){
- 
 
- 
+
+
 $("#user").addClass("active");
- 
 
- 
+
+
 });
           </script>
         <!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->

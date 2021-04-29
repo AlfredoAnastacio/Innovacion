@@ -15,9 +15,7 @@ use App\Models\Alerts;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class RefersController extends Controller
-{
-
+class RefersController extends Controller {
 
     /**
      * Show the form for creating a new resource.
@@ -33,13 +31,10 @@ class RefersController extends Controller
         $sponsor = Refer::where('user_id',$id)->first();
         $range_name = $range->range;
         $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-
-        $dataSponsorTrees = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','asc')->get();
-        // dd($dataSponsorTrees);
-
         $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
         $investments_total = Investment::amountInvestment($investments);
         $commissions_total = Commission::amountCommission($id);
+        // dd($commissions_total);
         if ($sponsorTree == NULL) {
             $sponsorTree =1;
         } else {
@@ -55,10 +50,27 @@ class RefersController extends Controller
         $pays_completed= PaysCompleted::getPays($id,$user->range->range,1);
         $total_pays= PaysCompleted::getPays($id,$user->range->range,2);
 
-        // dd($refers);
+        $refers_by_tree = array();                              //|
+        $total_users_by_tree = 0;                               //|
+        $total_users = 0;                                       //|
+        for ($t=1; $t <= $sponsorTree; $t++) {                  //|
+            $refers = Refer::getRefers($id,0,$t);               //|
+            foreach ($refers as $value) {                       //| Fragmento para obtener el total de users by tree
+                foreach ($value as $val) {                      //|
+                    $total_users_by_tree++;                     //|
+                }                                               //|
+            }                                                   //|
+            array_push($refers_by_tree, $total_users_by_tree);  //|
+            $total_users_by_tree = 0;                           //|
+        }                                                       //|
+
+        foreach ($refers_by_tree as $value) {   //se obtiene el total en general del usuario x.
+            $total_users = $total_users + $value;
+        }
 
         return view('User.tree',compact('user','range','sponsor','investments_total','commissions_total',
-                                                'pays_completed','amount','total_refers','total_pays','sponsorTree'));
+                                                'pays_completed','amount','total_refers','total_pays','sponsorTree',
+                                                'refers_by_tree', 'total_users'));
 
     //     $user = User::where('user_id', $id)->with('range')->first();
     //     $range = Range::where('range_id',(int) $user->range->range)->first();
@@ -109,35 +121,21 @@ class RefersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 
         $validate = Refer::where('user_id',Auth::id())->exists();
 
-        if(!$validate)
-
-
-        {
-
-
+        if (!$validate) {
             $range = Status::where('user_id',$request->sponsor_id)->first()->range;
-        $refer = new Refer();
 
-        $refer->user_id =  Auth::id();
-        $refer->sponsor_id = $request->sponsor_id;
-
-        DB::table('status')->where('user_id',$request->user_id)
-        ->update(['range' => $range]
-
-    );
-
-    $refer->save();
-
-}
-
+            $refer = new Refer();
+            $refer->user_id =  Auth::id();
+            $refer->sponsor_id = $request->sponsor_id;
+            DB::table('status')->where('user_id',$request->user_id)->update(['range' => $range]);
+            $refer->save();
+        }
 
         return redirect()->action('RefersController@show',Auth::id());
-
     }
 
     /**
@@ -146,7 +144,7 @@ class RefersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($tree) {
+    public function show($tree) {       //VALIDAR QUE SE USA O SE PUEDE USAR
         $user_id = Auth::id();
         $refers= Refer::getRefers($user_id,0,$tree);
         $levels = count($refers);
@@ -154,11 +152,9 @@ class RefersController extends Controller
         return view('Refers.tree',compact('refers','tree'));
     }
 
-    public function link($referralCode)
-    {
+    public function link($referralCode) {
 
         return view('User.create',compact('referralCode'));
-
     }
 
     public function detail($tree){
@@ -166,7 +162,31 @@ class RefersController extends Controller
         $refers= Refer::getRefers($user_id,0,$tree);
         $levels = count($refers);
 
-        return view('Refers.tree',compact('refers','tree'));
-    }
+        $sponsorTree = Refer::where('sponsor_id',$user_id)->orderBy('tree_sponsor','desc')->first();
+        if ($sponsorTree == NULL) {
+            $sponsorTree =1;
+        } else {
+            $sponsorTree = $sponsorTree->tree_sponsor;
+        }
 
+        $refers_by_tree = array();
+        $total_users_by_tree = 0;
+        $total_users = 0;
+        for ($t=1; $t <= $sponsorTree; $t++) {
+            $refers = Refer::getRefers($user_id,0,$t);
+            foreach ($refers as $value) {
+                foreach ($value as $val) {
+                    $total_users_by_tree++;
+                }
+            }
+            array_push($refers_by_tree, $total_users_by_tree);
+            $total_users_by_tree = 0;
+        }
+
+        foreach ($refers_by_tree as $value) {   //se obtiene el total en general del usuario x.
+            $total_users = $total_users + $value;
+        }
+
+        return view('Refers.tree',compact('refers','tree', 'levels', 'total_users'));
+    }
 }
