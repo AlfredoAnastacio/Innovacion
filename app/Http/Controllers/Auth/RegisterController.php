@@ -52,8 +52,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
 
             'name' => 'required',
-            'lastname' => 'required',
-            'username' => 'required| unique:users',
+            // 'lastname' => 'required',
+            // 'username' => 'required| unique:users',
             'document' => 'required| unique:users',
             'email' => 'required|unique:users',
             'telephone' => 'required|unique:users',
@@ -73,8 +73,8 @@ class RegisterController extends Controller
 
         return User::create([
             'name' => $data['name'],
-            'lastname' => $data['lastname'],
-            'username' => $data['username'],
+            'lastname' => $data['name'],
+            'username' => $data['name'],
             'email' => $data['email'],
             'document' => $data['document'],
             'telephone' => $data['telephone'],
@@ -89,8 +89,8 @@ class RegisterController extends Controller
 
     return[
         'name.required' => 'El nombre es requerido',
-        'lastname.required' => 'El apellido es requerido',
-        'username.required' => 'El nombre de usuario es requerido',
+        // 'lastname.required' => 'El apellido es requerido',
+        // 'username.required' => 'El nombre de usuario es requerido',
         'document.required' => 'El documento de identidad es requerido',
         'email.required' => 'El email es requerido',
         'email.unique' => 'El Email ya ha sido usado',
