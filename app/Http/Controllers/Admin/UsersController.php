@@ -45,8 +45,11 @@ class UsersController extends Controller
 
                 ->latest()->paginate($perPage);
         } else {
-            $users = User::all();
+            // $users = User::all();
+            $users = User::join('refers', 'users.user_id', 'refers.user_id')->get();
         }
+
+        // dd($users);
 
         $alerts_pays=AlertsPays::where('status_pay','Sin pagar')->latest()->first();
 
@@ -61,7 +64,7 @@ class UsersController extends Controller
             $alerts=0;
         }
 
-        
+
         return view('Admin.User.index', compact('users','alerts'));
     }
 
@@ -205,7 +208,7 @@ class UsersController extends Controller
 
         Refer::where('user_id',$id)->delete();
 
-        
+
         return redirect('admin/users')->with('flash_message', 'User deleted!');
     }
 
@@ -213,12 +216,12 @@ class UsersController extends Controller
     {
 
         $users= User::all();
-        
+
         foreach ($users as $user)
         {
-            
+
             Update::refreshCommission($user->user_id);
-           
+
         }
 
         return redirect('admin/users');

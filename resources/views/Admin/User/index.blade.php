@@ -69,31 +69,22 @@
 
                                                         <tr>
                                                             <th>Codigo</th>
+                                                            <th>Patrocinador</th>
+                                                            <th>Núm. de Documento</th>
                                                             <th>Nombre</th>
-                                                            <th>Apellido</th>
-                                                            <th>Nombre Usuario</th>
-                                                            <th>Documento</th>
                                                             <th>Email</th>
                                                             <th>Teléfono</th>
+                                                            <th>Estructuras</th>
+                                                            <th>Referidos</th>
+                                                            <th>Estado</th>
+                                                            <th>Medio de Pago</th>
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Codigo</th>
-                                                            <th>Nombre</th>
-                                                            <th>Apellido</th>
-                                                            <th>Nombre Usuario</th>
-                                                            <th>Documento</th>
-                                                            <th>Email</th>
-                                                            <th>Teléfono</th>
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                         @foreach($users as $item)
                                                         <tr>
-                                                            <td>{{$item->user_id}} </td> <td>{{ $item->name }}</td><td>{{ $item->lastname }}</td><td>{{ $item->username }}</td>  <td> {{$item->document}}</td> <td>{{$item->email}} </td> <td> {{$item->telephone}}</td>
+                                                            <td> {{$item->user_id}}</td> <td>{{ $item->name }}</td><td>{{ $item->lastname }}</td><td>{{ $item->username }}</td>  <td> {{$item->document}}</td> <td>{{$item->email}} </td> <td> {{$item->telephone}}</td>
 
                                                             <td>
                                                                 <div class="btn-group">
