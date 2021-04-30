@@ -21,7 +21,7 @@
                     <div class="cuenta mx-auto">
                         <form method="POST" action="{{ route('register') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
+                            {{--  <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
                                 <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{ asset('images/people-blue.png') }}"></div>
                                 <div class="col-10">
                                     @if(!isset($referralCode))
@@ -29,6 +29,12 @@
                                     @else
                                         <input type="number" class="griz mb-0 border-0" name="sponsor_id" id="sponsor_id" placeholder="Número del Patrocinado" value="{{$referralCode}}" readonly>
                                     @endif
+                                </div>
+                            </div>  --}}
+                            <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
+                                <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{ asset('images/people-blue.png') }}"></div>
+                                <div class="col-10">
+                                    <input name="sponsor_id" type="number" class="griz mb-0 border-0" id="sponsor_id" placeholder="Número del Patrocinado" value="{{ request()->input('sponsor_id', old('sponsor_id'))}}" required>
                                 </div>
                             </div>
                             <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
@@ -46,7 +52,7 @@
                             <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
                                 <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{ asset('images/phone.png') }}"></div>
                                 <div class="col-10">
-                                    <input name="telephone" type="tel" class="griz mb-0 border-0" id="telephone" placeholder="Número telefónico" value="{{ request()->input('telephone', old('telephone'))}}" required>
+                                    <input name="telephone" type="number" class="griz mb-0 border-0" id="telephone" placeholder="Número telefónico" value="{{ request()->input('telephone', old('telephone'))}}" required>
                                 </div>
                             </div>
                             <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
