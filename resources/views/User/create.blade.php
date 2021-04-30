@@ -18,7 +18,7 @@
         <div class="row d-flex justify-content-center align-items-center campos">
 
             <section role="main" class="col-12  align-content-between">
-                <img class="mx-auto d-block " src="{{ asset('images/logoAzul.png') }}">
+                <img class="mx-auto d-block " src="{{ asset('images/LogoAzul.png') }}">
                 <div class=" pt-5 ">
                         <div class="cuenta mx-auto">
                             <form method="POST" action="{{ route('register') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
