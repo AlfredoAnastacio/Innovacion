@@ -25,7 +25,7 @@
                 </li>
                 <hr>
                 <li class="">
-                    <a  href="{{ url('admin/inactiveusers') }}"><i class="fa fa-area-chart"></i> <span>Usuarios y Estructuras Inactivas </span> </a>
+                    <a id="userInactives" href="{{ url('admin/inactiveusers') }}"><i class="fa fa-area-chart"></i> <span>Usuarios y Estructuras Inactivas </span> </a>
                 </li>
                 <hr>
                 <li class="">

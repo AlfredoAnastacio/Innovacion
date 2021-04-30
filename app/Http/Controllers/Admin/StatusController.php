@@ -35,24 +35,32 @@ class StatusController extends Controller
 
     public function inactive(Request $request)
     {
+        /*SECCIÓN ANTERIOR - VALIDAR */
+        // $perPage = 25;
 
-        $perPage = 25;
+        // $keyword = $request->get('search');
+        // if (!empty($keyword)) {
+        //     $status = Status::where('user_id', 'LIKE', "%$keyword%")->where('state','Inactivo')
+        //         ->orWhere('user_id', 'LIKE', "%$keyword%")
 
-        $keyword = $request->get('search');
-        if (!empty($keyword)) {
-            $status = Status::where('user_id', 'LIKE', "%$keyword%")->where('state','Inactivo')
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
+        //         ->latest()->paginate($perPage);
+        // }
 
-                ->latest()->paginate($perPage);
-        }
+        // else{
+        //     $status = Status::where('state','Inactivo')->with('user','range')->get();
 
-        else{
-            $status = Status::where('state','Inactivo')->with('user','range')->get();
+        // }
+        // $amount = count($status);
 
-        }
-        $amount = count($status);
+        $users = Status::select('users.user_id', 'users.name', 'users.telephone', 'status.*')
+                            ->join('users', 'status.user_id', 'users.user_id')
+                            ->where('state','Inactivo')
+                            // ->with('user','range')
+                            ->get();
 
-        return view('Admin.Status.index', compact('status','amount'));
+        // dd($users);
+
+        return view('Admin.Status.userInactives', compact('users'));
     }
 
 
@@ -157,7 +165,7 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-       
+
        Status::destroy($id);
 
         return redirect('admin/users')->with('flash_message', 'User deleted!');
