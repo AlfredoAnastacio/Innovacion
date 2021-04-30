@@ -70,10 +70,10 @@
                                                         <tr>
                                                             <th>Codigo</th>
                                                             <th>Patrocinador</th>
-                                                            <th>Núm. de Documento</th>
+                                                            {{--  <th>Núm. de Documento</th>  --}}
                                                             <th>Nombre</th>
-                                                            <th>Email</th>
-                                                            <th>Teléfono</th>
+                                                            {{--  <th>Email</th>  --}}
+                                                            {{--  <th>Teléfono</th>  --}}
                                                             <th>Estructuras</th>
                                                             <th>Referidos</th>
                                                             <th>Estado</th>
@@ -84,7 +84,16 @@
                                                     <tbody>
                                                         @foreach($users as $item)
                                                         <tr>
-                                                            <td> {{$item->user_id}}</td> <td>{{ $item->name }}</td><td>{{ $item->lastname }}</td><td>{{ $item->username }}</td>  <td> {{$item->document}}</td> <td>{{$item->email}} </td> <td> {{$item->telephone}}</td>
+                                                            <td> {{ $item->user_id }} </td>
+                                                            <td> {{ $item->sponsor_id }} </td>
+                                                            {{--  <td> {{ $item->document }}</td>  --}}
+                                                            <td> {{ $item->name }} </td>
+                                                            {{--  <td> {{ $item->email }} </td>  --}}
+                                                            {{--  <td> {{ $item->telephone }} </td>  --}}
+                                                            <td> 0 </td>
+                                                            <td> 0 </td>
+                                                            <td> 0 </td>
+                                                            <td> 0 </td>
 
                                                             <td>
                                                                 <div class="btn-group">

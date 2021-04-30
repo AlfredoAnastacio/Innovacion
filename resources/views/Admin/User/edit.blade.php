@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Usuario</title>
+    <link rel="shortcut icon" href="{{ asset('images/fav_ico.png') }}">
     <!-- ========== COMMON STYLES ========== -->
     @include('Admin.Layouts.head')
 </head>
@@ -25,72 +26,49 @@
                             <h6 class="title">Admin</h6>
                             <small class="info">Innovacion</small>
                         </div>
-                        <!-- /.user-info -->
-                       @include('Admin.Layouts.sidebar')
-                <!-- /.left-sidebar -->
-                <div class="main-page">
-                    <div class="container-fluid">
-                        <div class="row page-title-div">
-                            <div class="col-md-6">
-                                <h2 class="title">Editar Usuario</h2>
-                                <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
+                        @include('Admin.Layouts.sidebar')
+                        <div class="main-page">
+                            <div class="container-fluid">
+                                <div class="row page-title-div">
+                                    <div class="col-md-6">
+                                        <h2 class="title">Editar Usuario</h2>
+                                        <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
+                                    </div>
+                                </div>
+                                <!-- /.row -->
                             </div>
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.container-fluid -->
-                    <section class="section">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h5 class="underline mt-n">
-                                        <div class="btn-group" role="group">
-                                            <a href="{{url('admin/users')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
-                                          
+                            <section class="section">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="underline mt-n">
+                                                <div class="btn-group" role="group">
+                                                    <a href="{{url('admin/users')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
+                                                </div>
+                                            </h5>
+                                            <form class="p-20" method="POST" action="{{ url('admin/users/' . $user->user_id) }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                                {{ method_field('PATCH') }}
+                                                {{ csrf_field() }}
+                                                @include ('Admin.User.form', ['formMode' => 'edit'])
+                                            </form>
                                         </div>
-                                    </h5>
-
-                                    <form class="p-20" method="POST" action="{{ url('admin/users/' . $user->user_id) }}" accept-charset="UTF-8" enctype="multipart/form-data">
-                                        {{ method_field('PATCH') }}
-                                        {{ csrf_field() }}
-            
-                                        @include ('Admin.User.form', ['formMode' => 'edit'])
-            
-                                    </form>
-                            </div>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        <!-- /.col-md-12 -->
+                    </div>
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-            </section>
-            <!-- /.section -->
         </div>
-        <!-- /.main-page -->
-    </div>
-    <!-- /.content-container -->
-    </div>
-    <!-- /.content-wrapper -->
-    </div>
-    <!-- /.main-wrapper -->
-    <!-- ========== COMMON JS FILES ========== -->
-    @include('Admin.Layouts.scripts')
-    <!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
 
-    <script>
+        <!-- ========== COMMON JS FILES ========== -->
+        @include('Admin.Layouts.scripts')
+        <!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
 
-
-        $(document).ready(function(){
-         
-        
-         
-        $("#user").addClass("active");
-         
-        
-         
-        });
-                  </script>
-</body>
-
+        <script>
+            $(document).ready(function(){
+                $("#user").addClass("active");
+            });
+        </script>
+    </body>
 </html>

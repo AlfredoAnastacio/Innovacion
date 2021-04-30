@@ -13,7 +13,7 @@
                     <span class="">Menú</span>
                 </li>
                 <li class="">
-                    <a id="user" href="{{ url('admin/users') }}"><i class="fa fa-file-text"></i> <span>Usuarios</span> </a>
+                    <a id="user" href="{{ url('admin/users') }}"><i class="fa fa-users"></i> <span>Usuarios</span> </a>
 
                 </li>
                 <li class="">
