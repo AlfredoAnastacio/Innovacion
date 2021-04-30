@@ -19,5 +19,6 @@ class PaysExport implements FromCollection, WithHeadings
     public function headings() : array
     {
         return ['id','Código Usuario','Nivel Pago','Nombre','Pago','Estado','Rango','Fecha'];
+        // return ['id','Tipo','Líder Inovador','Código Usuario','Nombre','Estructura','Nivel Completado','Pago','Estado','Canal de Pago'];
     }
 }

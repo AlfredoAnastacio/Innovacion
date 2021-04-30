@@ -35,14 +35,14 @@
                             <div class="row page-title-div">
                                 <div class="col-md-6">
                                     <h2 class="title">Alertas de pagos</h2>
-                                   
+
                                     <a href="{{ url('admin/export') }}" title="Edit User"> <button type="button" class="btn btn-default">Generar Excel</button></a>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -53,7 +53,7 @@
                                     <div class="col-md-12">
                                         <div class="panel">
                                             <div class="panel-heading">
-                                         
+
                                             </div>
                                             <div class="panel-body p-20">
 
@@ -67,90 +67,66 @@
                                                             <th>Nivel completado</th>
 
                                                             <th>Rango</th>
-                                                            
-                        
-                        
+
+
+
                                                             <th>Estado</th>
 
-                        
+
                                                             <th>Fecha Generado</th>
-                        
-                                                         
+
+
                                                             <th>Número de Red</th>
-                        
+
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código Usuario</th>
-                                                            <th>Nombre</th>
-                                                            <th>Pago $</th>
-
-                                                            <th>Nivel completado</th>
-
-                                                            <th>Rango</th>
-                                                            
-                        
-                        
-                                                            <th>Estado</th>
-
-                        
-                                                            <th>Fecha Generado</th>
-                        
-                                                         
-                                                            <th>Número de Red</th>
-                        
-                        
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                         @foreach($alerts as $item)
 
-                      
-                                    
+
+
                                                         <tr>
                                                             <td>{{$item->user_id}} </td>
                                                                 <td>
                                                                     {{$item->name}}
-                                                                    
+
                                                                 </td>
                                                                 <td>{{ $item->total_pay }}</td>
 
-                                                                <td>{{$item->level_pay}} </td>                                    
-                                                                
-                                                            
-                                                      
-                                                            
-                                                           
+                                                                <td>{{$item->level_pay}} </td>
+
+
+
+
+
 
                                                                 <td>
                                                                 @switch($item->range_id)
                                                                 @case(1)
-                                                                Plata  
+                                                                Plata
                                                                 @break
                                                                 @case(2)
-                                                                 Oro  
+                                                                 Oro
                                                                  @break
                                                                 @case(3)
-                                                                Platino  
+                                                                Platino
                                                                 @break
 
                                                                 @case(4)
-                                                               Diamante  
-                                                                
+                                                               Diamante
+
                                                                 @break
 
                                                                 @default
-                                                                Plata 
+                                                                Plata
                                                                 @break
                                                                 @endswitch
                                                             </td>
-                                                       
-                                                          
+
+
                                                             <td>{{ $item->status_pay }}</td>
-                                                            
+
                                                             <td>{{ $item->created_at }}</td>
 
                                                             <td>{{ $item->tree }}</td>
@@ -172,7 +148,7 @@
                                                                             {{ csrf_field() }}
                                                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
                                                                         </form></li>
-                                                                        
+
                                                                     </ul>
                                                                 </div>
                                                             </td>
@@ -208,7 +184,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->
@@ -228,15 +204,15 @@
         <script>
 
 
-        
-             
-            
-             
+
+
+
+
             $("#alerts_pays").last().addClass("active");
-             
-            
-             
-            
+
+
+
+
                       </script>
 
 
