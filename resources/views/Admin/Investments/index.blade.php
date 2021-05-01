@@ -37,10 +37,10 @@
                                     <h2 class="title">Inversiones</h2>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -69,47 +69,19 @@
                                                         <tr>
                                                             <th>Código Inversión</th>
                                                             <th>Código Usuario</th>
-                                                            <th>Nombre</th><th>Nombre Usuario</th>
                                                             <th>Pago</th>
                                                             <th>Fecha</th>
-                        
-                        
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código Inversión</th>
-                                                            <th>Código Usuario</th>
-                                                            <th>Nombre</th><th>Nombre Usuario</th>
-                                                            <th>Pago</th>
-                                                            <th>Fecha</th>
-                        
-                        
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                         <tr>
                                                             @for ($i = 0 ; $i < $amount ; $i++)
                                                             <tr>
                                                                 <td>{{$investments[$i]->id}} </td>
                                                                 <td>{{$investments[$i]->user_id}} </td>
-                                                                @if (isset($investments[$i]->user->username))
-                                                                <td>
-                                                                    {{$investments[$i]->user->name}}
-                            
-                                                                </td>
-                            
-                            
-                                                                <td>{{ $investments[$i]->user->username }}</td>
-                            
-                                                                @endif
-                            
-                            
                                                                 <td>$ @money($investments[$i]->pay)</td>
                                                                 <td>{{$investments[$i]->created_at->format('Y-m-d')}}</td>
-                                                            
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>
@@ -118,17 +90,12 @@
                                                                         <span class="sr-only">Toggle Dropdown</span>
                                                                     </button>
                                                                     <ul class="dropdown-menu">
-                                                                        <li>
-
-                                                                            <a href="{{ url('admin/investments/' . $investments[$i]->user_id . '/edit') }}" title="Edit User">Editar</a>
-
-                                                                        </li>
-                                                                        <li>   <form method="POST" action="{{ url('admin/investments' . '/' . $investments[$i]->user_id)}}" accept-charset="UTF-8" style="display:inline">
+                                                                        <li><a href="{{ url('admin/investments/' . $investments[$i]->user_id . '/edit') }}" title="Edit User">Editar</a></li>
+                                                                        <li><form method="POST" action="{{ url('admin/investments' . '/' . $investments[$i]->user_id)}}" accept-charset="UTF-8" style="display:inline">
                                                                             {{ method_field('DELETE') }}
                                                                             {{ csrf_field() }}
                                                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
                                                                         </form></li>
-                                                                        
                                                                     </ul>
                                                                 </div>
                                                             </td>
@@ -136,10 +103,8 @@
                                                         @endfor
                                                     </tbody>
                                                 </table>
-
                                                 <div class="col-md-12 mt-15 src-code">
                                                     <pre class="language-html"><code class="language-html">
-
                                                     </code></pre>
                                                 </div>
                                                 <!-- /.col-md-12 -->
@@ -164,7 +129,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->
@@ -183,11 +148,11 @@
         <script>
 
 
-             
-            
-                     
+
+
+
         $("#investment").last().addClass("active");
-            
+
 
                       </script>
 

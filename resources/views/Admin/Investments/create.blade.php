@@ -14,7 +14,7 @@
     <div class="main-wrapper">
         <!-- ========== TOP NAVBAR ========== -->
         @include('Admin.Layouts.navbar')
-     
+
         <div class="content-wrapper">
             <div class="content-container">
                 <!-- ========== LEFT SIDEBAR ========== -->
@@ -27,7 +27,7 @@
                         </div>
                         <!-- /.user-info -->
                        @include('Admin.Layouts.sidebar')
-                   
+
                 <!-- /.left-sidebar -->
                 <div class="main-page">
                     <div class="container-fluid">
@@ -46,16 +46,15 @@
                                 <div class="col-md-12">
                                     <h5 class="underline mt-n">
                                         <div class="btn-group" role="group">
-                                            <a href="{{url('admin/investments')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
-                                          
+                                            <a href="{{url('admin/users')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
                                         </div>
                                     </h5>
 
                                     <form class="p-20" method="POST" action="{{ url('admin/investments/') }}" accept-charset="UTF-8" enctype="multipart/form-data">
                                         {{ csrf_field() }}
-            
+
                                         @include ('Admin.Investments.form', ['formMode' => 'create'])
-            
+
                                     </form>
                             </div>
                         </div>

@@ -20,6 +20,7 @@
                 <li class="">
                     <a id="refer" href="{{ url('admin/refers') }}"><i class="fa fa-cubes"></i> <span>Líder y Referidos</span> </a>
                 </li>
+                <hr>
                 <li class="">
                     <a id="status" href="{{ url('admin/status') }}"><i class="fa fa-area-chart"></i> <span>Estados y Rangos </span> </a>
                 </li>

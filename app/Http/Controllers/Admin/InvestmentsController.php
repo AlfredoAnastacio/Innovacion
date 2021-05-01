@@ -7,6 +7,7 @@ use App\Models\Status;
 use App\Models\Range;
 use Illuminate\Http\Request;
 use App\Models\Investment;
+use App\Models\Refer;
 
 class InvestmentsController extends Controller
 {
@@ -41,22 +42,35 @@ class InvestmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {
+    public function create(Request $request) {
+
         $user_id = $request->user_id;
         $state = Status::where('user_id',$user_id)->first()->range;
         $pay = Range::where('range_id',$state)->first()->total_investment;
-      
-        $verified_investment = Investment::where('user_id',$request->user_id)->where('pay',$pay)->latest()->exists();
 
-        if($verified_investment)
-        {
+        // $verified_investment = Investment::where('user_id',$request->user_id)->where('pay',$pay)->latest()->exists();   // Este código válida si ya existe una inversión
 
-            return redirect()->action('Admin\InvestmentsController@edit', [$request->user_id]);
+        // if($verified_investment)
+        // {
+        //     return redirect()->action('Admin\InvestmentsController@edit', [$request->user_id]);
+        // }  //si es así, lo redirige al edit
+
+        // Validación para ver si ya tiene una inversión en n estructura
+        $tree = Investment::where('user_id', $user_id)->get();
+
+
+        $sponsorTree = Refer::where('sponsor_id', $user_id)->orderBy('tree_sponsor','desc')->first();  //Se obtiene el total de estructuras
+        if ($sponsorTree == NULL) {
+            $sponsorTree =1;
+        } else {
+            $sponsorTree = $sponsorTree->tree_sponsor;
         }
 
+        // dd($sponsorTree);
 
-        return view('Admin.Investments.create',compact('pay','user_id'));
+        $sinTree = count($tree);
+
+        return view('Admin.Investments.create',compact('pay','user_id', 'sponsorTree', 'tree', 'sinTree'));
     }
 
     /**
@@ -67,25 +81,24 @@ class InvestmentsController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
+        // dd($request->all());
 
-        $range_id = Status::where('user_id',$request->user_id)->first()->range;
-        $range = Range::where('range_id',$range_id)->first();    
-        $range_name = $range->range;
-       $requestData= array_merge($requestData, ['state' => $range_name]);
+        if (isset($request->tree)) {
+            $requestData = $request->all();
 
+            $range_id = Status::where('user_id',$request->user_id)->first()->range;
+            $range = Range::where('range_id',$range_id)->first();
+            $range_name = $range->range;
+            $requestData= array_merge($requestData, ['state' => $range_name]);
 
-        $verified_investment = Investment::where('user_id',$request->user_id)->where('state',$range_name)->latest()->exists();
-        if(!$verified_investment)
-        {
+            $verified_investment = Investment::where('user_id',$request->user_id)->where('state',$range_name)->where('tree', $request->tree)->latest()->exists();
 
-            Investment::create($requestData);
+            if (!$verified_investment) {
+                Investment::create($requestData);
+            }
         }
 
         return redirect()->action('StatusController@show', [$request->user_id]);
-
-
     }
 
     /**
@@ -111,9 +124,15 @@ class InvestmentsController extends Controller
         $investment = Investment::findOrFail($user_id);
         $state = Status::where('user_id',$user_id)->first()->range;
         $pay = Range::where('range_id',$state)->first()->total_investment;
-    
 
-        return view('Admin.Investments.edit', compact('investment','user_id','pay'));
+        $sponsorTree = Refer::where('sponsor_id', $user_id)->orderBy('tree_sponsor','desc')->first();  //Se obtiene el total de estructuras
+        if ($sponsorTree == NULL) {
+            $sponsorTree =1;
+        } else {
+            $sponsorTree = $sponsorTree->tree_sponsor;
+        }
+
+        return view('Admin.Investments.edit', compact('investment','user_id','pay', 'sponsorTree'));
     }
 
     /**
@@ -125,7 +144,7 @@ class InvestmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+
         $requestData = $request->all();
         $user = Investment::findOrFail($id);
         $user->update($requestData);

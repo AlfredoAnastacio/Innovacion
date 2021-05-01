@@ -70,10 +70,7 @@
                                                         <tr>
                                                             <th>Codigo</th>
                                                             <th>Patrocinador</th>
-                                                            {{--  <th>Núm. de Documento</th>  --}}
                                                             <th>Nombre</th>
-                                                            {{--  <th>Email</th>  --}}
-                                                            {{--  <th>Teléfono</th>  --}}
                                                             <th>Estructuras</th>
                                                             <th>Referidos</th>
                                                             <th>Estado</th>
@@ -86,14 +83,27 @@
                                                         <tr>
                                                             <td> {{ $item->user_id }} </td>
                                                             <td> {{ $item->sponsor_id }} </td>
-                                                            {{--  <td> {{ $item->document }}</td>  --}}
                                                             <td> {{ $item->name }} </td>
-                                                            {{--  <td> {{ $item->email }} </td>  --}}
-                                                            {{--  <td> {{ $item->telephone }} </td>  --}}
-                                                            <td> 0 </td>
-                                                            <td> 0 </td>
-                                                            <td> 0 </td>
-                                                            <td> 0 </td>
+                                                            @if($item->totalTree == 1)
+                                                                <td> 1 </td>
+                                                            @endif
+                                                            @if($item->totalTree == null)
+                                                                <td> 0 </td>
+                                                            @endif
+                                                            @if($item->totalTree > 1)
+                                                                <td> {{ $item->totalTree }} </td>
+                                                            @endif
+                                                            @if($item->totalRefers == 0)
+                                                                <td> 0 </td>
+                                                            @else
+                                                                <td> {{ $item->totalRefers }} </td>
+                                                            @endif
+                                                            @if($item->state == 'Inactivo')
+                                                                <td> <span class="badge badge-danger"> {{ $item->state }} </span> </td>
+                                                            @else
+                                                                <td> {{ $item->state }} </td>
+                                                            @endif
+                                                            <td> Efecty </td>
 
                                                             <td>
                                                                 <div class="btn-group">

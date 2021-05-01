@@ -46,24 +46,26 @@ class UsersController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             // $users = User::all();
-            $users = User::join('refers', 'users.user_id', 'refers.user_id')->get();
+            $users = User::join('refers', 'users.user_id', 'refers.user_id')
+                        ->join('status', 'users.user_id', 'status.user_id')
+                        ->get();
+            // dd(count($users));
+            for ($i=0; $i < count($users); $i++) {  //Se obtiene la cantidad de referidos
+                $totalRefers = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->count();
+                $totalTree = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->first();
+                $users[$i]->totalRefers = $totalRefers;
+                $users[$i]->totalTree = $totalTree['tree_sponsor'];
+            }
+            // dd($users);
         }
-
-        // dd($users);
 
         $alerts_pays=AlertsPays::where('status_pay','Sin pagar')->latest()->first();
-
         $alerts=Alerts::latest()->first();
-
-        if($alerts != NULL || $alerts_pays != NULL)
-        {
-            $alerts=1;
+        if ($alerts != NULL || $alerts_pays != NULL) {
+            $alerts = 1;
+        } else {
+            $alerts = 0;
         }
-
-        else{
-            $alerts=0;
-        }
-
 
         return view('Admin.User.index', compact('users','alerts'));
     }

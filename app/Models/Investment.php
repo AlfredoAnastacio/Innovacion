@@ -12,7 +12,7 @@ class Investment extends Model {
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'user_id','state','pay','created_at'
+        'user_id','state','pay','tree','created_at'
     ];
 
     //Retorna una colección de los referidos y sus inversiones

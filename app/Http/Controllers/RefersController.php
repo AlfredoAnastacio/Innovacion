@@ -34,7 +34,6 @@ class RefersController extends Controller {
         $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
         $investments_total = Investment::amountInvestment($investments);
         $commissions_total = Commission::amountCommission($id);
-        // dd($commissions_total);
         if ($sponsorTree == NULL) {
             $sponsorTree =1;
         } else {
