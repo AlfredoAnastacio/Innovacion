@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Estados</title>
+        <title>Estados y Rangos</title>
+        <link rel="shortcut icon" href="{{ asset('images/fav_ico.png') }}">
 
         <!-- ========== COMMON STYLES ========== -->
         @include('Admin.Layouts.head')
@@ -37,10 +38,10 @@
                                     <h2 class="title">Estados y Rangos</h2>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -68,36 +69,21 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Código Usuario</th>
-                                                            <th>Nombre Usuario</th>
                                                             <th>Estado</th>
                                                             <th>Rango</th>
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código Usuario</th>
-                                                            <th>Nombre Usuario</th>
-                                                            <th>Estado</th>
-                                                            <th>Rango</th>
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                         <tr>
                                                             @for ($i = 0 ; $i < $amount ; $i++)
-                                    <td>{{$status[$i]->user_id}} </td>
-
-                                    @if(isset($status[$i]->user->username))
-                                    <td>{{$status[$i]->user->username}} </td>
-                                    @endif
-                                    <td>{{ $status[$i]->state }}</td>
-                                    @if(isset($status[$i]->Range->range))
-                                    <td>{{$status[$i]->Range->range}} </td>
-                                    @else
-                                    <td>Sin Rango </td>
-                                    @endif
-                                                            
+                                                                <td>{{$status[$i]->user_id}} </td>
+                                                                <td>{{ $status[$i]->state }}</td>
+                                                                @if(isset($status[$i]->Range->range))
+                                                                    <td>{{$status[$i]->Range->range}} </td>
+                                                                @else
+                                                                    <td>Sin Rango </td>
+                                                                @endif
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>
@@ -111,7 +97,7 @@
                                                                             <a href="{{ url('admin/status/' . $status[$i]->user_id . '/edit') }}" title="Edit User">Editar</a>
 
                                                                         </li>
-                                                                      
+
                                                                     </ul>
                                                                 </div>
                                                             </td>
@@ -147,7 +133,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->
@@ -167,15 +153,15 @@
         <script>
 
 
-        
-             
-            
-             
+
+
+
+
             $("#status").last().addClass("active");
-             
-            
-             
-            
+
+
+
+
                       </script>
 
 

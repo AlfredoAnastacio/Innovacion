@@ -37,10 +37,10 @@
                                     <h2 class="title">Referidos</h2>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -68,36 +68,22 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Código Usuario</th>
-                                                            <th>Nombre Usuario</th>
                                                             <th>Código Líder</th>
                                                             <th>Nombre Líder</th>
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código Usuario</th>
-                                                            <th>Nombre Usuario</th>
-                                                            <th>Código Líder</th>
-                                                            <th>Nombre Líder</th>
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                         <tr>
                                                             @for ($i = 0 ; $i < $amount ; $i++)
                                                             <td>{{$refers[$i]->user_id}} </td>
-                                                            @if (isset($refers[$i]->user->username))
-                                                            <td>{{$refers[$i]->user->username}} </td>
-                        
-                                                            @endif
                                                             <td>{{ $refers[$i]->sponsor_id }}</td>
                                                             @if(isset($refers[$i]->sponsor->username))
                                                             <td>{{$refers[$i]->sponsor->username}} </td>
                                                             @else
                                                             <td>Sin Lider </td>
                                                             @endif
-                                                            
+
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>
@@ -116,7 +102,7 @@
                                                                             {{ csrf_field() }}
                                                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
                                                                         </form></li>
-                                                                        
+
                                                                     </ul>
                                                                 </div>
                                                             </td>
@@ -152,7 +138,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->
@@ -172,15 +158,15 @@
         <script>
 
 
-        
-             
-            
-             
+
+
+
+
             $("#refer").last().addClass("active");
-             
-            
-             
-            
+
+
+
+
                       </script>
 
 
