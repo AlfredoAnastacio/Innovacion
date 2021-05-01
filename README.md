@@ -8,12 +8,11 @@ Una plataforma de multinivel
 - Lectura de pagos por Efecty y Bitcoin
 - Árbol de Referidos con 7 niveles
 - Cada nivel tiene su comisión
--Hay Rangos de inversión
-.
+-Hay Rangos de inversión.
 
 
 En Desarrollo por:
-Juan Esteban Vélez Mejía
+Alfredo Ramirez Anastacio
 
 ## License
 
