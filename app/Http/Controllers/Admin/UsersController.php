@@ -54,7 +54,12 @@ class UsersController extends Controller
                 $totalRefers = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->count();
                 $totalTree = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->first();
                 $users[$i]->totalRefers = $totalRefers;
-                $users[$i]->totalTree = $totalTree['tree_sponsor'];
+                if (isset($totalTree['tree_sponsor'])) {
+                    $users[$i]->totalTree = $totalTree['tree_sponsor'];
+                } else {
+                    $users[$i]->totalTree = 0;
+                }
+
             }
             // dd($users);
         }
