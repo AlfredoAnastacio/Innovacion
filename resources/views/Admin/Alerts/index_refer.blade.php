@@ -37,10 +37,10 @@
                                     <h2 class="title">Notificaciones</h2>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -51,7 +51,7 @@
                                     <div class="col-md-12">
                                         <div class="panel">
                                             <div class="panel-heading">
-                                           
+
                                             </div>
                                             <div class="panel-body p-20">
 
@@ -59,57 +59,39 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Código Usuario</th>
-                                    
-                                  
+
+
                                                             <th>Nombre</th>
-                        
+
                                                             <th>Tipo de alerta</th>
-                                                         
-                        
+
+
                                                             <th>Fecha </th>
-                        
-                                                          
-                        
-                        
+
+
+
+
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código Usuario</th>
-                                    
-                                  
-                                                            <th>Nombre</th>
-                        
-                                                            <th>Tipo de alerta</th>
-                                                         
-                        
-                                                            <th>Fecha </th>
-                        
-                                                          
-                        
-                        
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                         @foreach($alerts as $item)
                                                         <tr>
                                                             <td>{{$item->user_id}} </td>
                                                             <td>{{$item->alert_type}} </td>
-                                                            
-                                                            
+
+
                                                             <td>
                                                                 {{$item->name}}
-                                                                
+
                                                             </td>
-                                                            
-                                                        
-                                                        
-                                                            
+
+
+
+
                                                             <td>{{ $item->created_at }}</td>
-                                                            
-                                                            
+
+
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>
@@ -118,13 +100,13 @@
                                                                         <span class="sr-only">Toggle Dropdown</span>
                                                                     </button>
                                                                     <ul class="dropdown-menu">
-                                                                     
+
                                                                         <li>  <form method="POST" action="{{ url('admin/alerts' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                                             {{ method_field('DELETE') }}
                                                                             {{ csrf_field() }}
                                                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
                                                                         </form></li>
-                                                                        
+
                                                                     </ul>
                                                                 </div>
                                                             </td>
@@ -160,7 +142,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->
@@ -180,15 +162,15 @@
         <script>
 
 
-        
-             
-            
-             
+
+
+
+
             $("#alerts").last().addClass("active");
-             
-            
-             
-            
+
+
+
+
                       </script>
 
 

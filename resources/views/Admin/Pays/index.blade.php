@@ -37,10 +37,10 @@
                                     <h2 class="title">Comprobantes</h2>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -69,47 +69,26 @@
                                                         <tr>
                                                             <th>Código Usuario</th>
                                                             <th>Código Inversión</th>
-                                                  <th>Nombre Usuario</th>
                                                             <th>Pago $</th>
                                                             <th>Fecha</th>
-                        
+
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código Usuario</th>
-                                                            <th>Código Inversión</th>
-                                                  <th>Nombre Usuario</th>
-                                                            <th>Pago $</th>
-                                                            <th>Fecha</th>
-                        
-                        
-                        
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </tfoot>
                                                     <tbody>
                                                         <tr>
                                                             @for ($i = 0 ; $i < $amount ; $i++)
                                                             <tr>
                                                                 <td>{{$users[$i]->user_id}} </td>
                                                                 <td>{{$users[$i]->code_pay}} </td>
+                                        <td>{{$users[$i]->total}}
 
-                                        @if(isset($users[$i]->user->username))
-                                            <td>{{$users[$i]->user->username}} 
-                                            
-                                            </td>
-                                        @endif
-
-                                        <td>{{$users[$i]->total}} 
-                                            
                                         </td>
 
-                                        <td>{{$users[$i]->created_at}} 
-                                            
+                                        <td>{{$users[$i]->created_at}}
+
                                         </td>
-                                                            
+
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>
@@ -128,7 +107,7 @@
                                                                             {{ csrf_field() }}
                                                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
                                                                         </form></li>
-                                                                        
+
                                                                     </ul>
                                                                 </div>
                                                             </td>
@@ -164,7 +143,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->
@@ -183,11 +162,11 @@
         <script>
 
 
-             
-            
-                     
+
+
+
         $("#pays").last().addClass("active");
-            
+
 
                       </script>
 

@@ -57,8 +57,8 @@ class User extends Authenticatable
         return Validator::make($data, [
 
             'name' => 'required',
-            'lastname' => 'required',
-            'username' => 'required| unique:users',
+            // 'lastname' => 'required',
+            // 'username' => 'required| unique:users',
             'document' => 'required| unique:users',
             'email' => 'required|unique:users',
             'telephone' => 'required|unique:users',
@@ -72,8 +72,8 @@ class User extends Authenticatable
 
         return[
             'name.required' => 'El nombre es requerido',
-            'lastname.required' => 'El apellido es requerido',
-            'username.required' => 'El nombre de usuario es requerido',
+            // 'lastname.required' => 'El apellido es requerido',
+            // 'username.required' => 'El nombre de usuario es requerido',
             'document.required' => 'El documento de identidad es requerido',
             'email.required' => 'El email es requerido',
             'email.unique' => 'El Email ya ha sido usado',

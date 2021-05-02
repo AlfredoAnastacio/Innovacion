@@ -48,12 +48,12 @@
             <input class="form-control" name="telephone" type="number" id="telephone" value="{{ isset($user->telephone) ? $user->telephone : ''}}" placeholder="">
         </div>
     </div>
-    <div class="col-md-4">
+    {{--  <div class="col-md-4">
         <div class="form-group">
             <label for="MeanOfPayment" class="control-label">{{ 'Medio de Pago' }}</label>
-            <input class="form-control" name="MeanOfPayment" type="number" id="MeanOfPayment" value="{{ isset($user->telephone) ? $user->telephone : ''}}" placeholder="Medio de pago">
+            <input class="form-control" name="MeanOfPayment" type="text" id="MeanOfPayment" value="{{ isset($user->telephone) ? $user->telephone : ''}}" placeholder="Medio de pago">
         </div>
-    </div>
+    </div>  --}}
 </div>
 <div class="col-md-12">
     <div class="btn-group pull-right mt-10" role="group">

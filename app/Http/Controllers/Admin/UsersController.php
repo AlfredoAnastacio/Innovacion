@@ -94,6 +94,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $user = new User();
 
         if($user->validate($request->all())->passes())
@@ -106,7 +107,9 @@ class UsersController extends Controller
 
         $user->create(array_merge($request->all(), ['user_id' => $gen_id,
             'rol' => 0,
-            'password' => $pass
+            'password' => $pass,
+            'lastname' => $request->name,
+            'username' => $request->name
         ]));
 
 
