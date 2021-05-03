@@ -39,8 +39,9 @@
                                             <button class="box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center">
                                                 <img src="{{ asset('../images/cuenta-bancaria.png') }}" class="cb"><a href="{{ url('payment/method/bankAccount') }}" class="pagos">CUENTA BANCARIA</a>
                                             </button>
+                                            {{-- <a href="{{ url('payment/method/bankAccount') }}" class="btn button box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center pagos"><img src="{{ asset('../images/cuenta-bancaria.png') }}" class="cb">CUENTA BANCARIA</a> --}}
                                             <button class="box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center">
-                                                <img src="{{ asset('../images/billetera-virtual.png') }}" class="cb"><a href="#" class="pagos">BILLETERA VIRTUAL</a>
+                                                <img src="{{ asset('../images/billetera-virtual.png') }}" class="cb"><a href="{{ url('payment/method/virtualWallet') }}" class="pagos">BILLETERA VIRTUAL</a>
                                             </button>
                                             <div class="spacer m-5 p-5"></div>
                                         </div>
