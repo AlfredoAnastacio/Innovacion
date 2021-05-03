@@ -37,7 +37,7 @@
                                                 <a href="{{ url('payment/method/efecty') }}"><img src="{{ asset('../images/efecty-blanco.png') }}"></a>
                                             </button>
                                             <button class="box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center">
-                                                <img src="{{ asset('../images/cuenta-bancaria.png') }}" class="cb"><a href="#" class="pagos">CUENTA BANCARIA</a>
+                                                <img src="{{ asset('../images/cuenta-bancaria.png') }}" class="cb"><a href="{{ url('payment/method/bankAccount') }}" class="pagos">CUENTA BANCARIA</a>
                                             </button>
                                             <button class="box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center">
                                                 <img src="{{ asset('../images/billetera-virtual.png') }}" class="cb"><a href="#" class="pagos">BILLETERA VIRTUAL</a>
