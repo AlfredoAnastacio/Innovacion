@@ -26,20 +26,20 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-3">
                 <div class="">
                     <div class="contenido pt-5 ">
-                        <form method="POST" action="{{ url('payform/' ) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        {{-- <form method="POST" action="{{ url('payform/' ) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data"> --}}
                             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-3">
                                 <div class="">
-                                    <div class="contenido pt-5">
-                                        <p class="text-center mt-0 mb-3 pb-5 fw">Inscriba canal para recibir sus pagos</p>
+                                    <div class="contenido">
+                                        <p class="text-center fw">Inscriba canal para recibir sus pagos</p>
                                         <p class="text-center fwl">Seleccione un único medio para recibir los pagos de su rentabilidad</p>
                                         <div class="cuenta mx-auto editar">
-                                            <button class="box azulbg w-100 pt-3 pb-3 mt-5 text-white text-center">
-                                                <a href="#"><img src="{{ asset('../images/efecty-blanco.png') }}"></a>
+                                            <button class="box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center">
+                                                <a href="{{ url('payment/method/efecty') }}"><img src="{{ asset('../images/efecty-blanco.png') }}"></a>
                                             </button>
-                                            <button class="box azulbg w-100 pt-3 pb-3 mt-5 text-white text-center">
+                                            <button class="box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center">
                                                 <img src="{{ asset('../images/cuenta-bancaria.png') }}" class="cb"><a href="#" class="pagos">CUENTA BANCARIA</a>
                                             </button>
-                                            <button class="box azulbg w-100 pt-3 pb-3 mt-5 text-white text-center">
+                                            <button class="box azulbg w-100 pt-3 pb-3 mt-4 text-white text-center">
                                                 <img src="{{ asset('../images/billetera-virtual.png') }}" class="cb"><a href="#" class="pagos">BILLETERA VIRTUAL</a>
                                             </button>
                                             <div class="spacer m-5 p-5"></div>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                             </main>
-                        </form>
+                        {{-- </form> --}}
                         @if(isset($error_sponsor))
                             <div class="alert alert-danger" role="alert">
                                 <li>{{$error_sponsor}} </li>

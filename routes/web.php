@@ -33,7 +33,7 @@ Route::get('user/{id}/show','UserController@sh')->middleware('auth');
 
 Route::resource('payform', 'FormPayController')->middleware('auth');
 
-
+Route::resource('payment/method/efecty', 'EfectyController')->middleware('auth');  //Controlador para el método de pago Efecty
 
 Route::get('refers', 'RefersController@index')->middleware('auth')->name('tree');
 Route::get('refers/details/{id}', 'RefersController@detail')->middleware('auth')->name('tree.detail');  //Ver detalle de estructura n
