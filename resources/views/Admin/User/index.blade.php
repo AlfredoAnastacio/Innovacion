@@ -81,55 +81,58 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach($users as $item)
-                                                        <tr>
-                                                            <td> {{ $item->user_id }} </td>
-                                                            <td> {{ $item->sponsor_id }} </td>
-                                                            <td> {{ $item->document }} </td>
-                                                            <td> {{ $item->name }} </td>
-                                                            @if($item->totalTree == 1)
-                                                                <td> 1 </td>
-                                                            @endif
-                                                            @if($item->totalTree == null)
-                                                                <td> 0 </td>
-                                                            @endif
-                                                            @if($item->totalTree > 1)
-                                                                <td> {{ $item->totalTree }} </td>
-                                                            @endif
-                                                            @if($item->totalRefers == 0)
-                                                                <td> 0 </td>
-                                                            @else
-                                                                <td> {{ $item->totalRefers }} </td>
-                                                            @endif
-                                                            @if($item->state == 'Inactivo')
-                                                                <td> <span class="badge badge-danger"> {{ $item->state }} </span> </td>
-                                                            @else
-                                                                <td> {{ $item->state }} </td>
-                                                            @endif
-                                                            <td> Efecty </td>
+                                                        @if($item->user_id != 1)
+                                                            <tr>
+                                                                <td> {{ $item->user_id }} </td>
+                                                                <td> {{ $item->sponsor_id }} </td>
+                                                                <td> {{ $item->document }} </td>
+                                                                <td> {{ $item->name }} </td>
+                                                                @if($item->totalTree == 1)
+                                                                    <td> 1 </td>
+                                                                @endif
+                                                                @if($item->totalTree == null)
+                                                                    <td> 0 </td>
+                                                                @endif
+                                                                @if($item->totalTree > 1)
+                                                                    <td> {{ $item->totalTree }} </td>
+                                                                @endif
+                                                                @if($item->totalRefers == 0)
+                                                                    <td> 0 </td>
+                                                                @else
+                                                                    <td> {{ $item->totalRefers }} </td>
+                                                                @endif
+                                                                @if($item->state == 'Inactivo')
+                                                                    <td> <span class="badge badge-danger"> {{ $item->state }} </span> </td>
+                                                                @else
+                                                                    <td> {{ $item->state }} </td>
+                                                                @endif
+                                                                <td> Efecty </td>
 
-                                                            <td>
-                                                                <div class="btn-group">
-                                                                    <button type="button" class="btn btn-default">Opciones</button>
-                                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="caret"></span>
-                                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a class="btn " href="{{ route('refers.create',['user_id'=>$item->user_id]) }}" title="View User">Agregar Patrocinador</a></li>
-                                                                        <li>   <a class="btn" href="{{  url('admin/refers/' . $item->user_id) }}" title="View User">Ver Referidos </a> </li>
-                                                                        <li><a class="btn" href="{{  url('admin/pays/' . $item->user_id) }}" title="View User">Ver comprobante </a></li>
-                                                                        <li><a class="btn" href="{{ route('investments.create',['user_id'=>$item->user_id]) }}" title="View User">Agregar inversión </a></li>
-                                                                        <li role="separator" class="divider"></li>
-                                                                        <li> <a class="btn" href="{{ url('admin/users/' . $item->user_id . '/edit') }}" title="Edit User"> Editar </a></li>
-                                                                        <li> <form method="POST" action="{{ url('admin/users' . '/' . $item->user_id) }}" accept-charset="UTF-8" style="display:inline">
-                                                                            {{ method_field('DELETE') }}
-                                                                            {{ csrf_field() }}
-                                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
-                                                                        </form></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+                                                                <td>
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-default">Opciones</button>
+                                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <span class="caret"></span>
+                                                                            <span class="sr-only">Toggle Dropdown</span>
+                                                                        </button>
+                                                                        <ul class="dropdown-menu">
+                                                                            <li> <a class="btn" href="{{ url('admin/users/' . $item->user_id . '/edit') }}" title="Edit User"> Editar </a></li>
+                                                                            <li><a class="btn" href="{{ route('investments.create',['user_id'=>$item->user_id]) }}" title="View User">Agregar inversión </a></li>
+                                                                            <li><a class="btn" href="{{  url('admin/pays/' . $item->user_id) }}" title="View User">Comprobantes </a></li>
+                                                                            <li><a class="btn" href="" title="View User"> Estructuras </a></li>
+                                                                            <li role="separator" class="divider"></li>
+                                                                            <li><a class="btn" href="" title="View User"> Ver Perfil </a></li>
+
+                                                                            {{-- <li> <form method="POST" action="{{ url('admin/users' . '/' . $item->user_id) }}" accept-charset="UTF-8" style="display:inline">
+                                                                                {{ method_field('DELETE') }}
+                                                                                {{ csrf_field() }}
+                                                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
+                                                                            </form></li> --}}
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
                                                         @endforeach
                                                     </tbody>
                                                 </table>

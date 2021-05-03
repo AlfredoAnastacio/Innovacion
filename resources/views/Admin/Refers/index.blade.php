@@ -76,38 +76,38 @@
                                                     <tbody>
                                                         <tr>
                                                             @for ($i = 0 ; $i < $amount ; $i++)
-                                                            <td>{{$refers[$i]->user_id}} </td>
-                                                            <td>{{ $refers[$i]->sponsor_id }}</td>
-                                                            @if(isset($refers[$i]->sponsor->username))
-                                                            <td>{{$refers[$i]->sponsor->username}} </td>
-                                                            @else
-                                                            <td>Sin Lider </td>
-                                                            @endif
-
-                                                            <td>
-                                                                <div class="btn-group">
-                                                                    <button type="button" class="btn btn-default">Opciones</button>
-                                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="caret"></span>
-                                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li>
-
-                                                                            <a class="btn" href="{{ url('admin/refers/' . $refers[$i]->id . '/edit') }}" title="Edit User">Editar</a>
-
-                                                                        </li>
-                                                                        <li>  <form method="POST" action="{{ url('admin/refers' . '/' . $refers[$i]->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                                            {{ method_field('DELETE') }}
-                                                                            {{ csrf_field() }}
-                                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
-                                                                        </form></li>
-
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        @endfor
+                                                                @if ($refers[$i]->user_id != 1)
+                                                                    <td>{{$refers[$i]->user_id}} </td>
+                                                                    <td>{{ $refers[$i]->sponsor_id }}</td>
+                                                                    @if(isset($refers[$i]->sponsor->username))
+                                                                        <td>{{$refers[$i]->sponsor->username}} </td>
+                                                                    @else
+                                                                        <td>Sin Lider </td>
+                                                                    @endif
+                                                                    <td>
+                                                                        <div class="btn-group">
+                                                                            <button type="button" class="btn btn-default">Opciones</button>
+                                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                <span class="caret"></span>
+                                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                                            </button>
+                                                                            <ul class="dropdown-menu">
+                                                                                <li>
+                                                                                    <a class="btn" href="{{ url('admin/refers/' . $refers[$i]->id . '/edit') }}" title="Edit User">Editar</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <form method="POST" action="{{ url('admin/refers' . '/' . $refers[$i]->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                                                        {{ method_field('DELETE') }}
+                                                                                        {{ csrf_field() }}
+                                                                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
+                                                                                    </form>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                @endif
+                                                            @endfor
                                                     </tbody>
                                                 </table>
 
