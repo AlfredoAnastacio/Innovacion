@@ -19,19 +19,13 @@ use Illuminate\Support\Facades\Http;
 
 use function GuzzleHttp\json_decode;
 
-class PaysController extends Controller
-{
-
+class PaysController extends Controller {
 
     public function displayForm(){
-
+        // dd('hola');
         $id = Auth::id();
-        // dd($id);
-
         $total_pay= number_format(Pay::currencyExchange(), 2, ',', ' ');
-
-        $sponsorTree = Refer::where('user_id',$id)->orderBy('tree_sponsor','desc')->first();
-        // dd($sponsorTree);
+        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
         $sponsorTree = $sponsorTree->tree_sponsor;
 
         return view('User.pay', compact('total_pay', 'sponsorTree'));
@@ -39,8 +33,7 @@ class PaysController extends Controller
 
     public function annotateImage(Request $request){
 
-
-        if($request->file('image')){
+        if ($request->file('image')) {
             //convert image to base64
             $user_id = Auth::id();
             $verified_alert= Alerts::where('user_id',$user_id)->where('alert_type','=','Revisar comprobante')->first();
@@ -56,217 +49,148 @@ class PaysController extends Controller
             $request->setImage($image);
             $request->setFeature("TEXT_DETECTION");
             $gcvRequest = new GoogleCloudVision([$request],  'AIzaSyDfkx2xIlEvy7IJ0mtXfM_rSe4YNrN9XW4');
+
             //send annotation request
             $response = $gcvRequest->annotate();
+            
             $code_pay= null;
 
-
-
-            $res=count(($response->responses[0]->textAnnotations));
-
-            for($i=0;$i<$res;$i++){
-
-
-                $read=$response->responses[0]->textAnnotations[$i]->description;
-
-                if($read == 'VALOR' || $read=='Valor')
-                {
-                    $amount= $response->responses[0]->textAnnotations[$i-1]->description;
-
-                }
-
-                if(Str::startsWith($read, '$'))
-                {
-                    if(strlen($read)>2)
-                    {
-                        $amount = $read;
+            if (isset($response->responses[0]->textAnnotations)) {
+                $res=count(($response->responses[0]->textAnnotations));
+                for ($i=0;$i<$res;$i++) {
+                    $read = $response->responses[0]->textAnnotations[$i]->description;
+                    if ($read == 'VALOR' || $read=='Valor') {
+                        $amount= $response->responses[0]->textAnnotations[$i-1]->description;
                     }
-                    else{
-                        $amount= $response->responses[0]->textAnnotations[$i+1]->description;
-                    }
-                }
 
-                if($read == 'Recibo:' || $read=='RECIBO:')
-                {
-                    $code_pay= (int)$response->responses[0]->textAnnotations[$i+1]->description;
-                }
-
-
-
-            }
-
-
-            if(isset($amount))
-            {
-
-
-                $verified_code = Pay::where('code_pay','=',$code_pay)->first();
-                if($verified_code == NULL)
-                {
-
-                    $amount = (float)ltrim($amount,'$');
-                    $amount = (float)str_replace('.','',$amount);
-                    $total_pay=(float)number_format((float)Pay::currencyExchange(), 2, '.', '');
-                    $margen = $total_pay+5000;
-
-
-                    $verified_investment = Investment::where('user_id',$user_id)->latest()->first();
-                    $range_id = Status::where('user_id',$user_id)->first()->range;
-                    $range = Range::where('range_id',$range_id)->first();
-                    $range_pay = $range->total_investment;
-                    $range_name = $range->range;
-                    $deny_investment = 0;
-
-                    if($verified_investment != NULL)
-                    {
-                        $investment_level = $verified_investment->state;
-
-                        if($investment_level == $range_name)
-                        {
-                            $deny_investment = 1;
+                    if (Str::startsWith($read, '$')) {
+                        if (strlen($read)>2) {
+                            $amount = $read;
+                        } else {
+                            $amount= $response->responses[0]->textAnnotations[$i+1]->description;
                         }
-
                     }
 
+                    if ($read == 'Recibo:' || $read=='RECIBO:') {
+                        $code_pay= (int)$response->responses[0]->textAnnotations[$i+1]->description;
+                    }
+                }
 
-                        if($amount >= $total_pay && $amount <= $margen && !$deny_investment)
-                        {
+                if (isset($amount)) {
 
+                    $verified_code = Pay::where('code_pay','=',$code_pay)->first();
+                    if ($verified_code == NULL) {
+
+                        $amount = (float)ltrim($amount,'$');
+                        $amount = (float)str_replace('.','',$amount);
+                        $total_pay=(float)number_format((float)Pay::currencyExchange(), 2, '.', '');
+                        $margen = $total_pay+5000;
+
+                        $verified_investment = Investment::where('user_id',$user_id)->latest()->first();
+                        $range_id = Status::where('user_id',$user_id)->first()->range;
+                        $range = Range::where('range_id',$range_id)->first();
+                        $range_pay = $range->total_investment;
+                        $range_name = $range->range;
+                        $deny_investment = 0;
+
+                        if($verified_investment != NULL) {
+                            $investment_level = $verified_investment->state;
+                            if ($investment_level == $range_name) {
+                                $deny_investment = 1;
+                            }
+                        }
+                        if ($amount >= $total_pay && $amount <= $margen && !$deny_investment) {
                             $amount = $amount*$usd;
 
-                            if($amount >= $range_pay && $amount <= $range_pay+2)
-                            {
+                            if ($amount >= $range_pay && $amount <= $range_pay+2) {
                                 $investments = new Investment();
                                 $investments->user_id = Auth::id();
                                 $investments->pay = $range_pay;
                                 $investments->state = $range_name;
                                 $investments->save();
-
                             }
-
                         }
-
-
-
-                }
-                }
-
-            }
-
-            if(!$code_pay)
-            {
-                $code_pay=random_int(0,5000);
-                if($verified_alert == NULL && !isset($amount))
-                {
-                    Alerts::comprobantAlert($user_id);
-
-                }
-            }
-
-
-            if($verified_code == NULL) {
-
-
-                if(isset($amount))
-                {
-                    $pay=floor($amount);
-                }
-                else{
-                    $pay =0;
-                }
-
-                $image_temp->file('image')->storeAs(
-                    'public/invest', $user_id . '.' . $image_temp->image->extension()
-                );
-
-                Pay::create([
-                    'user_id' => $user_id,
-                    'path_image' => $user_id. '.'. $image_temp->image->extension(),
-                    'code_pay' => $code_pay,
-                    'total' => $pay,
-
-                ]);
-
-                if($pay==0)
-                {
-                    $error=1;
-                    return view('Pages.ErrorPay',compact('error'));
-                }
-            }
-
-            else{
-
-                if($verified_alert == NULL)
-                {
-                    Alerts::comprobantAlert($user_id);
-
-                }
-                $error = 1;
-                return view('Pages.ErrorPay',compact('error'));
-
-            }
-
-
-
-            return view('Pages.GreetingsInvestment',compact('user_id','range_pay'));
-
-        }
-
-
-        public function bitpay($user_id)
-        {
-
-            $user_id= (int) $user_id;
-
-            if(Auth::id() == $user_id)
-            {
-
-                $verified_investment = Investment::where('user_id',$user_id)->latest()->first();
-                $range_id = Status::where('user_id',$user_id)->first()->range;
-                $range = Range::where('range_id',$range_id)->first();
-                $range_pay = $range->total_investment;
-                $range_name = $range->range;
-                $deny_investment = 0;
-
-                if($verified_investment != NULL)
-                {
-                    $investment_level = $verified_investment->state;
-
-                    if($investment_level == $range_name)
-                    {
-                        $deny_investment = 1;
                     }
-
                 }
-
-
-                if(!$deny_investment)
-                {
-
-
-
-
-                        $investments = new Investment();
-                        $investments->user_id = $user_id;
-                        $investments->pay = $range_pay;
-                        $investments->state = $range_name;
-                        $investments->save();
-
-
-
-                 }
-
-
             }
-            return view('Pages.GreetingsInvestment',compact('user_id','range_pay'));
         }
 
+        if (!$code_pay) {
+            $code_pay=random_int(0,5000);
+            if ($verified_alert == NULL && !isset($amount)) {
+                Alerts::comprobantAlert($user_id);
+            }
+        }
 
-            public function index()
-            {
-
-                return view('Pays.index');
+        if(isset($verified_code) && $verified_code == NULL) {
+            if (isset($amount)) {
+                $pay=floor($amount);
+            } else {
+                $pay =0;
             }
 
+            $image_temp->file('image')->storeAs(
+                'public/invest', $user_id . '.' . $image_temp->image->extension()
+            );
 
+            Pay::create([
+                'user_id' => $user_id,
+                'path_image' => $user_id. '.'. $image_temp->image->extension(),
+                'code_pay' => $code_pay,
+                'total' => $pay,
+            ]);
+
+            if ($pay==0) {
+                $error=1;
+                return view('Pages.ErrorPay',compact('error'));
+            }
+        } else {
+            if ($verified_alert == NULL) {
+                Alerts::comprobantAlert($user_id);
+            }
+            $error = 1;
+
+            return view('Pages.ErrorPay',compact('error'));
+        }
+
+        return view('Pages.GreetingsInvestment',compact('user_id','range_pay'));
+    }
+
+    public function bitpay($user_id) {
+
+        $user_id= (int) $user_id;
+
+        if (Auth::id() == $user_id) {
+
+            $verified_investment = Investment::where('user_id',$user_id)->latest()->first();
+            $range_id = Status::where('user_id',$user_id)->first()->range;
+            $range = Range::where('range_id',$range_id)->first();
+            $range_pay = $range->total_investment;
+            $range_name = $range->range;
+            $deny_investment = 0;
+
+            if ($verified_investment != NULL) {
+                $investment_level = $verified_investment->state;
+
+                if($investment_level == $range_name) {
+                    $deny_investment = 1;
+                }
+            }
+
+            if (!$deny_investment) {
+                $investments = new Investment();
+                $investments->user_id = $user_id;
+                $investments->pay = $range_pay;
+                $investments->state = $range_name;
+                $investments->save();
+            }
+        }
+
+       return view('Pages.GreetingsInvestment',compact('user_id','range_pay'));
+    }
+
+
+    public function index() {
+        return view('Pays.index');
+    }
 }
