@@ -52,7 +52,7 @@ class PaysController extends Controller {
 
             //send annotation request
             $response = $gcvRequest->annotate();
-            
+
             $code_pay= null;
 
             if (isset($response->responses[0]->textAnnotations)) {
@@ -107,6 +107,7 @@ class PaysController extends Controller {
                                 $investments->user_id = Auth::id();
                                 $investments->pay = $range_pay;
                                 $investments->state = $range_name;
+                                $investments->state = $request->tree;
                                 $investments->save();
                             }
                         }
@@ -182,6 +183,7 @@ class PaysController extends Controller {
                 $investments->user_id = $user_id;
                 $investments->pay = $range_pay;
                 $investments->state = $range_name;
+                $investments->state = $request->tree;
                 $investments->save();
             }
         }

@@ -34,7 +34,7 @@
                         <form role="form" method="POST" action="/pays" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <select class="custom-select griz" id="id_tree" name="id_tree">
+                                <select class="custom-select griz" id="tree" name="tree">
                                     @for ($Tree=0; $Tree < $sponsorTree; $Tree++) {
                                         <option selected value="{{ $Tree + 1 }}">Estructura #{{ $Tree + 1 }}</option>
                                     @endfor
