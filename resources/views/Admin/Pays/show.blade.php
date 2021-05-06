@@ -27,59 +27,43 @@
                         </div>
                         <!-- /.user-info -->
                         @include('Admin.Layouts.sidebar')
-                <!-- /.left-sidebar -->
-                <div class="main-page">
-                    <div class="container-fluid">
-                        <div class="row page-title-div">
-                            <div class="col-md-6">
-                                <h2 class="title">Comprobante</h2>
-                                <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
-                            </div>
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.container-fluid -->
-                    <section class="section">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="p-20">
-                                        <h5 class="underline mt-n">
-                                            <div class="btn-group" role="group">
 
-<a href="{{ url('admin/pays') }}">                                                <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button>
-</a>
-                                            </div>
-                                        </h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <img src="{{asset('storage/invest/'.$image)}}" class="figure-img img-fluid rounded"  width="460" height="345">
-                                            </div>
-                                        </div>
-                                        
-                                        
+                        <div class="main-page">
+                            <div class="container-fluid">
+                                <div class="row page-title-div">
+                                    <div class="col-md-6">
+                                        <h2 class="title">Comprobante</h2>
+                                        <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
+                                    </div>
                                 </div>
-                                </form>
+                                <!-- /.row -->
                             </div>
+                            <!-- /.container-fluid -->
+                            <section class="section">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="p-20">
+                                                <h5 class="underline mt-n">
+                                                    <div class="btn-group" role="group">
+                                                        <a href="{{ url('admin/pays') }}"><button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
+                                                    </div>
+                                                </h5>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img src="{{asset('storage/invest/'.$image)}}" class="figure-img img-fluid rounded"  width="460" height="345">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        <!-- /.col-md-12 -->
+                    </div>
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-            </section>
-            <!-- /.section -->
         </div>
-        <!-- /.main-page -->
     </div>
-    <!-- /.content-container -->
-    </div>
-    <!-- /.content-wrapper -->
-    </div>
-    <!-- /.main-wrapper -->
-    <!-- ========== COMMON JS FILES ========== -->
-  
-    <!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
 </body>
-
 </html>

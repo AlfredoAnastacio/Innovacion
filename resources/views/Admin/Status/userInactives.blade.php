@@ -49,6 +49,7 @@
                                                                     <th>Codigo</th>
                                                                     <th>Nombre</th>
                                                                     <th>Teléfono</th>
+                                                                    <th>Documento</th>
                                                                     <th>Estructura</th>
                                                                     <th>Rango</th>
                                                                     <th>Usuarios en la estructura</th>
@@ -62,6 +63,7 @@
                                                                     <td> {{ $user->user_id }} </td>
                                                                     <td> {{ $user->name }} </td>
                                                                     <td> {{ $user->telephone }}</td>
+                                                                    <td> {{ $user->document }}</td>
                                                                     <td> N/A </td>
                                                                     <td> {{ $user->range }} </td>
                                                                     <td> N/A </td>
@@ -77,7 +79,9 @@
                                                                             <ul class="dropdown-menu">
                                                                                 <li><a class="btn" href="{{  url('admin/refers/' . $user->user_id) }}" title="View User">Ver Afiliados </a> </li>
                                                                                 <li><a class="btn" href="{{  url('admin/refers/' . $user->user_id) }}" title="View User">Ver Inversión </a> </li>
+                                                                                <li><a class="btn" href="{{  url('admin/pays/user/' . $user->user_id) }}" title="View User">Ver Comprobante(s) </a> </li>
                                                                                 <li role="separator" class="divider"></li>
+                                                                                <li><a class="btn" href="{{  url('admin/inactiveusers/update/status/' . $user->user_id) }}" title="View User"> Activar </a> </li>
                                                                                 <li> <a class="btn" href="{{ url('admin/users/' . $user->user_id . '/edit') }}" title="Edit User"> Editar </a></li>
                                                                             </ul>
                                                                         </div>

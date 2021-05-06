@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Refer;
 use App\User;
+use App\Models\Status;
 
 class RefersController extends Controller
 {
@@ -28,7 +29,8 @@ class RefersController extends Controller
         }
 
         else{
-            $refers = Refer::with('user','sponsor')->get();
+            // $refers = Refer::with('user','sponsor')->get();
+            $refers = Refer::select('refers.*', 'users.name', 'users.document', 'users.telephone')->join('users', 'refers.user_id', 'users.user_id')->get();
         }
 
         $amount = count($refers);
@@ -271,5 +273,32 @@ class RefersController extends Controller
         Refer::destroy($id);
 
         return redirect('admin/refers')->with('flash_message', 'User deleted!');
+    }
+
+
+    public function active($id) {
+
+        $refer = Status::where('user_id', $id)->first();
+
+        return view('Admin.Refers.active', compact('refer'));
+    }
+
+    public function status(Request $request) {
+
+        $user = Status::FindOrFail($request->user_id);
+
+        if($user) {
+            $user->state = $request->state;
+            $user->save();
+
+            \Session::flash('success_update_status','Status de usuario actualizado correctamente.');
+
+            return redirect('admin/inactiveusers');
+
+        } else {
+            \Session::flash('error_update_status','Ocurrió un error, intente de nuevo.');
+
+            return redirect(url('admin/refers/edit/active/', $request->user_id));
+        }
     }
 }

@@ -1,5 +1,5 @@
      <!-- ========== COMMON STYLES ========== -->
-     {{-- <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" media="screen" > --}}
+     {{--  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" media="screen" >  --}}
      {{-- <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" media="screen" > --}}
      <link rel="stylesheet" href="{{asset('css/animate.min.css')}}" media="screen" >
      <link rel="stylesheet" href="{{asset('css/lobipanel.min.css')}}" media="screen" >

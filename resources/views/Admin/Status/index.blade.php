@@ -58,12 +58,15 @@
                                                             <th>Código Usuario</th>
                                                             <th>Estado</th>
                                                             <th>Rango</th>
+                                                            <th>Documento</th>
+                                                            <th>Nombre</th>
+                                                            <th>Teléfono</th>
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            @for ($i = 0 ; $i < $amount ; $i++)
+                                                            @for ($i = 0; $i < $amount; $i++)
                                                                 <td>{{$status[$i]->user_id}} </td>
                                                                 <td>{{ $status[$i]->state }}</td>
                                                                 @if(isset($status[$i]->Range->range))
@@ -71,6 +74,9 @@
                                                                 @else
                                                                     <td>Sin Rango </td>
                                                                 @endif
+                                                                <td>{{ $status[$i]->document }}</td>
+                                                                <td>{{ $status[$i]->name }}</td>
+                                                                <td>{{ $status[$i]->telephone }}</td>
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>

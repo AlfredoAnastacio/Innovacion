@@ -26,10 +26,12 @@ class StatusController extends Controller
         }
 
         else{
-            $status = Status::with('user','range')->get();
+            // $status = Status::with('user','range')->get();
+            $status = Status::select('status.*', 'users.document', 'users.name', 'users.telephone')->join('users', 'status.user_id', 'users.user_id')->get();
 
         }
         $amount = count($status);
+        // dd($status);
         return view('Admin.Status.index', compact('status','amount'));
     }
 
@@ -52,13 +54,10 @@ class StatusController extends Controller
         // }
         // $amount = count($status);
 
-        $users = Status::select('users.user_id', 'users.name', 'users.telephone', 'status.*')
+        $users = Status::select('users.user_id', 'users.name', 'users.telephone','users.document', 'status.*')
                             ->join('users', 'status.user_id', 'users.user_id')
                             ->where('state','Inactivo')
-                            // ->with('user','range')
                             ->get();
-
-        // dd($users);
 
         return view('Admin.Status.userInactives', compact('users'));
     }

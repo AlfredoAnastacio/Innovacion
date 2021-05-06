@@ -56,8 +56,11 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Código Usuario</th>
+                                                            <th>Nombre</th>
                                                             <th>Código Líder</th>
                                                             <th>Nombre Líder</th>
+                                                            <th>Núm. de Documento</th>
+                                                            <th>Teléfono</th>
                                                             <th>Acciones</th>
                                                         </tr>
                                                     </thead>
@@ -66,12 +69,16 @@
                                                             @for ($i = 0 ; $i < $amount ; $i++)
                                                                 @if ($refers[$i]->user_id != 1)
                                                                     <td>{{$refers[$i]->user_id}} </td>
+                                                                    <td>{{ $refers[$i]->name }}</td>
                                                                     <td>{{ $refers[$i]->sponsor_id }}</td>
                                                                     @if(isset($refers[$i]->sponsor->username))
                                                                         <td>{{$refers[$i]->sponsor->username}} </td>
                                                                     @else
                                                                         <td>Sin Lider </td>
                                                                     @endif
+                                                                    <td>{{ $refers[$i]->document }}</td>
+
+                                                                    <td>{{ $refers[$i]->telephone }}</td>
                                                                     <td>
                                                                         <div class="btn-group">
                                                                             <button type="button" class="btn btn-default">Opciones</button>

@@ -118,7 +118,9 @@
                                                                         <ul class="dropdown-menu">
                                                                             <li> <a class="btn" href="{{ url('admin/users/' . $item->user_id . '/edit') }}" title="Edit User"> Editar </a></li>
                                                                             <li><a class="btn" href="{{ route('investments.create',['user_id'=>$item->user_id]) }}" title="View User">Agregar inversión </a></li>
-                                                                            <li><a class="btn" href="{{  url('admin/pays/' . $item->user_id) }}" title="View User">Comprobantes </a></li>
+                                                                            @if($item->id != null)
+                                                                                <li><a class="btn" href="{{  url('admin/pays/' . $item->user_id) }}" title="View User">Comprobantes </a></li>
+                                                                            @endif
                                                                             <li><a class="btn" href="" title="View User"> Estructuras </a></li>
                                                                             <li role="separator" class="divider"></li>
                                                                             <li><a class="btn" href="" title="View User"> Ver Perfil </a></li>

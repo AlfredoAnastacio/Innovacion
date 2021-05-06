@@ -48,8 +48,9 @@ class UsersController extends Controller
             // $users = User::all();
             $users = User::join('refers', 'users.user_id', 'refers.user_id')
                         ->join('status', 'users.user_id', 'status.user_id')
+                        ->Leftjoin('pays', 'users.user_id', 'pays.user_id')
                         ->get();
-            // dd(count($users));
+
             for ($i=0; $i < count($users); $i++) {  //Se obtiene la cantidad de referidos
                 $totalRefers = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->count();
                 $totalTree = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->first();
@@ -61,7 +62,6 @@ class UsersController extends Controller
                 }
 
             }
-            // dd($users);
         }
 
         $alerts_pays=AlertsPays::where('status_pay','Sin pagar')->latest()->first();

@@ -37,10 +37,10 @@
                                     <h2 class="title">Referidos</h2>
                                     <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
                                 </div>
-                                
+
                             </div>
                             <!-- /.row -->
-                           
+
                         </div>
                         <!-- /.container-fluid -->
 
@@ -50,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel">
-                                           
+
                                             <div class="panel-body p-20">
 
                                                 <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
@@ -59,7 +59,7 @@
                                                             <th>Código Usuario</th>
                                                             <th>Nombre Usuario</th>
                                                             <th>Nivel</th>
-                        
+
                                                         </tr>
                                                     </thead>
                                                     <tfoot>
@@ -67,28 +67,28 @@
                                                             <th>Código Usuario</th>
                                                             <th>Nombre Usuario</th>
                                                             <th>Nivel</th>
-                        
+
                                                         </tr>
                                                     </tfoot>
                                                     <tbody>
                                                         @for ($i = 1 ; $i <= $amount ; $i++)
                                                         @foreach ($refers[$i] as $user )
                                                         <tr>
-                    
+
                                                             <td>{{$user->user_id}} </td>
-                    
+
                                                             @if (isset($user->user->name))
-                    
+
                                                                 <td >{{$user->user->name}} </td>
                                                             @endif
-                    
-                    
+
+
                                                             <td>{{$i}} </td>
-                    
-                    
+
+
                                                         </tr>
                                                         @endforeach
-                                                        @endfor 
+                                                        @endfor
                                                     </tbody>
                                                 </table>
 
@@ -119,7 +119,7 @@
                     </div>
                     <!-- /.main-page -->
 
-                    
+
 
                 </div>
                 <!-- /.content-container -->

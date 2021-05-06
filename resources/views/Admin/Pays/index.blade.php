@@ -56,6 +56,9 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Código Usuario</th>
+                                                            <th>Nombre</th>
+                                                            <th>Documento</th>
+                                                            <th>Teléfono</th>
                                                             <th>Código Inversión</th>
                                                             <th>Pago $</th>
                                                             <th>Fecha</th>
@@ -68,15 +71,12 @@
                                                             @for ($i = 0 ; $i < $amount ; $i++)
                                                             <tr>
                                                                 <td>{{$users[$i]->user_id}} </td>
+                                                                <td>{{$users[$i]->name}} </td>
+                                                                <td>{{$users[$i]->document}} </td>
+                                                                <td>{{$users[$i]->telephone}} </td>
                                                                 <td>{{$users[$i]->code_pay}} </td>
-                                        <td>{{$users[$i]->total}}
-
-                                        </td>
-
-                                        <td>{{$users[$i]->created_at}}
-
-                                        </td>
-
+                                                                <td>{{$users[$i]->total}}</td>
+                                                                <td>{{$users[$i]->created_at}}</td>
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-default">Opciones</button>

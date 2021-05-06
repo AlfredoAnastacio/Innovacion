@@ -30,10 +30,12 @@ class PaysController extends Controller
         else{
             $users = Pay::with('user')->get();
 
+            // dd($users);
+
         }
         $amount = count($users);
-        return view('Admin.Pays.index', compact('users','amount'));
 
+        return view('Admin.Pays.index', compact('users','amount'));
 
     }
 
@@ -96,7 +98,7 @@ class PaysController extends Controller
     public function show($id)
     {
         $photo= Pay::where('user_id',$id)->latest()->first();
-      
+
 
         if(isset($photo->path_image))
         {
