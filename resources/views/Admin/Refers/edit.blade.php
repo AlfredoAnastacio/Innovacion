@@ -45,17 +45,17 @@
                                 <div class="col-md-12">
                                     <h5 class="underline mt-n">
                                         <div class="btn-group" role="group">
-                                            <a href="{{url('admin/users')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
-                                          
+                                            <a href="{{url('admin/refers')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
+
                                         </div>
                                     </h5>
 
                                     <form class="p-20" method="POST" action="{{ url('admin/refers/' . $refer->id) }}" accept-charset="UTF-8" enctype="multipart/form-data">
                                         {{ method_field('PATCH') }}
                                         {{ csrf_field() }}
-            
+
                                         @include ('Admin.Refers.form', ['formMode' => 'edit'])
-            
+
                                     </form>
                             </div>
                         </div>

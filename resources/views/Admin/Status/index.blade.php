@@ -51,20 +51,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel">
-                                            <div class="panel-heading">
-                                                <form method="GET" action="{{ url('admin/status') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                                        <span class="input-group-append">
-                                                            <button class="btn btn-secondary" type="submit">
-                                                                <i class="fa fa-search"></i>
-                                                            </button>
-                                                        </span>
-                                                    </div>
-                                                </form>
-                                            </div>
                                             <div class="panel-body p-20">
-
                                                 <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>

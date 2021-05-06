@@ -18,7 +18,6 @@
                 <li class="">
                     <a id="status" href="{{ url('admin/status') }}"><i class="fa fa-area-chart"></i> <span>Estados y Rangos </span> </a>
                 </li>
-                <hr>
                 <li class="">
                     <a id="userInactives" href="{{ url('admin/inactiveusers') }}"><i class="fa fa-area-chart"></i> <span>Usuarios y Estructuras Inactivas </span> </a>
                 </li>
