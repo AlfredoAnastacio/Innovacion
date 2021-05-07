@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pay;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
@@ -28,10 +29,7 @@ class PaysController extends Controller
         }
 
         else{
-            $users = Pay::with('user')->get();
-
-            // dd($users);
-
+            $users = Pay::join('users', 'pays.user_id', 'users.user_id')->get();
         }
         $amount = count($users);
 

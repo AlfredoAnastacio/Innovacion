@@ -48,7 +48,7 @@ class UsersController extends Controller
             // $users = User::all();
             $users = User::join('refers', 'users.user_id', 'refers.user_id')
                         ->join('status', 'users.user_id', 'status.user_id')
-                        ->Leftjoin('pays', 'users.user_id', 'pays.user_id')
+                        // ->join('pays', 'users.user_id', 'pays.user_id')
                         ->get();
 
             for ($i=0; $i < count($users); $i++) {  //Se obtiene la cantidad de referidos
