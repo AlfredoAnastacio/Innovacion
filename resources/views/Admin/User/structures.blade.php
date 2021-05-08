@@ -77,11 +77,10 @@
                                                                     <td> {{ $refer->user_id }} </td>
                                                                     <td> {{ $refer->user_document }} </td>
                                                                     <td> {{ $refer->sponsor_id }} </td>
-                                                                    <td> 00 </td>
-                                                                    {{--  <td> {{ $refer->document }} </td>  --}}
-                                                                    <td> {{ $refer->sponsor_id }} </td>
-                                                                    <td> 00 </td>
-                                                                    <td> sfdsdfd </td>
+                                                                    <td> {{ $refer->lider_documento }} </td>
+                                                                    <td> 1 </td>
+                                                                    <td> 0 </td>
+                                                                    <td> {{ $refer->user_status }} </td>
                                                                 </tr>
                                                             @endforeach
                                                     </tbody>

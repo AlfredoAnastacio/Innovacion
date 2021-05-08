@@ -266,8 +266,14 @@ class UsersController extends Controller
         $total = count($refers);
         for ($i=0; $i < count($refers); $i++) {
             $user_document = User::where('user_id', $refers[$i]->user_id)->pluck('document')->first();
+            $user_status = Status::where('user_id', $refers[$i]->user_id)->pluck('state')->first();
+            $lider_documento = User::where('user_id', $refers[$i]->sponsor_id)->pluck('document')->first();
             $refers[$i]->user_document = $user_document;
+            $refers[$i]->user_status = $user_status;
+            $refers[$i]->lider_documento = $lider_documento;
         }
+
+        // dd($refers);
 
         return view('Admin.User.structures', compact('user', 'refers'));
     }

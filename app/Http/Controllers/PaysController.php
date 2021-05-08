@@ -48,7 +48,7 @@ class PaysController extends Controller {
             $request = new AnnotateImageRequest();
             $request->setImage($image);
             $request->setFeature("TEXT_DETECTION");
-            $gcvRequest = new GoogleCloudVision([$request],  'AIzaSyDfkx2xIlEvy7IJ0mtXfM_rSe4YNrN9XW4');
+            $gcvRequest = new GoogleCloudVision([$request],  'AIzaSyC8UHFwDHWozW6650FguaZbWz_tMfMDRBo');
 
             //send annotation request
             $response = $gcvRequest->annotate();
