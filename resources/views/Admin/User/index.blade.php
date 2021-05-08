@@ -121,7 +121,7 @@
                                                                             @if($item->id != null)
                                                                                 <li><a class="btn" href="{{  url('admin/pays/' . $item->user_id) }}" title="View User">Comprobantes </a></li>
                                                                             @endif
-                                                                            <li><a class="btn" href="" title="View User"> Estructuras </a></li>
+                                                                            <li><a class="btn" href="{{ url('admin/users/structures/' . $item->user_id) }}" title="View User"> Estructuras </a></li>
                                                                             <li role="separator" class="divider"></li>
                                                                             <li><a class="btn" href="" title="View User"> Ver Perfil </a></li>
 

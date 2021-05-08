@@ -69,6 +69,7 @@ Route::get('admin/activeusers','Admin\StatusController@active')->middleware('isA
 Route::get('admin/inactiveusers/update/status/{id}', 'Admin\RefersController@active')->middleware('isAdmin');
 Route::put('admin/inactiveactive/update', 'Admin\RefersController@status')->middleware('isAdmin');
 Route::get('admin/pays/user/{id}', 'Admin\PaysController@show')->middleware('isAdmin');
+Route::get('admin/users/structures/{id}', 'Admin\UsersController@structures')->middleware('isAdmin');
 
 
 //--------------------- OCR CLOUD API --------------

@@ -236,4 +236,39 @@ class UsersController extends Controller
 
         return redirect('admin/users');
     }
+
+    // Función Ver esctructuras
+    public function structures($id) {
+
+        $user = User::where('user_id', $id)->first();
+
+        // $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
+        // if ($sponsorTree == NULL) {
+        //     $sponsorTree =1;
+        // } else {
+        //     $sponsorTree = $sponsorTree->tree_sponsor;
+        // }
+        // for ($t=1; $t <= $sponsorTree; $t++) {
+        //     $refers = Refer::getRefers($id,0,$t);
+        //     foreach ($refers as $value) {
+        //         foreach ($value as $val) {
+        //             $user_document = User::where('user_id', $val->user_id)->pluck('document')->first();
+        //             $val->user_document = $user_document;
+        //         }
+        //     }
+        // }
+
+
+
+
+        // FUNCIONANDO
+        $refers = Refer::where('sponsor_id', $id)->get();
+        $total = count($refers);
+        for ($i=0; $i < count($refers); $i++) {
+            $user_document = User::where('user_id', $refers[$i]->user_id)->pluck('document')->first();
+            $refers[$i]->user_document = $user_document;
+        }
+
+        return view('Admin.User.structures', compact('user', 'refers'));
+    }
 }
