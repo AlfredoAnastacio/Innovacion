@@ -71,6 +71,7 @@
                                                             <th>Codigo</th>
                                                             <th>Patrocinador</th>
                                                             <th>Núm. de Documento</th>
+                                                            <th>Email</th>
                                                             <th>Nombre</th>
                                                             <th>Estructuras</th>
                                                             <th>Referidos</th>
@@ -86,6 +87,7 @@
                                                                 <td> {{ $item->user_id }} </td>
                                                                 <td> {{ $item->sponsor_id }} </td>
                                                                 <td> {{ $item->document }} </td>
+                                                                <td> {{ $item->email }} </td>
                                                                 <td> {{ $item->name }} </td>
                                                                 @if($item->totalTree == 1)
                                                                     <td> 1 </td>
