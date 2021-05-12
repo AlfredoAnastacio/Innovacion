@@ -83,7 +83,11 @@
                                 @for($i = 0; $i < $sponsorTree; $i++)
                                     {{-- @foreach ($refers_by_tree as $refers) --}}
                                         <div class="arco azulbg mt-2 p-2">
-                                            <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}<a class="vinculo" href="{{ route('tree.detail', $i+1) }}">Más info ></a></h6>
+                                            <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}
+                                                @if($refers_by_tree[$i] != 0)
+                                                    <a class="vinculo" href="{{ route('tree.detail', $i+1) }}">Más info ></a>
+                                                @endif
+                                            </h6>
                                         </div>
                                         <div class="row mb-4 scuare ml-0 mr-0">
                                             <div class="col-6 borde border-b text-center pt-2">
@@ -97,7 +101,7 @@
                                                     <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
                                                         <div class="block text-center">
                                                             <img class="b-block"src="{{asset('images/people.png')}}">
-
+                                                            {{-- @dump($refers_by_tree[$i] != 0) --}}
                                                             <div class="h2 font-weight-bold griz"><b class="qrf">{{ $refers_by_tree[$i] }}</b></div>
                                                         </div>
                                                     </div>

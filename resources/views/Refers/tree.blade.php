@@ -87,12 +87,13 @@
                                                             @foreach ($refer as $item )
                                                                 <tr>
                                                                     <th scope="row">
-                                                                        <p class="mb-0"><b>{{ $item->user->username }}</b></p>
+                                                                        <p class="mb-0"><b>{{ strtoupper($item->user->username) }} </b></p>
                                                                         <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL {{ $levels }}</p>
                                                                     </th>
-                                                                    <td class="align-middle">
-                                                                        <p class="fp-1">Hace 1 días</p>
-                                                                    </td>
+                                                                    <th scope="row">
+                                                                        <p class="mb-0"><b> Líder</b></p>
+                                                                        <p class="mb-0 fp-1"><span class="badge badge-info">{{ $item->name_sponsor }}</span></p>
+                                                                    </th>
                                                                 </tr>
                                                             @endforeach
                                                         @endforeach

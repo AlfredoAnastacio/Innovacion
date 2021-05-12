@@ -157,8 +157,17 @@ class RefersController extends Controller {
     }
 
     public function detail($tree){
+
         $user_id = Auth::id();
-        $refers= Refer::getRefers($user_id,0,$tree);
+        $refers = Refer::getRefers($user_id,0,$tree);
+
+        foreach ($refers as $refer) {
+            foreach ($refer as $value) {
+                $name_sponsor = User::where('user_id', $value->sponsor_id)->pluck('name')->first();
+                $value->name_sponsor = strtoupper($name_sponsor);
+            }
+        }
+
         $levels = count($refers);
 
         $sponsorTree = Refer::where('sponsor_id',$user_id)->orderBy('tree_sponsor','desc')->first();
@@ -172,8 +181,8 @@ class RefersController extends Controller {
         $total_users_by_tree = 0;
         $total_users = 0;
         for ($t=1; $t <= $sponsorTree; $t++) {
-            $refers = Refer::getRefers($user_id,0,$t);
-            foreach ($refers as $value) {
+            $referes = Refer::getRefers($user_id,0,$t);
+            foreach ($referes as $value) {
                 foreach ($value as $val) {
                     $total_users_by_tree++;
                 }

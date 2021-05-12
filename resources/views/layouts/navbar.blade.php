@@ -5,7 +5,7 @@
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a  class="nav-title " href="#">
+                <a  class="nav-title">
                     <span data-feather="home"></span>
                     MENU<span class="sr-only">(current)</span>
                 </a>
@@ -22,13 +22,6 @@
                     MIS ESTRUCTURAS
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                <a id="dashboard" class="nav-link" href="{{ url('/commissions') }}">
-                    <span data-feather="shopping-cart"></span>
-                    CUENTA
-                </a>
-            </li> --}}
-
             <li class="nav-item">
                 <a id="pay" class="nav-link img-3" href="{{ url('payform/'. Auth::id())}}">
                     <span data-feather="bar-chart-2"></span>
@@ -47,18 +40,6 @@
                     PERFIL
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                <a id="tree-user" class="nav-link" href="{{ route('tree') }}">
-                    <span data-feather="bar-chart-2"></span>
-                    MI RED
-                </a>
-            </li> --}}
-            {{-- <li class="nav-item">
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" >
-                    <span data-feather="layers"></span>
-                    <a class="nav-link img-6" href="javascript:{}" onclick="document.getElementById('logout-form').submit(); return false;">Salir</a>
-                </form>
-            </li> --}}
             <li class="nav-item">
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" >
                     <a class="nav-link img-6" href="javascript:{}" onclick="document.getElementById('logout-form').submit(); return false;">
@@ -68,14 +49,6 @@
                     @csrf
                 </form>
             </li>
-            {{-- <li class="nav-item">
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" >
-                    <button type="submit" class="nav-link img-6 box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
-                        <span data-feather="layers"></span>Salir
-                    </button>
-                    @csrf
-                </form>
-            </li> --}}
         </ul>
     </div>
     <div class="abajo text-center ">
