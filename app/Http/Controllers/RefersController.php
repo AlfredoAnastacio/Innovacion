@@ -165,6 +165,8 @@ class RefersController extends Controller {
             foreach ($refer as $value) {
                 $name_sponsor = User::where('user_id', $value->sponsor_id)->pluck('name')->first();
                 $value->name_sponsor = strtoupper($name_sponsor);
+                $num_users = Refer::where('sponsor_id', $value->user_id)->get();
+                $value->num_users = count($num_users);
             }
         }
 
@@ -194,7 +196,7 @@ class RefersController extends Controller {
         foreach ($refers_by_tree as $value) {   //se obtiene el total en general del usuario x.
             $total_users = $total_users + $value;
         }
-
+        // dd($refers);
         return view('Refers.tree',compact('refers','tree', 'levels', 'total_users'));
     }
 }

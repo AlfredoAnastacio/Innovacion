@@ -88,7 +88,30 @@
                                                                 <tr>
                                                                     <th scope="row">
                                                                         <p class="mb-0"><b>{{ strtoupper($item->user->username) }} </b></p>
-                                                                        <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL {{ $levels }}</p>
+                                                                        <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL
+                                                                            {{-- @dump($item->num_users) --}}
+                                                                            @if ($item->num_users == 0)
+                                                                                0
+                                                                                @elseif ($item->num_users >= 1 || $item->num_users <= 2)
+                                                                                    1
+                                                                                @elseif ($item->num_users > 2 || $item->num_users <= 4)
+                                                                                    2
+                                                                                @elseif ($total_users > 4 || $total_users <= 8)
+                                                                                    3
+                                                                                @elseif ($total_users > 4 || $total_users <= 8)
+                                                                                    4
+                                                                                @elseif ($total_users > 8 && $total_users <= 16)
+                                                                                    5
+                                                                                @elseif ($total_users > 16 && $total_users <= 32)
+                                                                                    6
+                                                                                @elseif ($total_users > 32 && $total_users <= 64)
+                                                                                    7
+                                                                                @elseif ($total_users > 64 && $total_users <= 128)
+                                                                                    8
+                                                                                @elseif ($total_users > 128 && $total_users <= 256)
+                                                                                    9
+                                                                            @endif
+                                                                        </p>
                                                                     </th>
                                                                     <th scope="row">
                                                                         <p class="mb-0"><b> Líder</b></p>
