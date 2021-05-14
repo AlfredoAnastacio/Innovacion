@@ -88,9 +88,9 @@
                                                                 <tr>
                                                                     <th scope="row">
                                                                         <p class="mb-0"><b>{{ strtoupper($item->user->username) }} </b></p>
-                                                                        <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL
+                                                                        <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL {{ $item->nivel }}
                                                                             {{-- @dump($item->num_users) --}}
-                                                                            @if ($item->num_users == 0)
+                                                                            {{--  @if ($item->num_users == 0)
                                                                                 0
                                                                                 @elseif ($item->num_users >= 1 || $item->num_users <= 2)
                                                                                     1
@@ -110,7 +110,7 @@
                                                                                     8
                                                                                 @elseif ($total_users > 128 && $total_users <= 256)
                                                                                     9
-                                                                            @endif
+                                                                            @endif  --}}
                                                                         </p>
                                                                     </th>
                                                                     <th scope="row">

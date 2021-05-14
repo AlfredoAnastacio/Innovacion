@@ -167,8 +167,98 @@ class RefersController extends Controller {
                 $value->name_sponsor = strtoupper($name_sponsor);
                 $num_users = Refer::where('sponsor_id', $value->user_id)->get();
                 $value->num_users = count($num_users);
+
+                // APARTADO PARA OBTENER EL NIVEL DEL USUARIO DENTRO DE LA ESCTRUCTURA
+                $flag_admin = false;
+                while ($flag_admin == false) {
+                    $nivel = 1;
+                    $next_sponsor = Refer::where('user_id', $value->sponsor_id)->pluck('sponsor_id')->first();
+                    if ($next_sponsor == 1) {
+                        $flag_admin = true;
+                    } else {
+                        $nivel = $nivel + 1;
+                        $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+                        if ($next_sponsor == 1) {
+                            $flag_admin = true;
+                        } else {
+                            $nivel = $nivel + 1;
+                            $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+                            if ($next_sponsor == 1) {
+                                $flag_admin = true;
+                            } else {
+                                $nivel = $nivel + 1;
+                                $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+                                if ($next_sponsor == 1) {
+                                    $flag_admin = true;
+                                } else {
+                                    $nivel = $nivel + 1;
+                                    $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+                                    if ($next_sponsor == 1) {
+                                        $flag_admin = true;
+                                    } else {
+                                        $nivel = $nivel + 1;
+                                        $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+                                        if ($next_sponsor == 1) {
+                                            $flag_admin = true;
+                                        } else {
+                                            $nivel = $nivel + 1;
+                                            $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+                                            if ($next_sponsor == 1) {
+                                                $flag_admin = true;
+                                            } else {
+                                                $nivel = $nivel + 1;
+                                                $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                $value->nivel = $nivel;
             }
         }
+
+        // dd($refers);
+
+
+        // foreach ($refers as $refer) {
+        //     foreach ($refer as $value) {
+        //         $flag_admin = false;
+        //         while ($flag_admin == false) {
+        //             $nivel = 1;
+        //             $next_sponsor = Refer::where('user_id', $value->sponsor_id)->pluck('sponsor_id')->first();
+        //             if ($next_sponsor == 1) {
+        //                 $flag_admin = true;
+        //             } else {
+        //                 $nivel = $nivel + 1;
+        //                 $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+        //                 if ($next_sponsor == 1) {
+        //                     $flag_admin = true;
+        //                 } else {
+        //                     $nivel = $nivel + 1;
+        //                     $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+        //                     if ($next_sponsor == 1) {
+        //                         $flag_admin = true;
+        //                     } else {
+        //                         $nivel = $nivel + 1;
+        //                         $next_sponsor = Refer::where('user_id', $next_sponsor)->pluck('sponsor_id')->first();
+        //                         // dd($next_sponsor);
+        //                         if ($next_sponsor == 1) {
+        //                             $flag_admin = true;
+        //                         } else {
+        //                             $flag_admin = true;
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         $value->nivel = $nivel;
+        //     }
+        // }
+
+        // dd($refers);
 
         $levels = count($refers);
 
