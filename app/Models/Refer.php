@@ -21,8 +21,8 @@ class Refer extends Model
 
         $total_refers = count($refers[1]);
         $aux=1;
-        for ($i=2;$i<8;$i++) { //Referidos de nivel 2 a 7   LO QUE ESTABA
-        // for ($i=2;$i<15;$i++) { //Referidos de nivel 2 a 14
+        // for ($i=2;$i<8;$i++) { //Referidos de nivel 2 a 7   LO QUE ESTABA
+        for ($i=2;$i<15;$i++) { //Referidos de nivel 2 a 14
 
             $refers[$i] = collect();
             $refers[$i] = self::iterator($refers[$aux],$op);
