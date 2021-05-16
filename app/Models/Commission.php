@@ -82,19 +82,19 @@ class Commission extends Model {
             case '7':
                 return 0.078125;
             case '8':
-                return 0.00260416666667;
+                return 0.00651041666666667;
             case '9':
-                return 0.00260416666667;
+                return 0.00651041666666667;
             case '10':
-                return 0.00260416666667;
+                return 0.00651041666666667;
             case '11':
-                return 0.00260416666667;
+                return 0.00651041666666667;
             case '12':
-                return 0.00260416666667;
+                return 0.00651041666666667;
             case '13':
-                return 0.00260416666667;
+                return 0.00651041666666667;
             case '14':
-                return 0.00260416666667;
+                return 0.00651041666666667;
             default:
             return 0;
         }
