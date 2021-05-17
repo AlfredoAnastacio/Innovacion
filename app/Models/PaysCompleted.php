@@ -15,8 +15,8 @@ class PaysCompleted extends Model
     public static function getPays($user_id,$range_id,$op) {
 
         $pays = new PaysCompleted();
-        // $verified= $pays->where('user_id',$user_id)->where('range_id')->exists();
-        $verified= $pays->where('user_id',$user_id)->where('range_id', $range_id)->exists();
+        $verified= $pays->where('user_id',$user_id)->where('range_id')->exists();
+        // $verified= $pays->where('user_id',$user_id)->where('range_id', $range_id)->exists();
 
         if (!$verified) {
             switch ($op) {
