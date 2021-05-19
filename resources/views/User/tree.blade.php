@@ -120,7 +120,8 @@
                                             </div>
                                             <div class="col-6 text-center pt-2">
                                                 <img src="{{asset('images/rentabilidad.png')}}">
-                                                <h2 class="pt-2 mb-1 griz"><b>US ${{$commissions_total}}</b></h2>
+                                                <h2 class="pt-2 mb-1 griz"><b> US ${{ $rentabilidad_total }} </b></h2>
+                                                {{-- <h2 class="pt-2 mb-1 griz"><b>US $100</b></h2> --}}
                                                 <h5 class="griz fz">RENTABILIDAD</h5>
                                             </div>
                                         </div>

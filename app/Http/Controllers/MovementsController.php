@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Refer;
+use App\Models\AlertsPays;
 
 class MovementsController extends Controller
 {
@@ -13,7 +18,32 @@ class MovementsController extends Controller
      */
     public function index()
     {
-        return view('User.movements');
+        $id = Auth::id();
+
+        $user = User::where('user_id', $id)->first();
+        $sponsor_id = Refer::where('user_id', $id)->pluck('sponsor_id')->first();
+        $user->sponsor_id = $sponsor_id;
+
+        // Total de estructuras
+        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
+        if ($sponsorTree == NULL) {
+            $sponsorTree = 1;
+        } else {
+            $sponsorTree = $sponsorTree->tree_sponsor;
+        }
+        $user->sponsorTree = $sponsorTree;
+
+        // Tabla alerts_pays - movements
+        $data = AlertsPays::where('user_id', $id)->get();
+        if ($data->isEmpty()) {
+            $data = 0;
+        } else {
+            foreach ($data as $value) {
+                $value->date = $value->created_at->format('d-m-y');
+            }
+        }
+
+        return view('User.movements', compact('user', 'data'));
     }
 
     /**

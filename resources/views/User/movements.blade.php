@@ -30,16 +30,16 @@
                 <div class="">
                     <div class="contenido pt-5 ">
                         <div class="cuenta mx-auto">
-                            <h6 class="text-center text-uppercase azul"><b>Juan Carlos Gonzalez</b></h6>
+                            <h6 class="text-center text-uppercase azul"><b> {{ $user->name }} </b></h6>
                             <div class="nivel">
                                 <div class="row">
                                     <div class="col-9 pr-0">
-                                        <h6 class="usuario azul pt-1"><b># USUARIO: 1234</b></h6>
+                                        <h6 class="usuario azul pt-1"><b># USUARIO: {{ $user->user_id }}</b></h6>
                                         <hr class="azul">
-                                        <p class="patrocinador"># Patrocinador: 5678</p>
+                                        <p class="patrocinador"># Patrocinador: {{ $user->sponsor_id }}</p>
                                     </div>
                                     <div class="col-3 text-center pl-0">
-                                        <h2 class="mb-1 griz"><b>99</b></h2>
+                                        <h2 class="mb-1 griz"><b> {{ $user->sponsorTree }}</b></h2>
                                         <h5 class="griz fz">ESTRUCTURAS</h5>
                                     </div>
                                 </div>
@@ -49,116 +49,24 @@
                                 <div class="col-md-12">
                                     <table class="table table-striped text-center">
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1">Realizado</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>SEGUNDO PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$30 - Estructura #3</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1 cl">Por Pagar</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1">Realizado</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1 cl">Por Pagar</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1">Realizado</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1 cl">Por Pagar</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1">Realizado</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1 cl">Por Pagar</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1">Realizado</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1 cl">Por Pagar</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="mb-0"><b>PAGO NIVEL PLATA</b></p>
-                                                    <p class="mb-0 fp-1">$45 - Estructura #1</p>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="fp-1">Realizado</p>
-                                                    <p class="mb-0 fp-1">01/01/20</p>
-                                                </td>
-                                            </tr>
+                                            @if($data === 0)
+                                                <tr>
+                                                    <th>SIN INFORMACIÓN PARA VISUALIZAR</th>
+                                                </tr>
+                                            @else
+                                                @foreach ($data as $movement)
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <p class="mb-0"><b> PAGO {{ $movement->level_pay }} </b></p>
+                                                            <P class="mb-0 fp-1">${{ $movement->total_pay }} - Estructura {{ $movement->tree }}</p>
+                                                        </th>
+                                                        <th scope="row">
+                                                            <p class="mb-0"><b> {{ $movement->status_pay }} </b></p>
+                                                            <p class="mb-0 fp-1"><span class="badge badge-primary"> {{ $movement->date }} </span></p>
+                                                        </th>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

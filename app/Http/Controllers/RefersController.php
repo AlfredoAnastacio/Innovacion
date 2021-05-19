@@ -12,6 +12,7 @@ use App\Models\PaysCompleted;
 use App\Models\Investment;
 use App\Models\Commission;
 use App\Models\Alerts;
+use App\Models\AlertsPays;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +34,8 @@ class RefersController extends Controller {
         $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
         $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
         $investments_total = Investment::amountInvestment($investments);
-        $commissions_total = Commission::amountCommission($id);
+        // $commissions_total = Commission::amountCommission($id);
+        $rentabilidad_total = AlertsPays::getRentabilidad($id);
         if ($sponsorTree == NULL) {
             $sponsorTree =1;
         } else {
@@ -69,7 +71,7 @@ class RefersController extends Controller {
 
         return view('User.tree',compact('user','range','sponsor','investments_total','commissions_total',
                                                 'pays_completed','amount','total_refers','total_pays','sponsorTree',
-                                                'refers_by_tree', 'total_users'));
+                                                'refers_by_tree', 'total_users', 'rentabilidad_total'));
 
     //     $user = User::where('user_id', $id)->with('range')->first();
     //     $range = Range::where('range_id',(int) $user->range->range)->first();
