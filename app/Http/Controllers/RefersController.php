@@ -169,6 +169,8 @@ class RefersController extends Controller {
                 $value->name_sponsor = strtoupper($name_sponsor);
                 $num_users = Refer::where('sponsor_id', $value->user_id)->get();
                 $value->num_users = count($num_users);
+                $name = User::where('user_id', $value->user_id)->pluck('name')->first();
+                $value->name = strtoupper($name);
 
                 // APARTADO PARA OBTENER EL NIVEL DEL USUARIO DENTRO DE LA ESCTRUCTURA
                 $flag_admin = false;

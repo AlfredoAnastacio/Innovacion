@@ -87,7 +87,7 @@
                                                             @foreach ($refer as $item )
                                                                 <tr>
                                                                     <th scope="row">
-                                                                        <p class="mb-0"><b>{{ strtoupper($item->user->username) }} </b></p>
+                                                                        <p class="mb-0"><b>{{ strtoupper($item->name) }} </b></p>
                                                                         <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL {{ $item->nivel }}
                                                                             {{-- @dump($item->num_users) --}}
                                                                             {{--  @if ($item->num_users == 0)

@@ -18,6 +18,7 @@ class Investment extends Model {
     //Retorna una colección de los referidos y sus inversiones
     public static function getInvestments($refers,$levels) {
         if (isset($refers) && isset($levels)) {
+            // dd($levels);
             for ($i=1 ; $i <= $levels; $i++) {
                 $investment[$i]= Investment::iterator($refers[$i]);
             }
@@ -31,8 +32,11 @@ class Investment extends Model {
         $pays=collect();
 
         foreach ($refers as $refer) {
+            // dd($refers);
             if(isset($refer->user_id)){
                 $range_id = Status::where('user_id',$refer->user_id)->first()->range;
+                // $range_id = Status::where('user_id', 1111)->first()->range;
+                // dd($range_id);
                 $range = Range::where('range_id',$range_id)->first();
                 $range_name = $range->range;
                 $investments = Investment::where('user_id','=',$refer->user_id)->where('state',$range_name)->with('user')->latest()->get();

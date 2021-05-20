@@ -65,37 +65,40 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        @if($amount == 0)
+                                                            <tr> SIN INFORMACIÓN </tr>
+                                                        @else
                                                             @for ($i = 0; $i < $amount; $i++)
-                                                                <td>{{$status[$i]->user_id}} </td>
-                                                                <td>{{ $status[$i]->state }}</td>
-                                                                @if(isset($status[$i]->Range->range))
-                                                                    <td>{{$status[$i]->Range->range}} </td>
-                                                                @else
-                                                                    <td>Sin Rango </td>
+                                                                @if($status[$i]->user_id != 1)
+                                                                    <tr>
+                                                                        <td>{{$status[$i]->user_id}} </td>
+                                                                        <td>{{ $status[$i]->state }}</td>
+                                                                        @if(isset($status[$i]->Range->range))
+                                                                            <td>{{$status[$i]->Range->range}} </td>
+                                                                        @else
+                                                                            <td>Sin Rango </td>
+                                                                        @endif
+                                                                        <td>{{ $status[$i]->document }}</td>
+                                                                        <td>{{ $status[$i]->name }}</td>
+                                                                        <td>{{ $status[$i]->telephone }}</td>
+                                                                        <td>
+                                                                            <div class="btn-group">
+                                                                                <button type="button" class="btn btn-default">Opciones</button>
+                                                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                    <span class="caret"></span>
+                                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                                </button>
+                                                                                <ul class="dropdown-menu">
+                                                                                    <li>
+                                                                                        <a href="{{ url('admin/status/' . $status[$i]->user_id . '/edit') }}" title="Edit User">Editar</a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
                                                                 @endif
-                                                                <td>{{ $status[$i]->document }}</td>
-                                                                <td>{{ $status[$i]->name }}</td>
-                                                                <td>{{ $status[$i]->telephone }}</td>
-                                                            <td>
-                                                                <div class="btn-group">
-                                                                    <button type="button" class="btn btn-default">Opciones</button>
-                                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="caret"></span>
-                                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li>
-
-                                                                            <a href="{{ url('admin/status/' . $status[$i]->user_id . '/edit') }}" title="Edit User">Editar</a>
-
-                                                                        </li>
-
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        @endfor
+                                                            @endfor
+                                                        @endif
                                                     </tbody>
                                                 </table>
 
