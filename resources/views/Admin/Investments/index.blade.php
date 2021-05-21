@@ -70,23 +70,31 @@
                                                                 <td>{{$investments[$i]->user_id}} </td>
                                                                 <td>$ @money($investments[$i]->pay)</td>
                                                                 <td>{{$investments[$i]->created_at->format('Y-m-d')}}</td>
-                                                            <td>
-                                                                <div class="btn-group">
-                                                                    <button type="button" class="btn btn-default">Opciones</button>
-                                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="caret"></span>
-                                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a href="{{ url('admin/investments/' . $investments[$i]->user_id . '/edit') }}" title="Edit User">Editar</a></li>
-                                                                        <li><form method="POST" action="{{ url('admin/investments' . '/' . $investments[$i]->user_id)}}" accept-charset="UTF-8" style="display:inline">
-                                                                            {{ method_field('DELETE') }}
-                                                                            {{ csrf_field() }}
-                                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
-                                                                        </form></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
+                                                                <td>
+                                                                    <a class="btn btn-primary btn-sm" href="{{ url('admin/investments/' . $investments[$i]->user_id . '/edit') }}" title="Edit Investment"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                                    <form method="POST" action="{{ url('admin/investments' . '/' . $investments[$i]->user_id)}}" accept-charset="UTF-8" style="display:inline">
+                                                                        {{ method_field('DELETE') }}
+                                                                        {{ csrf_field() }}
+                                                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                                    </form>
+                                                                </td>
+                                                                {{-- <td>
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-default">Opciones</button>
+                                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <span class="caret"></span>
+                                                                            <span class="sr-only">Toggle Dropdown</span>
+                                                                        </button>
+                                                                        <ul class="dropdown-menu">
+                                                                            <li><a href="{{ url('admin/investments/' . $investments[$i]->user_id . '/edit') }}" title="Edit User">Editar</a></li>
+                                                                            <li><form method="POST" action="{{ url('admin/investments' . '/' . $investments[$i]->user_id)}}" accept-charset="UTF-8" style="display:inline">
+                                                                                {{ method_field('DELETE') }}
+                                                                                {{ csrf_field() }}
+                                                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</button>
+                                                                            </form></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </td> --}}
                                                         </tr>
                                                         @endfor
                                                     </tbody>

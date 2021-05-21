@@ -81,9 +81,10 @@ class InvestmentsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd(isset($request->tree));
 
         if (isset($request->tree)) {
+            // dd('ho');
             $requestData = $request->all();
 
             $range_id = Status::where('user_id',$request->user_id)->first()->range;
@@ -96,9 +97,11 @@ class InvestmentsController extends Controller
             if (!$verified_investment) {
                 Investment::create($requestData);
             }
-        }
 
-        return redirect()->action('StatusController@show', [$request->user_id]);
+            return redirect()->action('StatusController@show', [$request->user_id]);
+        } else {
+            return redirect('admin/users');
+        }
     }
 
     /**

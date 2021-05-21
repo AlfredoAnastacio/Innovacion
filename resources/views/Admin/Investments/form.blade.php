@@ -47,7 +47,7 @@
     @endif
     <div class="col-md-6">
         <div class="btn-group pull-right mt-10" role="group">
-            <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+            <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Invertir' }}">
         </div>
     </div>
 </div>

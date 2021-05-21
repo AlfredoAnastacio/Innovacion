@@ -34,9 +34,9 @@ class PaysCompletedController extends Controller
             $pays= PaysCompleted::all();
 
         }
-       
-      
-        
+
+
+
             return view('Admin.Pay.index', compact('pays'));
     }
 
@@ -63,12 +63,12 @@ class PaysCompletedController extends Controller
         $level = Arr::get($requestData,'level_pay');
         $level =(int) substr($level,-1);
         $tree = (int) Arr::get($requestData,'tree');
-      
+
         PaysCompleted::create($requestData);
 
-        
+
         Commission::where('user_id',$user_id)->where('commission_level',$level)->where('tree',$tree)->update(['commission_type'=>1]);
-       
+
         return redirect('admin/payscompleted');
     }
 
@@ -114,6 +114,9 @@ class PaysCompletedController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $PaysCompleted = PaysCompleted::findOrFail($id);
+        $PaysCompleted->delete();
+
+        return redirect('admin/payscompleted');
     }
 }
