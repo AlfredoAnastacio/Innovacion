@@ -39,7 +39,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="{{ url('admin/refresh') }}"> Actualizar Usuarios</a></li>
+                    {{-- <li><a href="{{ url('admin/refresh') }}"> Actualizar Usuarios</a></li> --}}
                 </ul>
             </div>
         </div>
