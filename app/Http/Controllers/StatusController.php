@@ -97,9 +97,10 @@ class StatusController extends Controller
 
             if (Auth::user()->isAdmin()) {
                 return redirect('admin/users');
-            } else {
-                DB::table('status')->where('user_id','=',$id)->update(['state' => "Inactivo"]);
             }
+            // else {
+            //     DB::table('status')->where('user_id','=',$id)->update(['state' => "Inactivo"]);
+            // }
         }
 
         // return redirect()->action('UserController@show',$id);
