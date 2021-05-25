@@ -48,8 +48,8 @@ class RefersController extends Controller {
         }
         $total_refers = Refer::getRefers($id,1,$sponsorTree);
         $amount = count($refers);
-        $pays_completed= PaysCompleted::getPays($id,$user->range->range,1);
-        $total_pays= PaysCompleted::getPays($id,$user->range->range,2);
+        $pays_completed= PaysCompleted::getPays($id,$user->range->range,1); //Se obtienen los pagos que se han realizado al lider
+        $total_pays= PaysCompleted::getPays($id,$user->range->range,2);     //Se obtiene la cantidad de pagos que se le han realizado
 
         $refers_by_tree = array();                              //|
         $total_users_by_tree = 0;                               //|

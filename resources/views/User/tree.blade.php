@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-6 text-center pt-2">
                                     <img src="{{asset('images/rentabilidad.png')}}">
-                                    <h2 class="pt-1 mb-1 griz"><b>US ${{$total_pays}}</b></h2>
+                                    <h2 class="pt-1 mb-1 griz"><b>US ${{$commissions_total}}</b></h2>
                                     <h5 class="griz fz">RENTABILIDAD</h5>
                                 </div>
                             </div>

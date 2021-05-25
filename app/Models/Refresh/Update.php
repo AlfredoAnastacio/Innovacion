@@ -23,10 +23,10 @@ class Update extends Model {
             for($t=1; $t <= $sponsorTree; $t++) {
                 $refers = Refer::getRefers($user,2,$t);
 
-                if (Refer::where('user_id',$user)->first() == NULL) {
+                // if (Refer::where('user_id',$user)->first() == NULL) {
 
-                    Refer::create(['user_id'=> $user, 'sponsor_id' => 1]);
-                }
+                //     Refer::create(['user_id'=> $user, 'sponsor_id' => 1]);
+                // }
 
                 $levels = count($refers);  //Cantidad de Referidos por nivel
                 $investments = Investment::getInvestments($refers,$levels);
