@@ -102,6 +102,7 @@ class Commission extends Model {
 
     public static function amountCommission($id) {
         return Commission::where('user_id',$id)->where('commission_type',0)->sum('total');
+        // return Commission::where('user_id',$id)->where('commission_type', 1)->where('commission_level', '>=', 8)->sum('total');
     }
 
     public function user() {
