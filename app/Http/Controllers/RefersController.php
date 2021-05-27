@@ -35,17 +35,27 @@ class RefersController extends Controller {
         $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
         $investments_total = Investment::amountInvestment($investments);
         $commissions_total = Commission::amountCommission($id);
-        $rentabilidad_total = AlertsPays::getRentabilidad($id);
+        // $rentabilidad_total =1;
+
         if ($sponsorTree == NULL) {
             $sponsorTree =1;
         } else {
             $sponsorTree = $sponsorTree->tree_sponsor;
         }
 
+        $rentabilidad_tree = array();
+        $investment_tree = array();
         for($t=1; $t <= $sponsorTree; $t++) {
             $refers = Refer::getRefers($id,0,$t);
             Alerts::investmentAlert($id,$refers);
+            $rentabilidad_by_tree = AlertsPays::getRentabilidad($id, $t);   //Se obtiene la rentabilidad de cada estructura
+            array_push($rentabilidad_tree, $rentabilidad_by_tree);
+            //$investments_total = Investment::amountInvestment($investments, $t);
+            //array_push($investment_tree, $investments_total);
         }
+
+        // dd($investments_total);
+
         $total_refers = Refer::getRefers($id,1,$sponsorTree);
         $amount = count($refers);
         $pays_completed= PaysCompleted::getPays($id,$user->range->range,1); //Se obtienen los pagos que se han realizado al lider
@@ -68,10 +78,10 @@ class RefersController extends Controller {
         foreach ($refers_by_tree as $value) {   //se obtiene el total en general del usuario x.
             $total_users = $total_users + $value;
         }
-
+        // dd($refers_by_tree);
         return view('User.tree',compact('user','range','sponsor','investments_total','commissions_total',
                                                 'pays_completed','amount','total_refers','total_pays','sponsorTree',
-                                                'refers_by_tree', 'total_users', 'rentabilidad_total'));
+                                                'refers_by_tree', 'total_users', 'rentabilidad_tree'));
 
     //     $user = User::where('user_id', $id)->with('range')->first();
     //     $range = Range::where('range_id',(int) $user->range->range)->first();

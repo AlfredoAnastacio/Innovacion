@@ -81,51 +81,48 @@
                                     </h6>
                                 </div>
                                 @for($i = 0; $i < $sponsorTree; $i++)
-                                    {{-- @foreach ($refers_by_tree as $refers) --}}
-                                        <div class="arco azulbg mt-2 p-2">
-                                            <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}
-                                                @if($refers_by_tree[$i] != 0)
-                                                    <a class="vinculo" href="{{ route('tree.detail', $i+1) }}">Más info ></a>
-                                                @endif
-                                            </h6>
-                                        </div>
-                                        <div class="row mb-4 scuare ml-0 mr-0">
-                                            <div class="col-6 borde border-b text-center pt-2">
-                                                <div class="progress mx-auto " data-value='90'>
-                                                    <span class="progress-left">
-                                                        <span class="progress-bar border-primary"></span>
-                                                    </span>
-                                                    <span class="progress-right">
-                                                        <span class="progress-bar border-primary"></span>
-                                                    </span>
-                                                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                                        <div class="block text-center">
-                                                            <img class="b-block"src="{{asset('images/people.png')}}">
-                                                            {{-- @dump($refers_by_tree[$i] != 0) --}}
-                                                            <div class="h2 font-weight-bold griz"><b class="qrf">{{ $refers_by_tree[$i] }}</b></div>
-                                                        </div>
+                                    <div class="arco azulbg mt-2 p-2">
+                                        <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}
+                                            @if($refers_by_tree[$i] != 0)
+                                                <a class="vinculo" href="{{ route('tree.detail', $i+1) }}">Más info ></a>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                    <div class="row mb-4 scuare ml-0 mr-0">
+                                        <div class="col-6 borde border-b text-center pt-2">
+                                            <div class="progress mx-auto " data-value='90'>
+                                                <span class="progress-left">
+                                                    <span class="progress-bar border-primary"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar border-primary"></span>
+                                                </span>
+                                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                                    <div class="block text-center">
+                                                        <img class="b-block"src="{{asset('images/people.png')}}">
+                                                        <div class="h2 font-weight-bold griz"><b class="qrf">{{ $refers_by_tree[$i] }}</b></div>
                                                     </div>
                                                 </div>
-                                                <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
                                             </div>
-                                            <div class="col-6 border-b text-center pt-2">
-                                                <br>
-                                                <img src="{{asset('images/rango_plata.png')}}">
-                                                <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
-                                            </div>
-                                            <div class="col-6 borde text-center pt-2">
-                                                <img src="{{asset('images/inversion.png')}}">
-                                                <h2 class="pt-2 mb-1 griz"><b>US ${{$investments_total}}</b></h2>
-                                                <h5 class="griz fz">INVERSION</h5>
-                                            </div>
-                                            <div class="col-6 text-center pt-2">
-                                                <img src="{{asset('images/rentabilidad.png')}}">
-                                                <h2 class="pt-2 mb-1 griz"><b> US ${{ $rentabilidad_total }} </b></h2>
-                                                {{-- <h2 class="pt-2 mb-1 griz"><b>US $100</b></h2> --}}
-                                                <h5 class="griz fz">RENTABILIDAD</h5>
-                                            </div>
+                                            <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
                                         </div>
-
+                                        <div class="col-6 border-b text-center pt-2">
+                                            <br>
+                                            <img src="{{asset('images/rango_plata.png')}}">
+                                            <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
+                                        </div>
+                                        <div class="col-6 borde text-center pt-2">
+                                            <img src="{{asset('images/inversion.png')}}">
+                                            <h2 class="pt-2 mb-1 griz"><b>US ${{$investments_total}}</b></h2>
+                                            <h5 class="griz fz">INVERSION</h5>
+                                        </div>
+                                        <div class="col-6 text-center pt-2">
+                                            <img src="{{asset('images/rentabilidad.png')}}">
+                                            <h2 class="pt-2 mb-1 griz"><b> US ${{ $rentabilidad_tree[$i] }} </b></h2>
+                                            {{-- <h2 class="pt-2 mb-1 griz"><b>US $100</b></h2> --}}
+                                            <h5 class="griz fz">RENTABILIDAD</h5>
+                                        </div>
+                                    </div>
                                @endfor
                             @endif
 

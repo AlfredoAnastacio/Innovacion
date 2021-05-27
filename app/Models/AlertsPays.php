@@ -149,9 +149,10 @@ class AlertsPays extends Model
     }
 
     // Función para obtener la rentabilidad
-    public static function getRentabilidad($id) {
+    public static function getRentabilidad($id, $t) {
 
-        return AlertsPays::where('user_id',$id)->sum('total_pay');
+        // return AlertsPays::where('user_id',$id)->sum('total_pay');
+        return AlertsPays::where('user_id',$id)->where('tree', $t)->sum('total_pay');
     }
 
 }
