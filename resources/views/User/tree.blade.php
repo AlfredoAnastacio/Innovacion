@@ -113,7 +113,7 @@
                                         </div>
                                         <div class="col-6 borde text-center pt-2">
                                             <img src="{{asset('images/inversion.png')}}">
-                                            <h2 class="pt-2 mb-1 griz"><b>US ${{$investments_total}}</b></h2>
+                                            <h2 class="pt-2 mb-1 griz"><b>US ${{ $investment_tree[$i] }} </b></h2>
                                             <h5 class="griz fz">INVERSION</h5>
                                         </div>
                                         <div class="col-6 text-center pt-2">

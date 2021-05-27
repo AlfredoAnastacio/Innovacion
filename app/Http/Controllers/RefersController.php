@@ -32,8 +32,8 @@ class RefersController extends Controller {
         $sponsor = Refer::where('user_id',$id)->first();
         $range_name = $range->range;
         $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-        $investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
-        $investments_total = Investment::amountInvestment($investments);
+        //$investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
+        // $investments_total = Investment::amountInvestment($investments);
         $commissions_total = Commission::amountCommission($id);
         // $rentabilidad_total =1;
 
@@ -50,11 +50,12 @@ class RefersController extends Controller {
             Alerts::investmentAlert($id,$refers);
             $rentabilidad_by_tree = AlertsPays::getRentabilidad($id, $t);   //Se obtiene la rentabilidad de cada estructura
             array_push($rentabilidad_tree, $rentabilidad_by_tree);
-            //$investments_total = Investment::amountInvestment($investments, $t);
-            //array_push($investment_tree, $investments_total);
+            $investments = Investment::where('user_id', $id)->where('tree', $t)->where('state',$range_name)->first();
+            $investments_total = Investment::amountInvestment($investments, $t);
+            array_push($investment_tree, $investments_total);
         }
 
-        // dd($investments_total);
+        // dd($investment_tree);
 
         $total_refers = Refer::getRefers($id,1,$sponsorTree);
         $amount = count($refers);
@@ -79,7 +80,7 @@ class RefersController extends Controller {
             $total_users = $total_users + $value;
         }
         // dd($refers_by_tree);
-        return view('User.tree',compact('user','range','sponsor','investments_total','commissions_total',
+        return view('User.tree',compact('user','range','sponsor','investment_tree','commissions_total',
                                                 'pays_completed','amount','total_refers','total_pays','sponsorTree',
                                                 'refers_by_tree', 'total_users', 'rentabilidad_tree'));
 

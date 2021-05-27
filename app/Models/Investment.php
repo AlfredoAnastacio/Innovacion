@@ -47,7 +47,8 @@ class Investment extends Model {
         return $pays;
     }
 
-    public static function amountInvestment($investments) {
+    public static function amountInvestment($investments, $t) {
+        // dd($investments);
         $total = 0;
         if ($investments != NULL){
             $total = $investments->pay;
