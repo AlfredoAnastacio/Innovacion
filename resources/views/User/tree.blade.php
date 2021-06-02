@@ -45,10 +45,25 @@
                                         <hr class="azul">
                                         <p class="patrocinador"># Patrocinador: {{ $sponsorTree}}</p>
                                     </div>
-
                                     <div class="col-3 text-center pl-0">
-                                        <img class="" src="{{asset('images/rentabilidad.png')}}">
-                                        <p class="text-center">{{$range->range}}</p>
+
+                                        {{-- <img class="" src="{{asset('images/rentabilidad.png')}}"> --}}
+                                        {{-- <p class="text-center">{{ $range->range }}</p> --}}
+                                        @switch($range->range_id)
+                                            @case(2)
+                                                <img src="{{ asset('images/rango_oro.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br>ORO</b></h5>
+                                                @break
+                                            @case(3)
+                                                <img src="{{ asset('images/rango_platino.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br> PLATINO </b></h5>
+                                            @case(4)
+                                                <img src="{{ asset('images/rango_diamante.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br> DIAMANTE </b></h5>
+                                            @default
+                                                <img src="{{ asset('images/rango_plata.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
+                                        @endswitch
                                     </div>
                                 </div>
                             </div>
@@ -106,10 +121,20 @@
                                             </div>
                                             <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
                                         </div>
-                                        <div class="col-6 border-b text-center pt-2">
-                                            <br>
-                                            <img src="{{asset('images/rango_plata.png')}}">
-                                            <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
+                                        <div class="col-6 border-b text-center pt-2"><br>
+                                            @if ($rango_tree[$i] == 1)
+                                                <img src="{{ asset('images/rango_plata.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
+                                            @elseif($rango_tree[$i] == 2)
+                                                <img src="{{ asset('images/rango_oro.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br>ORO</b></h5>
+                                            @elseif($rango_tree[$i] == 3)
+                                                <img src="{{ asset('images/rango_platino.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br> PLATINO </b></h5>
+                                            @elseif($rango_tree[$i] == 4)
+                                                <img src="{{ asset('images/rango_diamante.png') }}">
+                                                <h5 class="griz"><b class="fz">RANGO<br> DIAMANTE </b></h5>
+                                            @endif
                                         </div>
                                         <div class="col-6 borde text-center pt-2">
                                             <img src="{{asset('images/inversion.png')}}">

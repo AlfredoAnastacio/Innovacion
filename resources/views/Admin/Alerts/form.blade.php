@@ -40,7 +40,7 @@
 
     <div class="col-md-6">
         <div class="form-group">
-          
+
             <input style="text-align: center;"="form-control" name="tree" type="numeric" id="tree" value="{{ isset($alert->tree) ? $alert->tree: request()->input('tree', old('tree'))}}" hidden >
 
         </div>
@@ -65,11 +65,11 @@
                     <option >
                       Pago
                     </option>
-            
-                
-            
-                
-            
+
+
+
+
+
                 </select>
         </div>
     </div>
@@ -80,7 +80,7 @@
 <div class="col-md-12">
     <div class="btn-group pull-right mt-10" role="group">
         <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-     
+
     </div>
     <!-- /.btn-group -->
 </div>

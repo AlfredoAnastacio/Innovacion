@@ -38,6 +38,7 @@
                                         <div class="col-9 pr-0">
                                             <h6 class="usuario azul pt-1"><b># USUARIO: {{ Auth::user()->user_id }}</b></h6>
                                             <hr class="azul">
+                                            {{-- @dump($total_users) --}}
                                             @if ($total_users <= 2)
                                                 <p class="patrocinador fp-1 griz">Nivel: 1</p>
                                             @endif
@@ -62,11 +63,44 @@
                                             @if ($total_users > 128 && $total_users <= 256)
                                                 <p class="patrocinador fp-1 griz">Nivel: 8</p>
                                             @endif
+                                            @if ($total_users > 256 && $total_users <= 512)
+                                                <p class="patrocinador fp-1 griz">Nivel: 9</p>
+                                            @endif
+                                            @if ($total_users > 512 && $total_users <= 1024)
+                                                <p class="patrocinador fp-1 griz">Nivel: 10</p>
+                                            @endif
+                                            @if ($total_users > 1024 && $total_users <= 2048)
+                                                <p class="patrocinador fp-1 griz">Nivel: 11</p>
+                                            @endif
+                                            @if ($total_users > 2048 && $total_users <= 4096)
+                                                <p class="patrocinador fp-1 griz">Nivel: 12</p>
+                                            @endif
+                                            @if ($total_users > 4096 && $total_users <= 8192)
+                                                <p class="patrocinador fp-1 griz">Nivel: 13</p>
+                                            @endif
+                                            @if ($total_users > 8192 && $total_users <= 16384)
+                                                <p class="patrocinador fp-1 griz">Nivel: 14</p>
+                                            @endif
                                         </div>
                                         <div class="col-3 text-center pl-0">
-                                            <img class="mb-1" src="{{ asset('images/rango_plata.png') }}">
-                                            <p class="text-center griz fz">PLATA</p>
-
+                                            @switch($range_lider)
+                                                @case(1)
+                                                    <img class="mb-1" src="{{ asset('images/rango_plata.png') }}">
+                                                    <p class="text-center griz fz">PLATA</p>
+                                                @break
+                                                @case(2)
+                                                    <img class="mb-1" src="{{ asset('images/rango_oro.png') }}">
+                                                    <p class="text-center griz fz">ORO</p>
+                                                @break
+                                                @case(3)
+                                                    <img class="mb-1" src="{{ asset('images/rango_platino.png') }}">
+                                                    <p class="text-center griz fz">PLATINO</p>
+                                                @break
+                                                @case(4)
+                                                    <img class="mb-1" src="{{ asset('images/rango_diamante.png') }}">
+                                                    <p class="text-center griz fz">DIAMANTE</p>
+                                                @break
+                                            @endswitch
                                         </div>
                                     </div>
                                 </div>
@@ -88,30 +122,7 @@
                                                                 <tr>
                                                                     <th scope="row">
                                                                         <p class="mb-0"><b>{{ strtoupper($item->name) }} </b></p>
-                                                                        <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL {{ $item->nivel }}
-                                                                            {{-- @dump($item->num_users) --}}
-                                                                            {{--  @if ($item->num_users == 0)
-                                                                                0
-                                                                                @elseif ($item->num_users >= 1 || $item->num_users <= 2)
-                                                                                    1
-                                                                                @elseif ($item->num_users > 2 || $item->num_users <= 4)
-                                                                                    2
-                                                                                @elseif ($total_users > 4 || $total_users <= 8)
-                                                                                    3
-                                                                                @elseif ($total_users > 4 || $total_users <= 8)
-                                                                                    4
-                                                                                @elseif ($total_users > 8 && $total_users <= 16)
-                                                                                    5
-                                                                                @elseif ($total_users > 16 && $total_users <= 32)
-                                                                                    6
-                                                                                @elseif ($total_users > 32 && $total_users <= 64)
-                                                                                    7
-                                                                                @elseif ($total_users > 64 && $total_users <= 128)
-                                                                                    8
-                                                                                @elseif ($total_users > 128 && $total_users <= 256)
-                                                                                    9
-                                                                            @endif  --}}
-                                                                        </p>
+                                                                        <p class="mb-0 fp-1">#{{ $item->user_id }} - NIVEL {{ $item->nivel }}</p>
                                                                     </th>
                                                                     <th scope="row">
                                                                         <p class="mb-0"><b> Líder</b></p>

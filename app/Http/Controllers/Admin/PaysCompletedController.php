@@ -69,7 +69,9 @@ class PaysCompletedController extends Controller
 
         Commission::where('user_id',$user_id)->where('commission_level',$level)->where('tree',$tree)->update(['commission_type'=>1]);
 
-        return redirect('admin/payscompleted');
+        return redirect('admin/refresh');
+
+        // return redirect('admin/payscompleted');
     }
 
     /**

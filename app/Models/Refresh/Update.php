@@ -15,13 +15,12 @@ class Update extends Model {
 
     public static function refreshCommission($user_id){
 
-        $user = $user_id;
-        $sponsorTree = Refer::where('sponsor_id',$user)->orderBy('tree_sponsor','desc')->first();
+        $sponsorTree = Refer::where('sponsor_id',$user_id)->orderBy('tree_sponsor','desc')->first();
 
         if ($sponsorTree != NULL) {
             $sponsorTree = $sponsorTree->tree_sponsor;
             for($t=1; $t <= $sponsorTree; $t++) {
-                $refers = Refer::getRefers($user,2,$t);
+                $refers = Refer::getRefers($user_id,2,$t);
 
                 // if (Refer::where('user_id',$user)->first() == NULL) {
 
@@ -32,9 +31,8 @@ class Update extends Model {
                 $investments = Investment::getInvestments($refers,$levels);
 
                 if (isset($investments) && isset($refers)) {
-                    Commission::selfCommissions($investments,$levels,$user,$t);
+                    Commission::selfCommissions($investments,$levels,$user_id,$t);
                 }
-
                 self::refreshStatus($user_id,$t);
             }
         }
@@ -58,7 +56,8 @@ class Update extends Model {
 
         $total_refers = $refers_list->getRefers($user_id,1,$tree);
         $iterator=0;
-        $pay = $investments->where('user_id','=',$user_id)->where('state',$range_name->range)->latest()->exists();
+
+        $pay = $investments->where('user_id','=',$user_id)->where('state', $range_name->range)->latest()->exists();
 
         //Valida si realizó el pago para activarlo, al igual que si el rango aumenta
         if ($pay) {
@@ -76,20 +75,28 @@ class Update extends Model {
                 if ($iterator == 128) {
 
                     $range_name=Range::where('range_id',$range)->first();
-                    $verified_pay = PaysCompleted::where('user_id',$user_id)->where('level_pay',$range_name->range)->where('range_id',$range)->where('tree',$tree)->exists();
-
+                    $verified_pay = PaysCompleted::where('user_id',$user_id)->where('level_pay', 'Nivel 7')->where('range_id',$range)->where('tree',$tree)->exists();
                     if ($verified_pay) {
                         if ($range>=5) {
                             $range=5;
                         } else {
                             $range = $range+1;
                         }
-
                         if ($range < 5) {
-                            $investments->user_id = $user_id;
-                            $investments->pay = $range_name->total_investment;
-                            $investments->state = $range_name->range;
-                            $investments->save();
+                            DB::beginTransaction();
+
+                            try {
+                                $investments = new Investment();
+                                $investments->user_id = $user_id;
+                                $investments->pay = $range_name->total_investment;
+                                $investments->state = $range_name->range;
+                                $investments->tree = $tree;
+                                $investments->save();
+
+                                DB::commit();
+                            }catch (\PDOException $e){
+                                DB::rollBack();
+                            }
                         }
                         $refers_list->where('sponsor_id','=',$user_id)->where('tree_sponsor',$tree)->delete();
                         $commissions->where('user_id','=',$user_id)->where('tree',$tree)->delete();
@@ -99,11 +106,12 @@ class Update extends Model {
 
             $range_str = $range;
             DB::table('status')->where('user_id','=',$user_id)->update(['state' => "Activo",'range' => $range_str]);
-        } else {
-            if ($user_id != 1) {
-                DB::table('status')->where('user_id','=',$user_id)->update(['state' => "Inactivo"]);
-            }
         }
+        // else {
+        //     if ($user_id != 1) {
+        //         DB::table('status')->where('user_id','=',$user_id)->update(['state' => "Inactivo"]);
+        //     }
+        // }
         self::refreshAlert($user_id,$tree);
     }
 

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Refer extends Model
 {
+    use SoftDeletes;
     protected $table = 'refers';
 
     protected $fillable = [
@@ -16,8 +18,9 @@ class Refer extends Model
 
     //Obtiene los Referidos del usuario
     public static function getRefers($user_id,$op,$tree) {
-
+        // dd($user_id);
         $refers[1] = Refer::where('sponsor_id',$user_id)->where('tree_sponsor',$tree)->with('user')->get();  // Referidos directos (Nivel 1)
+        // dd($refers[1]);
 
         $total_refers = count($refers[1]);
         $aux=1;
