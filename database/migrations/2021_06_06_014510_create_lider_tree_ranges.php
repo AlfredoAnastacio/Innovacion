@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRefersTable extends Migration
+class CreateLiderTreeRanges extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateRefersTable extends Migration
      */
     public function up()
     {
-        Schema::create('refers', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('lider_tree_ranges', function (Blueprint $table) {
+            $table->id();
             $table->integer('user_id');
-            $table->integer('sponsor_id');
-            $table->integer('refer_by_admin')->default(0);
-            $table->integer('tree_sponsor')->default(1);
-            // $table->integer('range_sponsor')->default(1);
+            $table->integer('tree');
+            $table->integer('range');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateRefersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('refers');
+        Schema::dropIfExists('lider_tree_ranges');
     }
 }

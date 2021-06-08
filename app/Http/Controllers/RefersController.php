@@ -26,7 +26,6 @@ class RefersController extends Controller {
     public function index() {
 
         $id = Auth::id();
-        // dd($id);
 
         $user = User::where('user_id', $id)->with('range')->first();
         $range = Range::where('range_id',(int) $user->range->range)->first();
@@ -36,7 +35,6 @@ class RefersController extends Controller {
         //$investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
         // $investments_total = Investment::amountInvestment($investments);
         $commissions_total = Commission::amountCommission($id);
-        // $rentabilidad_total =1;
 
         if ($sponsorTree == NULL) {
             $sponsorTree =1;
