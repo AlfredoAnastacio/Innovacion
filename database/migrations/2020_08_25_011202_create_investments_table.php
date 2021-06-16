@@ -18,6 +18,7 @@ class CreateInvestmentsTable extends Migration
             $table->integer('user_id');
             $table->float('pay');
             $table->string('state')->default('Activo');
+            $table->integer('tree');
             $table->timestamps();
         });
     }

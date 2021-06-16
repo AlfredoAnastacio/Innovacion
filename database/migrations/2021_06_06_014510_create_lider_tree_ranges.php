@@ -18,6 +18,7 @@ class CreateLiderTreeRanges extends Migration
             $table->integer('user_id');
             $table->integer('tree');
             $table->integer('range');
+            $table->integer('code');
             $table->timestamps();
             $table->softDeletes();
         });
