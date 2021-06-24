@@ -64,7 +64,7 @@ class RefersController extends Controller {
             $rangesTree->rentabilidad_total = $rentabilidad_total;
         }
 
-        return view('User.tree',compact('user', 'sponsorTree', 'rangesTrees', 'investment_tree', 'commissions_total'));
+        return view('User.tree',compact('user', 'sponsorTree', 'rangesTrees', 'commissions_total'));
 
         // return view('User.tree',compact('user','range','sponsor','investment_tree','commissions_total',
         //         'pays_completed','amount','total_refers','total_pays','sponsorTree',
