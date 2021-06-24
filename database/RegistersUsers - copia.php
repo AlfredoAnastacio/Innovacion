@@ -1,12 +1,17 @@
 <?php
 
 namespace Illuminate\Foundation\Auth;
-use App\Models\Refer;
-use App\Models\Status;
+
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+
+use App\Models\Refer;
+use App\Models\Status;
+use App\Models\LiderTreeRange;
+
+use DB;
 
 trait RegistersUsers
 {
@@ -34,73 +39,109 @@ trait RegistersUsers
         $sponsor_id = $request->input('sponsor_id');
         $treeSponsor = 1;
 
-        if ($sponsor_id != 1) {
+        // if ($sponsor_id != 1) {
             $verified_user = User::where('user_id',$request->sponsor_id)->exists();
-        } else {
-            $verified_user=[1];
-        }
-
-
+        // } else {
+            // $verified_user = ;
+        // }
+        // dd($verified_user);
         if ($verified_user) {
 
-            if ($sponsor_id != 1) {
+            // if ($sponsor_id != 1) {
+                // if (User::where('sponsor_id',$sponsor_id)->exists()) {
+                    // dd('grl');
+                    if ($this->validator($request->all())->passes()) {
 
-                if (Refer::where('sponsor_id',$sponsor_id)->exists()) {
-                    $sponsorTree = Refer::where('sponsor_id',$sponsor_id)->orderBy('tree_sponsor','desc')->first();
-                    $sponsors = Refer::where('sponsor_id',$sponsor_id)->where('tree_sponsor',$sponsorTree->tree_sponsor)->get();
+                        $gen_id = rand(1,8000);
+                        $verified_id = User::where('user_id', $gen_id)->exists();
+                        if ($verified_id) {
+                            $gen_id = rand(8000,10000);
+                        }
+                        $rol = 0;
 
-                    $total = sizeof($sponsors);
-                    if ($total < 2) {
-                        $treeSponsor = $sponsorTree->tree_sponsor;
+                        if (empty($sponsor_id)) {
+                            $admin = User::where('rol', 1)->first();
+
+                            if (empty($admin)) {
+                            $sponsor_id = 0;
+                            $rol = 1;
+                            }
+                        }
+
+                        $lastTree = LiderTreeRange::OrderBy('tree', 'desc')->pluck('code')->last();    //Se obtiene el código de la ultima estructura
+
+                        // Se hace el save del usuario en la tabla LiderTreeRange
+                        $liderTreeRanges = new LiderTreeRange();
+                        $liderTreeRanges->user_id = $gen_id;
+                        $liderTreeRanges->tree = 1;
+                        $liderTreeRanges->range = 1;
+                        $liderTreeRanges->code = (is_null($lastTree)) ? 1 :  $lastTree + 1;
+                        $liderTreeRanges->save();
+
+                        if ($sponsor_id != 1) {
+                            // Se válida y se hace save del patrocinador
+                            // dd(LiderTreeRange::where('user_id', $sponsor_id)->orderBy('tree', 'desc')->first());
+                            $codeSponsor = LiderTreeRange::where('user_id', $sponsor_id)->orderBy('tree', 'desc')->first();
+                            $codeTreeSponsor = $codeSponsor->code;  //Se obtiene el código de la estructura del patrocinador
+                            $lastTreeSponsor = $codeSponsor->tree; // último número de estructura
+
+                            $sponsorTreeCount = count(User::where('sponsor_id', $sponsor_id)->where('code_tree', $codeTreeSponsor)->get()); // Válida si ya existe el primer nivel (2 usuarios).
+
+                            if ($sponsorTreeCount < 2) {    // Se válida para obtener el mismo o siguiente rango de la estructura del patrocinador
+                                $treeSponsor = $lastTreeSponsor;
+                                $codeTreeSponsor = $codeTreeSponsor;
+                            } else {
+                                $treeSponsor = $lastTreeSponsor + 1;
+
+                                $lastTree = LiderTreeRange::OrderBy('tree', 'desc')->pluck('code')->last();    //Se obtiene el código de la ultima estructura
+
+                                $sponsorliderTreeRanges = new LiderTreeRange();
+                                $sponsorliderTreeRanges->user_id = $sponsor_id;
+                                $sponsorliderTreeRanges->tree = $treeSponsor;
+                                $sponsorliderTreeRanges->range = 1;
+                                $sponsorliderTreeRanges->code = (is_null($lastTree)) ? 1 :  $lastTree + 1;
+                                $sponsorliderTreeRanges->save();
+
+                                $codeTreeSponsor = LiderTreeRange::where('user_id', $sponsor_id)->pluck('code')->last();
+                            }
+                        }
+
+                        DB::beginTransaction();
+
+                        try {
+
+                            $admin_sponsor = ($request->sponsor_id == 1) ? 1 : 0 ;
+
+                            $request->request->add(['nivel_tree' => 1]); //add nivel tree
+                            $request->request->add(['code_tree' => (is_null($codeTreeSponsor)) ? 1 : $codeTreeSponsor]); //add codetree
+                            $request->request->add(['range' => 1]); //add range
+                            $request->request->add(['refer_by_admin' => 0]); //add refer by admin
+                            $request->request->add(['tree_sponsor' => $treeSponsor]); //add refer by admin
+                            $request->request->add(['state' => ($admin_sponsor == 0) ? 'Inactivo' : 'Activo']); //add range
+
+                            event(new Registered($user = $this->create($request->all(), $gen_id, $rol)));
+
+                            $this->guard()->login($user);
+
+                            DB::commit();
+
+                        }catch (\PDOException $e){
+                            dd($e);
+                            DB::rollBack();
+                            return view('User.create');
+                        }
+
                     } else {
-                        $treeSponsor = $sponsorTree->tree_sponsor + 1;
+                        $errors = $this->validator($request->all())->messages()->all();
+                        return view('User.create',compact('errors'));
                     }
-                }
-            }
+                // }
+            // }
         } else {
+
             $error_sponsor = 'El código de patrocinador no existe';
+
             return view('User.create',compact('error_sponsor'));
-        }
-
-        if ($this->validator($request->all())->passes()) {
-            // $refers = Refer::getRefers($id,0,$t);
-            $sponsor = new Refer();
-            $gen_id = rand(1,8000);
-            $verified_id = User::where('user_id','=',$gen_id)->exists();
-            if ($verified_id) {
-                $gen_id = rand(8000,10000);
-            }
-            $rol = 0;
-
-            if (empty($sponsor_id)) {
-                $admin = User::where('rol',1)->first();
-
-                if (empty($admin)) {
-                   $sponsor_id = 0;
-                   $rol = 1;
-                }
-            }
-
-            $admin_sponsor = ($request->sponsor_id == 1) ? 1 : 0 ;
-            $range = Status::where('user_id',$request->sponsor_id)->first()->range;
-            $request->request->remove('sponsor_id');
-            $validate = Refer::where('user_id',$gen_id)->exists();
-
-            if (!$validate) {
-                $sponsor->user_id = $gen_id;
-                $sponsor->tree_sponsor = $treeSponsor;
-                $sponsor->sponsor_id = $sponsor_id;
-                $sponsor->save();
-            }
-
-            event(new Registered($user = $this->create($request->all(),$gen_id,$rol)));
-
-            $this->guard()->login($user);
-
-            $this->registered($gen_id,$range, $admin_sponsor);
-        } else {
-            $errors = $this->validator($request->all())->messages()->all();
-            return view('User.create',compact('errors'));
         }
 
         return view('Pages.GreetingRegister');
