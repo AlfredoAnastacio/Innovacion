@@ -43,13 +43,10 @@
                                     <div class="col-9 pr-0">
                                         <h6 class="usuario azul pt-1"><b># USUARIO: {{Auth::user()->user_id}}</b></h6>
                                         <hr class="azul">
-                                        <p class="patrocinador"># Patrocinador: {{ $sponsorTree}}</p>
+                                        <p class="patrocinador"># Patrocinador: {{ $user->sponsor_id}}</p>
                                     </div>
                                     <div class="col-3 text-center pl-0">
-
-                                        {{-- <img class="" src="{{asset('images/rentabilidad.png')}}"> --}}
-                                        {{-- <p class="text-center">{{ $range->range }}</p> --}}
-                                        @switch($range->range_id)
+                                        @switch($user->range)
                                             @case(2)
                                                 <img src="{{ asset('images/rango_oro.png') }}">
                                                 <h5 class="griz"><b class="fz">RANGO<br>ORO</b></h5>
@@ -98,7 +95,7 @@
                                 @for($i = 0; $i < $sponsorTree; $i++)
                                     <div class="arco azulbg mt-2 p-2">
                                         <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}
-                                            @if($refers_by_tree[$i] != 0)
+                                            @if($rangesTrees[$i]->numUsers != 0)
                                                 <a class="vinculo" href="{{ route('tree.detail', $i+1) }}">Más info ></a>
                                             @endif
                                         </h6>
@@ -115,149 +112,40 @@
                                                 <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
                                                     <div class="block text-center">
                                                         <img class="b-block"src="{{asset('images/people.png')}}">
-                                                        <div class="h2 font-weight-bold griz"><b class="qrf">{{ $refers_by_tree[$i] }}</b></div>
+                                                        <div class="h2 font-weight-bold griz"><b class="qrf">{{ $rangesTrees[$i]->numUsers }}</b></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
                                         </div>
                                         <div class="col-6 border-b text-center pt-2"><br>
-                                            @if ($rango_tree[$i] == 1)
+                                            @if ($rangesTrees[$i]->range == 1)
                                                 <img src="{{ asset('images/rango_plata.png') }}">
                                                 <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
-                                            @elseif($rango_tree[$i] == 2)
+                                            @elseif($rangesTrees[$i]->range == 2)
                                                 <img src="{{ asset('images/rango_oro.png') }}">
                                                 <h5 class="griz"><b class="fz">RANGO<br>ORO</b></h5>
-                                            @elseif($rango_tree[$i] == 3)
+                                            @elseif($rangesTrees[$i]->range == 3)
                                                 <img src="{{ asset('images/rango_platino.png') }}">
                                                 <h5 class="griz"><b class="fz">RANGO<br> PLATINO </b></h5>
-                                            @elseif($rango_tree[$i] == 4)
+                                            @elseif($rangesTrees[$i]->range == 4)
                                                 <img src="{{ asset('images/rango_diamante.png') }}">
                                                 <h5 class="griz"><b class="fz">RANGO<br> DIAMANTE </b></h5>
                                             @endif
                                         </div>
                                         <div class="col-6 borde text-center pt-2">
                                             <img src="{{asset('images/inversion.png')}}">
-                                            <h2 class="pt-2 mb-1 griz"><b>US ${{ $investment_tree[$i] }} </b></h2>
+                                            <h2 class="pt-2 mb-1 griz"><b>US ${{ $rangesTrees[$i]->investment }} </b></h2>
                                             <h5 class="griz fz">INVERSION</h5>
                                         </div>
                                         <div class="col-6 text-center pt-2">
                                             <img src="{{asset('images/rentabilidad.png')}}">
-                                            <h2 class="pt-2 mb-1 griz"><b> US ${{ $rentabilidad_tree[$i] }} </b></h2>
-                                            {{-- <h2 class="pt-2 mb-1 griz"><b>US $100</b></h2> --}}
+                                            <h2 class="pt-2 mb-1 griz"><b> US ${{ $rangesTrees[$i]->rentabilidad_total }} </b></h2>
                                             <h5 class="griz fz">RENTABILIDAD</h5>
                                         </div>
                                     </div>
                                @endfor
                             @endif
-
-                            {{--  <div class="arco azulbg mt-2 p-2"><h6 class="title ml-5">ESTRUCTURA #2<a class="vinculo" href="#">Más info ></a></h6></div>
-                            <div class="row mb-4 scuare ml-0 mr-0">
-                                <div class="col-6 borde border-b text-center pt-2">
-                                    <div class="progress mx-auto " data-value='90'>
-                                        <span class="progress-left">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                            <div class="block text-center">
-                                                <img src="{{asset('images/people.png')}}">
-                                                <div class="h2 font-weight-bold griz"><b class="qrf">124</b></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
-                                </div>
-                                <div class="col-6 border-b text-center pt-2">
-                                    <br>
-                                    <img src="{{asset('images/rango-oro.png')}}">
-                                    <h5 class="griz"><b class="fz">RANGO<br>ORO</b></h5>
-                                </div>
-                                <div class="col-6 borde text-center pt-2">
-                                    <img src="{{asset('images/inversion.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $300</b></h2>
-                                    <h5 class="griz fz">INVERSION</h5>
-                                </div>
-                                <div class="col-6 text-center pt-2">
-                                    <img src="{{asset('images/rentabilidad.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $900</b></h2>
-                                    <h5 class="griz fz">RENTABILIDAD</h5>
-                                </div>
-                            </div>
-
-                            <div class="arco azulbg mt-2 p-2"><h6 class="title ml-5">ESTRUCTURA #3<a class="vinculo" href="#">Más info ></a></h6></div>
-                            <div class="row mb-4 scuare ml-0 mr-0">
-                                <div class="col-6 borde border-b text-center pt-2">
-                                    <div class="progress mx-auto " data-value='90'>
-                                        <span class="progress-left">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                            <div class="block text-center">
-                                                <img class="b-block" src="{{asset('images/people.png')}}">
-                                                <div class="h2 font-weight-bold griz"><b class="qrf">124</b></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
-                                </div>
-                                <div class="col-6 border-b text-center pt-2">
-                                    <br>
-                                    <img src="{{asset('images/rango-platino.png')}}">
-                                    <h5 class="griz"><b class="fz">RANGO<br>PLATINO</b></h5>
-                                </div>
-                                <div class="col-6 borde text-center pt-2">
-                                    <img src="{{asset('images/inversion.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $300</b></h2>
-                                    <h5 class="griz fz">INVERSION</h5>
-                                </div>
-                                <div class="col-6 text-center pt-2">
-                                    <img src="{{asset('images/rentabilidad.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $900</b></h2>
-                                    <h5 class="griz fz">RENTABILIDAD</h5>
-                                </div>
-                            </div>
-
-                            <div class="arco azulbg mt-2 p-2"><h6 class="title ml-5">ESTRUCTURA #4<a class="vinculo" href="#">Más info ></a></h6></div>
-                            <div class="row mb-4 scuare ml-0 mr-0">
-                                <div class="col-6 borde border-b text-center pt-2">
-                                    <div class="progress mx-auto " data-value='90'>
-                                        <span class="progress-left">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                            <div class="block text-center">
-                                                <img class="b-block" src="{{asset('images/people.png')}}">
-                                                <div class="h2 font-weight-bold griz"><b class="qrf">124</b></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
-                                </div>
-                                <div class="col-6 border-b text-center pt-2">
-                                    <br>
-                                    <img src="{{asset('images/rango-diamante.png')}}">
-                                    <h5 class="griz"><b class="fz">RANGO<br>DIAMANTE</b></h5>
-                                </div>
-                                <div class="col-6 borde text-center pt-2">
-                                    <img src="{{asset('images/inversion.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $300</b></h2>
-                                    <h5 class="griz fz">INVERSION</h5>
-                                </div>
-                                <div class="col-6 text-center pt-2">
-                                    <img src="{{asset('images/rentabilidad.png')}}">
-                                    <h2 class="pt-2 mb-1 griz"><b>US $900</b></h2>
-                                    <h5 class="griz fz">RENTABILIDAD</h5>
-                                </div>
-                            </div>  --}}
                         </div>
                     </div>
                 </div>

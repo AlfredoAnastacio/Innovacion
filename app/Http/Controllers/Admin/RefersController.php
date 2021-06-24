@@ -15,8 +15,8 @@ class RefersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
+        // dd('hola');
         $perPage = 25;
 
         $keyword = $request->get('search');
@@ -30,7 +30,13 @@ class RefersController extends Controller
 
         else{
             // $refers = Refer::with('user','sponsor')->get();
-            $refers = Refer::select('refers.*', 'users.name', 'users.document', 'users.telephone')->join('users', 'refers.user_id', 'users.user_id')->get();
+            $refers = User::where('user_id', '!=', 1)->get();
+
+            foreach ($refers as $refer) {
+                $name = User::where('user_id', $refer->sponsor_id)->pluck('name')->first();
+                $refer->nameSponsor = $name;
+            }
+
         }
 
         $amount = count($refers);

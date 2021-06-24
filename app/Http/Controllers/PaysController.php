@@ -22,11 +22,9 @@ use function GuzzleHttp\json_decode;
 class PaysController extends Controller {
 
     public function displayForm(){
-        // dd('hola');
         $id = Auth::id();
         $total_pay= number_format(Pay::currencyExchange(), 2, ',', ' ');
-        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-        $sponsorTree = $sponsorTree->tree_sponsor;
+        $sponsorTree = User::where('user_id', $id)->orderBy('tree_sponsor','desc')->pluck('tree_sponsor')->first();
 
         return view('User.pay', compact('total_pay', 'sponsorTree'));
     }

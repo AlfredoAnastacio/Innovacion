@@ -71,11 +71,7 @@
                                                                     <td>{{$refers[$i]->user_id}} </td>
                                                                     <td>{{ $refers[$i]->name }}</td>
                                                                     <td>{{ $refers[$i]->sponsor_id }}</td>
-                                                                    @if(isset($refers[$i]->sponsor->username))
-                                                                        <td>{{$refers[$i]->sponsor->username}} </td>
-                                                                    @else
-                                                                        <td>Sin Lider </td>
-                                                                    @endif
+                                                                    <td>{{$refers[$i]->nameSponsor}} </td>
                                                                     <td>{{ $refers[$i]->document }}</td>
 
                                                                     <td>{{ $refers[$i]->telephone }}</td>

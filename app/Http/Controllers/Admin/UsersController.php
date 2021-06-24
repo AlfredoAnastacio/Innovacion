@@ -8,17 +8,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+
 use App\User;
 use App\Models\Alerts;
 use App\Models\AlertsPays;
 use App\Models\Status;
 use App\Models\Refer;
+use App\Models\LiderTreeRange;
 use App\Models\Refresh\Update;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -32,7 +34,6 @@ class UsersController extends Controller
     public function index(Request $request) //Lista todos los usuarios (Establecidad para sólo administrador)
     {
 
-
         $keyword = $request->get('search');
         $perPage = 50;
 
@@ -45,23 +46,39 @@ class UsersController extends Controller
 
                 ->latest()->paginate($perPage);
         } else {
-            // $users = User::all();
-            $users = User::join('refers', 'users.user_id', 'refers.user_id')
-                        ->join('status', 'users.user_id', 'status.user_id')
-                        // ->join('pays', 'users.user_id', 'pays.user_id')
-                        ->get();
-
-            for ($i=0; $i < count($users); $i++) {  //Se obtiene la cantidad de referidos
-                $totalRefers = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->count();
-                $totalTree = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->first();
-                $users[$i]->totalRefers = $totalRefers;
-                if (isset($totalTree['tree_sponsor'])) {
-                    $users[$i]->totalTree = $totalTree['tree_sponsor'];
-                } else {
-                    $users[$i]->totalTree = 0;
+            $users = User::where('user_id', '!=', 1)->get();
+            $subtotalRefers = 0;
+            foreach ($users as $user) {
+                $numTrees = count(LiderTreeRange::where('user_id', $user->user_id)->get());
+                $user->totalTrees = $numTrees;
+                $LiderTrees = LiderTreeRange::where('user_id', $user->user_id)->orderBy('tree','desc')->get();
+                foreach ($LiderTrees as $liderTree) {
+                    // dd($liderTree);
+                    $countRefers = count(User::where('user_id', '!=', 4180)->where('code_tree', $liderTree->code)->where('sponsor_id', $user->sponsor_id)->get());
+                    // dd($countRefers);
+                    $totalRefers = $subtotalRefers + $countRefers;
+                    // dd($subtotalRefers);
                 }
-
+                $user->totalRefers = $totalRefers;
             }
+
+            // dd($users);
+
+            // $users = User::join('refers', 'users.user_id', 'refers.user_id')
+            //             ->join('status', 'users.user_id', 'status.user_id')
+            //             ->get();
+
+            // for ($i=0; $i < count($users); $i++) {  //Se obtiene la cantidad de referidos
+            //     $totalRefers = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->count();
+            //     $totalTree = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->first();
+            //     $users[$i]->totalRefers = $totalRefers;
+            //     if (isset($totalTree['tree_sponsor'])) {
+            //         $users[$i]->totalTree = $totalTree['tree_sponsor'];
+            //     } else {
+            //         $users[$i]->totalTree = 0;
+            //     }
+
+            // }
         }
 
         $alerts_pays=AlertsPays::where('status_pay','Sin pagar')->latest()->first();

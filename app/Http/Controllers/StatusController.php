@@ -10,6 +10,7 @@ use App\Models\AlertsPays;
 use App\Models\Status;
 use Illuminate\Support\Facades\DB;
 use App\Models\PaysCompleted;
+use App\Models\User;
 
 use App\Models\Range;
 
@@ -27,15 +28,15 @@ class StatusController extends Controller
 
         if($id == Auth::id() || Auth::user()->isAdmin()) {
 
-            $update_status = new Status();
+            // $update_status = new Status();
             $investments = new Investment();
             $commissions = new Commission();
             $refers_list = new Refer();
             $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
 
-            $user = $update_status->where('user_id',$id)->first();
-            $range = (int)$user->range;
-            $range_name=Range::where('range_id',$range)->first();
+            // $user = $update_status->where('user_id',$id)->first();
+            $range = User::where('user_id', $id)->pluck('range')->first();
+            $range_name = Range::where('range_id', $range)->first();
 
             if($sponsorTree != NULL) {
 
@@ -93,7 +94,7 @@ class StatusController extends Controller
             }
 
             $range_str = $range;
-            DB::table('status')->where('user_id','=',$id)->update(['state' => "Activo",'range' => $range_str]);
+            DB::table('users')->where('user_id', $id)->update(['state' => "Activo",'range' => $range_str]);
 
             if (Auth::user()->isAdmin()) {
                 return redirect('admin/users');

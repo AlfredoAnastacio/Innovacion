@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+
 use App\Models\Status;
 use App\Models\Range;
-use Illuminate\Http\Request;
 use App\Models\Investment;
 use App\Models\Refer;
+use App\Models\User;
 
 class InvestmentsController extends Controller
 {
@@ -45,15 +48,8 @@ class InvestmentsController extends Controller
     public function create(Request $request) {
 
         $user_id = $request->user_id;
-        $state = Status::where('user_id',$user_id)->first()->range;
+        $state = User::where('user_id',$user_id)->pluck('range')->first();
         $pay = Range::where('range_id',$state)->first()->total_investment;
-
-        // $verified_investment = Investment::where('user_id',$request->user_id)->where('pay',$pay)->latest()->exists();   // Este código válida si ya existe una inversión
-
-        // if($verified_investment)
-        // {
-        //     return redirect()->action('Admin\InvestmentsController@edit', [$request->user_id]);
-        // }  //si es así, lo redirige al edit
 
         // Validación para ver si ya tiene una inversión en n estructura
         $tree = Investment::where('user_id', $user_id)->get();
@@ -79,15 +75,12 @@ class InvestmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // dd(isset($request->tree));
+    public function store(Request $request) {
 
         if (isset($request->tree)) {
-            // dd('ho');
             $requestData = $request->all();
 
-            $range_id = Status::where('user_id',$request->user_id)->first()->range;
+            $range_id = User::where('user_id',$request->user_id)->pluck('range')->first();
             $range = Range::where('range_id',$range_id)->first();
             $range_name = $range->range;
             $requestData= array_merge($requestData, ['state' => $range_name]);

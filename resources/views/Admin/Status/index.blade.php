@@ -73,8 +73,8 @@
                                                                     <tr>
                                                                         <td>{{$status[$i]->user_id}} </td>
                                                                         <td>{{ $status[$i]->state }}</td>
-                                                                        @if(isset($status[$i]->Range->range))
-                                                                            <td>{{$status[$i]->Range->range}} </td>
+                                                                        @if(isset($status[$i]->nameRange))
+                                                                            <td>{{$status[$i]->nameRange}} </td>
                                                                         @else
                                                                             <td>Sin Rango </td>
                                                                         @endif

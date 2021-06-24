@@ -74,15 +74,7 @@
                                                                                 <td> {{ $item->document }} </td>
                                                                                 <td> {{ $item->email }} </td>
                                                                                 <td> {{ $item->name }} </td>
-                                                                                @if($item->totalTree == 1)
-                                                                                    <td> 1 </td>
-                                                                                @endif
-                                                                                @if($item->totalTree == null)
-                                                                                    <td> 0 </td>
-                                                                                @endif
-                                                                                @if($item->totalTree > 1)
-                                                                                    <td> {{ $item->totalTree }} </td>
-                                                                                @endif
+                                                                                <td> {{ $item->totalTrees }} </td>
                                                                                 @if($item->totalRefers == 0)
                                                                                     <td> 0 </td>
                                                                                 @else

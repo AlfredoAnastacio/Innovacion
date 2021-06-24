@@ -4,14 +4,52 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model
 {
+    use SoftDeletes;
     protected $table = 'users';
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'name', 'email', 'password','document','rol','telephone','user_id','username','lastname','rol'
+        'name',
+        'email',
+        'password',
+        'city',
+        'document',
+        'country',
+        'rol',
+        'telephone',
+        'user_id',
+        'username',
+        'lastname',
+        'rol',
+        'nivel_tree',
+        'code_tree',
+        'range',
+        'state',
+        'sponsor_id',
+        'refer_by_admin',
+        'tree_sponsor'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
 

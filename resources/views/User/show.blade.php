@@ -32,7 +32,7 @@
                         <div class="cuenta mx-auto">
                             <div class="row px-3 mb-4">
                                 <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{asset('images/people-blue.png')}}"></div>
-                                <div class="col-10"><h5 class="griz mb-0">Patrocinador: {{$sponsor->sponsor_id}}</h5> Número del Patrocinado</div>
+                                <div class="col-10"><h5 class="griz mb-0">Patrocinador: {{$user->sponsor_id}}</h5> Número del Patrocinado</div>
                             </div>
                             <div class="row px-3 mb-3">
                                 <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{asset('images/avatar.png')}}"></div>

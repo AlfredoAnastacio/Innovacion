@@ -68,39 +68,41 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data,$gen_id,$rol)
-    {
+    protected function create(array $data,$gen_id,$rol) {
 
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['name'],
             'username' => $data['name'],
+            'rol' => $rol,
             'email' => $data['email'],
             'document' => $data['document'],
             'telephone' => $data['telephone'],
+            'nivel_tree' => $data['nivel_tree'],
+            'code_tree' => $data['code_tree'],
+            'range' => $data['range'],
+            'state' => $data['state'],
+            'sponsor_id' => $data['sponsor_id'],
+            'refer_by_admin' => $data['refer_by_admin'],
+            'tree_sponsor' => $data['tree_sponsor'],
             'password' => Hash::make($data['password']),
             'user_id' => $gen_id,
-            'rol' => $rol,
         ]);
     }
 
-          public function messages()
-{
+    public function messages() {
 
-    return[
-        'name.required' => 'El nombre es requerido',
-        // 'lastname.required' => 'El apellido es requerido',
-        // 'username.required' => 'El nombre de usuario es requerido',
-        'document.required' => 'El documento de identidad es requerido',
-        'email.required' => 'El email es requerido',
-        'email.unique' => 'El Email ya ha sido usado',
-        'username.unique' => 'El nombre de usuario ya existe',
-        'password.min' => 'La contraseña debe ser mínimo de 5 carácteres',
-        'password.confirmed' => 'No coinciden las contraseñas',
-        'telephone.unique' => 'El teléfono ya está en uso'
-    ];
-}
-
-
-
+        return[
+            'name.required' => 'El nombre es requerido',
+            // 'lastname.required' => 'El apellido es requerido',
+            // 'username.required' => 'El nombre de usuario es requerido',
+            'document.required' => 'El documento de identidad es requerido',
+            'email.required' => 'El email es requerido',
+            'email.unique' => 'El Email ya ha sido usado',
+            'username.unique' => 'El nombre de usuario ya existe',
+            'password.min' => 'La contraseña debe ser mínimo de 5 carácteres',
+            'password.confirmed' => 'No coinciden las contraseñas',
+            'telephone.unique' => 'El teléfono ya está en uso'
+        ];
+    }
 }

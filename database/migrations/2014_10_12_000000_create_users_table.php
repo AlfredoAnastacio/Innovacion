@@ -19,15 +19,21 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('username');
             $table->integer('rol')->default(0);
-
-
             $table->string('email')->unique();
             $table->string('document')->unique();
             $table->string('telephone')->unique();
+            $table->integer('nivel_tree');
+            $table->integer('code_tree');
+            $table->integer('range');
+            $table->string('state');
+            $table->string('sponsor_id');
+            $table->integer('refer_by_admin')->default(0);
+            $table->integer('tree_sponsor')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

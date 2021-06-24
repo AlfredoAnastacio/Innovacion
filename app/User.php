@@ -8,10 +8,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +21,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','city','document','country','rol','telephone','user_id','username','lastname','rol'
+        'name',
+        'email',
+        'password',
+        'city',
+        'document',
+        'country',
+        'rol',
+        'telephone',
+        'user_id',
+        'username',
+        'lastname',
+        'rol',
+        'nivel_tree',
+        'code_tree',
+        'range',
+        'state',
+        'sponsor_id',
+        'refer_by_admin',
+        'tree_sponsor'
     ];
 
     protected $table ='users';
