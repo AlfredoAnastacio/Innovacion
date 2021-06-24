@@ -78,6 +78,8 @@ trait RegistersUsers
                         $liderTreeRanges->code = (is_null($lastTree)) ? 1 :  $lastTree + 1;
                         $liderTreeRanges->save();
 
+                        $codeTreeSponsor = 0;
+
                         if ($sponsor_id != 1) {
                             // Se válida y se hace save del patrocinador
                             // dd(LiderTreeRange::where('user_id', $sponsor_id)->orderBy('tree', 'desc')->first());
@@ -126,7 +128,7 @@ trait RegistersUsers
                             DB::commit();
 
                         }catch (\PDOException $e){
-                            dd($e);
+                            
                             DB::rollBack();
                             return view('User.create');
                         }
