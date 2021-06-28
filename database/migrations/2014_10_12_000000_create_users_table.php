@@ -15,6 +15,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->integer('user_id')->primary();
+            $table->integer('tree_sponsor')->default(1);
+            $table->integer('code_tree_lider');
+            $table->integer('code_tree_sponsor');
+            $table->integer('range');
+            $table->integer('range_tree')->default(1);
+            $table->string('state');
+            $table->string('sponsor_id');
             $table->string('name');
             $table->string('lastname');
             $table->string('username');
@@ -22,13 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('document')->unique();
             $table->string('telephone')->unique();
-            $table->integer('nivel_tree');
-            $table->integer('code_tree');
-            $table->integer('range');
-            $table->string('state');
-            $table->string('sponsor_id');
             $table->integer('refer_by_admin')->default(0);
-            $table->integer('tree_sponsor')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

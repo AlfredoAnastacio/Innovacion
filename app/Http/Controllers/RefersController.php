@@ -30,25 +30,26 @@ class RefersController extends Controller {
 
         $user = User::where('user_id', $id)->first();
         $range_name = Range::where('range_id', $user->range)->pluck('range')->first();
-        $sponsorTree = User::where('user_id', $id)->orderBy('tree_sponsor','desc')->first();
+        $sponsorTree = LiderTreeRange::where('user_id', $id)->get();
 
         if ($sponsorTree == NULL) {
-            $sponsorTree =1;
+            $sponsorTree = 1;
         } else {
-            $sponsorTree = $sponsorTree->tree_sponsor;
+            $sponsorTree = count($sponsorTree);
         }
 
         $commissions_total = Commission::amountCommission($id);
         $refers = count(User::where('sponsor_id', $id)->get());
 
         // NUEVO PARA RANGOS DE CADA ESTRUCTURA
-        $rangesTrees = LiderTreeRange::where('user_id', $id)->orderBy('tree','desc')->get();
+        $rangesTrees = LiderTreeRange::where('user_id', $id)->get();
+        // dd($rangesTrees);
         $subinvestment = 0;
         $rentabilidad = 0;
         foreach ($rangesTrees as $rangesTree) {     // Se obtiene las estructuras para obtener todos los datos relacionados a la misma
-            $refersTrees = User::where('code_tree', $rangesTree->code)->where('user_id', '!=', $id)->get();
+            // dd($rangesTree);
+            $refersTrees = User::where('code_tree_sponsor', $rangesTree->code)->where('user_id', '!=', $id)->get();
             // dd($refersTrees);
-
             $rangesTree->numUsers = count($refersTrees);    //Número de referidos de la estructura
             $investments_total = 0;
             $rentabilidad_total = 0;
@@ -63,7 +64,7 @@ class RefersController extends Controller {
             $rangesTree->investment = $investments_total;
             $rangesTree->rentabilidad_total = $rentabilidad_total;
         }
-
+        // dd($rangesTrees);
         return view('User.tree',compact('user', 'sponsorTree', 'rangesTrees', 'commissions_total'));
 
         // return view('User.tree',compact('user','range','sponsor','investment_tree','commissions_total',

@@ -47,14 +47,17 @@ class UsersController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             $users = User::where('user_id', '!=', 1)->get();
+            // dd($users);
             $subtotalRefers = 0;
             foreach ($users as $user) {
-                $numTrees = count(LiderTreeRange::where('user_id', $user->user_id)->get());
-                $user->totalTrees = $numTrees;
-                $LiderTrees = LiderTreeRange::where('user_id', $user->user_id)->orderBy('tree','desc')->get();
+                // dd($user->user_id);
+                $LiderTrees = LiderTreeRange::where('user_id', $user->user_id)->get();
+                // dd($numTrees);
+                // $user->totalTrees = $numTrees;
+                // $LiderTrees = LiderTreeRange::where('user_id', $user->user_id)->orderBy('tree','desc')->get();
                 foreach ($LiderTrees as $liderTree) {
                     // dd($liderTree);
-                    $countRefers = count(User::where('user_id', '!=', 4180)->where('code_tree', $liderTree->code)->where('sponsor_id', $user->sponsor_id)->get());
+                    $countRefers = count(User::where('user_id', '!=', $liderTree->user_id)->where('code_tree_sponsor', $liderTree->code)->get());
                     // dd($countRefers);
                     $totalRefers = $subtotalRefers + $countRefers;
                     // dd($subtotalRefers);
