@@ -87,7 +87,7 @@ trait RegistersUsers
                             $codeTreeSponsor = $codeSponsor->code;  //Se obtiene el código de la estructura del patrocinador
                             $lastTreeSponsor = $codeSponsor->tree; // último número de estructura
 
-                            $sponsorTreeCount = count(User::where('sponsor_id', $sponsor_id)->where('code_tree', $codeTreeSponsor)->get()); // Válida si ya existe el primer nivel (2 usuarios).
+                            $sponsorTreeCount = count(User::where('sponsor_id', $sponsor_id)->where('code_tree_sponsor', $codeTreeSponsor)->get()); // Válida si ya existe el primer nivel (2 usuarios).
 
                             if ($sponsorTreeCount < 2) {    // Se válida para obtener el mismo o siguiente rango de la estructura del patrocinador
                                 $treeSponsor = $lastTreeSponsor;
@@ -103,8 +103,6 @@ trait RegistersUsers
                                 $sponsorliderTreeRanges->range = 1;
                                 $sponsorliderTreeRanges->code = (is_null($lastTree)) ? 1 :  $lastTree + 1;
                                 $sponsorliderTreeRanges->save();
-
-                                $codeTreeSponsor = LiderTreeRange::where('user_id', $sponsor_id)->pluck('code')->last();
                             }
                         }
 
@@ -114,12 +112,33 @@ trait RegistersUsers
 
                             $admin_sponsor = ($request->sponsor_id == 1) ? 1 : 0 ;
 
-                            $request->request->add(['nivel_tree' => 1]); //add nivel tree
-                            $request->request->add(['code_tree' => (is_null($codeTreeSponsor)) ? 1 : $codeTreeSponsor]); //add codetree
-                            $request->request->add(['range' => 1]); //add range
+                            if ($sponsor_id == 1) {
+                                $codeTreeLider = 0;
+                            } else {
+                                $codeTreeLider = LiderTreeRange::where('user_id', $gen_id)->pluck('code')->last();
+                            }
+
+                            $nextCodeTreeSponsor = count(User::where('sponsor_id', $sponsor_id)->get());
+                            // dd($nextCodeTreeSponsor);
+
+                            if ($nextCodeTreeSponsor == 2) {
+                                $codeTreeSponsor = LiderTreeRange::where('user_id', $sponsor_id)->pluck('code')->last();
+                            } else {
+                                $codeTreeSponsor = User::where('user_id', $sponsor_id)->pluck('code_tree_sponsor')->first();
+                            }
+
+                            if ($codeTreeSponsor == 0) {
+                                $codeTreeSponsor = 1;
+                            } else {
+                                $codeTreeSponsor = $codeTreeSponsor;
+                            }
+
+                            $request->request->add(['code_tree_lider' => $codeTreeLider]); //add code tree user
+                            $request->request->add(['code_tree_sponsor' => $codeTreeSponsor]); //add code tree sponsor
+                            $request->request->add(['tree_sponsor' => $treeSponsor]); // Número de estructura
+                            $request->request->add(['range' => 1]); //add range inicial del usuario
                             $request->request->add(['refer_by_admin' => 0]); //add refer by admin
-                            $request->request->add(['tree_sponsor' => $treeSponsor]); //add refer by admin
-                            $request->request->add(['state' => ($admin_sponsor == 0) ? 'Inactivo' : 'Activo']); //add range
+                            $request->request->add(['state' => ($admin_sponsor == 0) ? 'Inactivo' : 'Activo']); //add status user
 
                             event(new Registered($user = $this->create($request->all(), $gen_id, $rol)));
 
@@ -128,7 +147,7 @@ trait RegistersUsers
                             DB::commit();
 
                         }catch (\PDOException $e){
-                            
+                            dd($e);
                             DB::rollBack();
                             return view('User.create');
                         }
