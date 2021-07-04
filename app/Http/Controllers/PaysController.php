@@ -28,7 +28,7 @@ class PaysController extends Controller {
         $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
 
         if ($sponsorTree == NULL) {
-            $sponsorTree =1;
+            $sponsorTree = 1;
         } else {
             $sponsorTree = $sponsorTree->tree_sponsor;
         }

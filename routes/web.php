@@ -27,7 +27,6 @@ Route::post('refers','RefersController@store')->middleware('auth')->name('refers
 Route::get('refers/{id}','RefersController@show')->middleware('auth')->name('refersShow');
 Route::get('status/{id}','StatusController@show')->middleware('auth')->name('statusRefresh');
 
-;
 Route::resource('user','UserController')->middleware('auth');
 Route::get('user/{id}/show','UserController@sh')->middleware('auth');
 
@@ -44,7 +43,6 @@ Route::get('pay', 'PaysController@index')->middleware('auth')->name('pay');
 Route::redirect('/', '/login', 301);
 
 Auth::routes();
-
 
 
 // ---------------------------------RUTAS ADMIN -------------------//
@@ -82,3 +80,6 @@ Route::get('/register/{referralCode}', 'RefersController@link')->name('referral.
 
 //--------------------- Bitcoin --------------
 Route::get('/paybtc/{userid}', 'PaysController@bitpay')->name('bitstore');
+
+//---------------------Bitcoin Cash -------------------//
+Route::post('/paybch/generate/', 'BitcoinCashController@show')->middleware('auth')->name('bch.show');
