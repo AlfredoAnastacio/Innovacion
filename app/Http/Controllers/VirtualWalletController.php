@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Wallet;
 
 class VirtualWalletController extends Controller
 {
@@ -13,7 +16,11 @@ class VirtualWalletController extends Controller
      */
     public function index()
     {
-        return view('User.paymentMethods.virtualWallet.index');
+        $user_id = Auth::id();
+
+        $wallet = Wallet::where('user_id', $user_id)->first();
+
+        return view('User.paymentMethods.virtualWallet.index', compact('wallet'));
     }
 
     /**
@@ -34,7 +41,14 @@ class VirtualWalletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = Auth::id();
+
+        $wallet = new Wallet();
+        $wallet->user_id = $user_id;
+        $wallet->wallet = $request->ewallet;
+        $wallet->save();
+
+        return redirect()->route('tree');
     }
 
     /**

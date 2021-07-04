@@ -26,7 +26,12 @@ class PaysController extends Controller {
         $id = Auth::id();
         $total_pay= number_format(Pay::currencyExchange(), 2, ',', ' ');
         $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-        $sponsorTree = $sponsorTree->tree_sponsor;
+
+        if ($sponsorTree == NULL) {
+            $sponsorTree = 1;
+        } else {
+            $sponsorTree = $sponsorTree->tree_sponsor;
+        }
 
         return view('User.pay', compact('total_pay', 'sponsorTree'));
     }

@@ -50,30 +50,36 @@
                             <button type="submit" class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
                                 Cargar comprobante de inversión
                             </button>
-                            <p class="text-center mt-n2 griz">Suba el comprobante de pago de su inversión</p>
-                            <h5 class="text-center mt-n2 griz">Ó</h5>
-                            <h5 class="text-center mt-n2 griz">Haga su pago en Etherum</h5>
-                            <img class="mx-auto d-block mt-1 pt-2 mb-3" src="{{asset('images/BitcoinWallet.png')}}">
-
+                        </form>
+                        <p class="text-center mt-n2 griz">Suba el comprobante de pago de su inversión</p>
+                        <h5 class="text-center mt-n2 griz">Ó</h5>
+                        <h5 class="text-center mt-n2 griz">Haga su pago en Etherum</h5>
+                        <img class="mx-auto d-block mt-1 pt-2 mb-3" src="{{asset('images/BitcoinWallet.png')}}">
+                        <form role="form" method="POST" action="{{ route('bch.show') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="form-group">
-                                <select class="custom-select griz">
-                                   <option selected>US $15  Rango Plata</option>
-                                   <option value="1">US $60  Rango Oro</option>
-                                   <option value="2">US $150  Rango Platino</option>
-                                   <option value="3">US $300  Rango Diamante</option>
+                                <select class="custom-select griz" name="inversion">
+                                <option selected value="1">US $15  Rango Plata</option>
+                                <option value="2">US $60  Rango Oro</option>
+                                <option value="3">US $150  Rango Platino</option>
+                                <option value="4">US $300  Rango Diamante</option>
                                 </select>
                             </div>
 
                             <p class="text-center son-bitcoin">Son 0,0013 Etherums</p>
-                            <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
+                            {{-- <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
                                 <a  href="https://bitinvoice.innovacionfd.com/buy.php?id={{Auth::id()}}">Generar dirección de pago</a>
-                              </button>
-                            <h5 class="text-center griz">Envio a la siguiente dirección </h5>
-                            <input class="w-100 text-center orange border-top-0 border-right-0 border-left-0" type="text" value="abc123ABC123abc123ABC123abc123ABC12" name="">
-                            <p class="text-center">Recuerde que esta dirección es única<br>para esta transacción</p>
-                            <img class="mx-auto d-block my-4" src="{{asset('images/qr.png')}}">
-                            <p class="text-center mt-2 mb-5 pb-5">Si lo prefiere escanee el código QR</p>
+                                <a  href="{{ route('bch.show', Auth::id()) }}">Generar dirección de pago</a>
+                            </button> --}}
+                            <button type="submit" class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
+                                Generar dirección de pago
+                            </button>
                         </form>
+                                {{-- <h5 class="text-center griz">Envio a la siguiente dirección </h5>
+                                <input class="w-100 text-center orange border-top-0 border-right-0 border-left-0" type="text" value="abc123ABC123abc123ABC123abc123ABC12" name="">
+                                <p class="text-center">Recuerde que esta dirección es única<br>para esta transacción</p>
+                                <img class="mx-auto d-block my-4" src="{{asset('images/qr.png')}}">
+                                <p class="text-center mt-2 mb-5 pb-5">Si lo prefiere escanee el código QR</p> --}}
                     </div>
                 </div>
             </div>
