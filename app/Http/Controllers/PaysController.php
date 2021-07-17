@@ -162,7 +162,7 @@ class PaysController extends Controller {
         return view('Pages.GreetingsInvestment',compact('user_id','range_pay'));
     }
 
-    public function bitpay($user_id) {
+    public function bitpay($user_id, $tree) {
 
         $user_id= (int) $user_id;
 
@@ -188,7 +188,7 @@ class PaysController extends Controller {
                 $investments->user_id = $user_id;
                 $investments->pay = $range_pay;
                 $investments->state = $range_name;
-                $investments->state = $request->tree;
+                $investments->tree = $tree;
                 $investments->save();
             }
         }

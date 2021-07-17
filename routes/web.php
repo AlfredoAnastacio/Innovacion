@@ -78,8 +78,8 @@ Route::post('/pays', 'PaysController@annotateImage');
 Route::get('/register/{referralCode}', 'RefersController@link')->name('referral.link');
 
 
-//--------------------- Bitcoin --------------
-Route::get('/paybtc/{userid}', 'PaysController@bitpay')->name('bitstore');
+//--------------------- Bitcoin Cash pay successfull--------------
+Route::get('/paybtc/{userid}/{tree}', 'PaysController@bitpay')->name('bitstore');
 
 //---------------------Bitcoin Cash -------------------//
 Route::post('/paybch/generate/', 'BitcoinCashController@show')->middleware('auth')->name('bch.show');

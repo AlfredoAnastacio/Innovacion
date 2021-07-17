@@ -55,11 +55,11 @@ class Pay extends Model
         }
 
         $pay_add = $pay +($pay * 0.05);
-       
-        $response = Http::get('https://api.cambio.today/v1/quotes/USD/COP/json?quantity=1&key=4997|H55YxPENidqz_3kg7RDyiB4CDw*Dp4HO'); 
+
+        $response = Http::get('https://api.cambio.today/v1/quotes/USD/COP/json?quantity=1&key=4997|H55YxPENidqz_3kg7RDyiB4CDw*Dp4HO');
         $res = json_decode($response);
         $cop = $res->{'result'}->{'value'};
-       
+
         return $cop * $pay_add;
     }
 

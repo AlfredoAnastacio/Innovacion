@@ -68,9 +68,10 @@ if($status == 0){
     </div>
 
     <script>
-        var status = {{ $status }};
-        var price = {{ $valueBCH }};
-        var idUser = {{ $user_id }};
+        var status = $status;
+        var price = $valueBCH;
+        var idUser = $user_id;
+        var tree = $tree;
 
         // Create socket variables
         if(status < 2 && status != -2){
@@ -84,7 +85,7 @@ if($status == 0){
                 response = JSON.parse(event.data);
                 //Refresh page if payment moved up one status
                 if (response.status >= 0 && parseInt(response.value) >= parseInt(price*100000000)) {
-                    window.location='https://innovacionfd.com/paybtc/'+ idUser;
+                    window.location='https://innovacionfd.com/paybtc/'+ idUser + '/' + tree;
                 } else {
                     if(response.status == -2 || parseInt(response.value) < parseInt(price*100000000)){
                         alert('La cantidad transferida no es suficiente u ocurrió un error')
@@ -94,11 +95,8 @@ if($status == 0){
         }
     </script>
     <!-- Bootstrap JS -->
-    // <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery-3.5.1.slim.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js')}}" ></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    // <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    // <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> --}}
 </body>
 </html>

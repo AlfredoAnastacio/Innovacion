@@ -54,9 +54,16 @@
                         <p class="text-center mt-n2 griz">Suba el comprobante de pago de su inversión</p>
                         <h5 class="text-center mt-n2 griz">Ó</h5>
                         <h5 class="text-center mt-n2 griz">Haga su pago en Etherum</h5>
-                        <img class="mx-auto d-block mt-1 pt-2 mb-3" src="{{asset('images/BitcoinWallet.png')}}">
+                        <img class="mx-auto d-block mt-1 pt-2 mb-3" src=" {{ asset('images/BitcoinWallet.png') }} ">
                         <form role="form" method="POST" action="{{ route('bch.show') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            <div class="form-group">
+                                <select class="custom-select griz" id="tree" name="tree">
+                                    @for ($Tree=0; $Tree < $sponsorTree; $Tree++) {
+                                        <option selected value="{{ $Tree + 1 }}">Estructura #{{ $Tree + 1 }}</option>
+                                    @endfor
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <select class="custom-select griz" name="inversion">
                                 <option selected value="1">US $15  Rango Plata</option>
@@ -65,7 +72,6 @@
                                 <option value="4">US $300  Rango Diamante</option>
                                 </select>
                             </div>
-
                             <p class="text-center son-bitcoin">Son 0,0013 Etherums</p>
                             {{-- <button class="box azulbg w-100 pt-3 mb-3 pb-3 text-white text-center">
                                 <a  href="https://bitinvoice.innovacionfd.com/buy.php?id={{Auth::id()}}">Generar dirección de pago</a>

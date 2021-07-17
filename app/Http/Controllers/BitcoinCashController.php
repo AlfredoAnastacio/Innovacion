@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Range;
+use App\Models\Refer;
 use App\Invoice;
 
 class BitcoinCashController extends Controller
@@ -13,6 +14,7 @@ class BitcoinCashController extends Controller
 
     public function show(Request $request) {
 
+        $tree = $request->tree;
         $inversion = $request->inversion;   //Cantidad a invertir
 
         $amountInvesment = (int)Range::where('range_id', $inversion)->pluck('total_investment')->first();
@@ -26,13 +28,14 @@ class BitcoinCashController extends Controller
         $status = $data['status'];
         $user_id = $data['user_id'];
 
-        return view('Pages.ShowAddressInvestment', compact('valueBCH', 'code', 'address', 'status', 'user_id'));
+        return view('Pages.ShowAddressInvestment', compact('valueBCH', 'code', 'address', 'status', 'user_id', 'tree'));
     }
 
     function createInvoice($valueBCH){
-        // dd($valueBCH);
 
         $user_id = Auth::id();
+
+        $sponsor_id = Refer::where('user_id', $user_id)->pluck('sponsor_id')->first();
 
         $code = $this->generateRandomString();  // Genera un código aleatorio
         $address = $this->generateAddress();
@@ -44,6 +47,7 @@ class BitcoinCashController extends Controller
         $invoice->user_id = $user_id;
         $invoice->code = $code;
         $invoice->address = $address;
+        $invoice->sponsor_id = $sponsor_id;
         $invoice->price = $valueBCH;
         $invoice->status = $status;
         $invoice->ip = $ip;
@@ -92,32 +96,6 @@ class BitcoinCashController extends Controller
         // Blockonmics API stuff
         $api_key = "rvlqVWVipRVVagLTJDnl1FCtaqtgHyaaegM9w3XVLEU";
         $url = "https://bch.blockonomics.co/api/new_address";
-
-        // $ch = curl_init();
-
-        // curl_setopt($ch, CURLOPT_URL, $url);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-
-        // $header = "Authorization: Bearer " . $api_key;
-        // $headers = array();
-        // $headers[] = $header;
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        // $contents = curl_exec($ch);
-        // if (curl_errno($ch)) {
-        // echo "Error:" . curl_error($ch);
-        // }
-
-        // $responseObj = json_decode($contents);
-        // $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        // curl_close ($ch);
-
-        // if ($status == 200) {
-        //     echo $responseObj->address;
-        // } else {
-        //     echo "ERROR: " . $status . ' ' . $responseObj->message;
-        // }
 
         $options = array(
             'http' => array(
