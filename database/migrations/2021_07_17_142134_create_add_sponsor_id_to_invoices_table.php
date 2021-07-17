@@ -13,7 +13,7 @@ class CreateAddSponsorIdToInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::table('add_sponsor_id_to_invoices', function (Blueprint $table) {
+        Schema::table('invoices', function (Blueprint $table) {
             $table->integer('sponsor_id')->after('user_id'); //just add this line
         });
     }
@@ -25,7 +25,7 @@ class CreateAddSponsorIdToInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::table('add_sponsor_id_to_invoices', function (Blueprint $table) {
+        Schema::table('invoices', function (Blueprint $table) {
             $table->dropColumn('sponsor_id');
         });
     }
