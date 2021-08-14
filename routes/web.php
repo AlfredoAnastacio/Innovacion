@@ -30,16 +30,19 @@ Route::get('status/{id}','StatusController@show')->middleware('auth')->name('sta
 Route::resource('user','UserController')->middleware('auth');
 Route::get('user/{id}/show','UserController@sh')->middleware('auth');
 
+Route::post('payform/virtualWallet', 'FormPayController@wallet')->middleware('auth')->name('wallet.store');  //Método para inscribir wallet
 Route::resource('payform', 'FormPayController')->middleware('auth');
 
-Route::resource('payment/method/efecty', 'EfectyController')->middleware('auth');  //Controlador para el método de pago Efecty
-Route::resource('payment/method/bankAccount', 'BankAccountController')->middleware('auth');  //Controlador para el método de pago Efecty
-Route::resource('payment/method/virtualWallet', 'VirtualWalletController')->middleware('auth');  //Controlador para el método de pago Efecty
+
 
 Route::get('refers', 'RefersController@index')->middleware('auth')->name('tree');
 Route::get('refers/details/{id}', 'RefersController@detail')->middleware('auth')->name('tree.detail');  //Ver detalle de estructura n
+Route::get('refers/contract/range/{id}', 'RefersController@detailcontract')->middleware('auth')->name('contract.resume');  //Ver detalle de cada contrato
 Route::get('movements', 'MovementsController@index')->middleware('auth')->name('movement');
 Route::get('pay', 'PaysController@index')->middleware('auth')->name('pay');
+
+Route::get('profitability', 'ProfitabilityController@index')->middleware('auth')->name('profitability.index');
+
 Route::redirect('/', '/login', 301);
 
 Auth::routes();

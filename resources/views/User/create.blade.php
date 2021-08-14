@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Inscripcion</title>
+    <title>Inscripción</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -25,16 +25,16 @@
                                 <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{ asset('images/people-blue.png') }}"></div>
                                 <div class="col-10">
                                     @if(!isset($referralCode))
-                                        <input type="number" class="griz mb-0 border-0" name="sponsor_id" id="sponsor_id" placeholder="Número del Patrocinado" value="{{ request()->input('sponsor_id', old('sponsor_id'))}}" required>
+                                        <input type="text" class="griz mb-0 border-0" name="contract_id" id="contract_id" placeholder="Número del Contrato" value="{{ request()->input('contract_id', old('contract_id'))}}" required>
                                     @else
-                                        <input type="number" class="griz mb-0 border-0" name="sponsor_id" id="sponsor_id" placeholder="Número del Patrocinado" value="{{$referralCode}}" readonly>
+                                        <input type="text" class="griz mb-0 border-0" name="contract_id" id="contract_id" placeholder="Número del Contrato" value="{{$referralCode}}" readonly>
                                     @endif
                                 </div>
                             </div>
                             <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
                                 <div class="col-2 text-center px-0  pt-1"><img class="align-middle img-fluid" src="{{ asset('images/avatar.png') }}"></div>
                                 <div class="col-10">
-                                    <input name="name" id="name" type="text" class="griz mb-0 border-0" placeholder="Nombre" value="{{ request()->input('name', old('name'))}}" required>
+                                    <input name="name" id="name" type="text" class="griz mb-0 border-0" placeholder="Nombre completo" value="{{ request()->input('name', old('name'))}}" required>
                                 </div>
                             </div>
                             <div class="row px-3 mb-4 burbuja mx-1 imp-shadow">
@@ -94,77 +94,3 @@
     </div>
 </body>
 </html>
-
-
-{{--
-<html>
-    <head>
-        <title>INNOVACIÓN FINANCIERA | Registro</title>
-        <link rel="stylesheet" href="{{asset('css/dashboard.css')}} media="screen" ">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    </head>
-    <body>
-
-    <div class="container-fluid inscripcion">
-        <div class="row d-flex justify-content-center align-items-center campos">
-
-            <section role="main" class="col-12  align-content-between">
-                <img class="mx-auto d-block " src="{{asset('images/LogoAzul.png')}}">
-                <div class=" pt-5 ">
-                        <div class="cuenta mx-auto">
-
-
-
-
-
-
-
-
-        <form method="POST" action="{{ route('register') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-            {{ csrf_field() }}
-
-
-
-            @include ('User.form', ['formMode' => 'create'])
-
-
-
-
-
-
-
-        </form>
-
-
-        <p class="foot griz text-center">Innovación Financiera Digital . Copyright 2020</p>
-    </div>
-
-        @if(isset($error_sponsor))
-
-        <div class="alert alert-danger" role="alert">
-                <li>{{$error_sponsor}} </li>
-
-        </div>
-
-
-        @endif
-
-        @if(count($errors) > 0)
-        <div class="alert alert-danger" role="alert">
-
-
-
-                <ul>
-                @foreach($errors as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-                </ul>
-
-
-              </div>
-
-
-              @endif
-
-    </body>
-</html>  --}}

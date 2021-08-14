@@ -52,8 +52,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
 
             'name' => 'required',
-            // 'lastname' => 'required',
-            // 'username' => 'required| unique:users',
             'document' => 'required| unique:users',
             'email' => 'required|unique:users',
             'telephone' => 'required|unique:users',
@@ -72,35 +70,29 @@ class RegisterController extends Controller
     {
 
         return User::create([
-            'name' => $data['name'],
-            'lastname' => $data['name'],
-            'username' => $data['name'],
-            'email' => $data['email'],
-            'document' => $data['document'],
+            'user_id'   => $gen_id,
+            'name'      => $data['name'],
+            'sponsor_id'=> $data['sponsor_id'],
+            'contract'  => $data['contract'],
+            'email'     => $data['email'],
+            'document'  => $data['document'],
             'telephone' => $data['telephone'],
-            'password' => Hash::make($data['password']),
-            'user_id' => $gen_id,
-            'rol' => $rol,
+            'password'  => Hash::make($data['password']),
+            'rol'       => $rol,
         ]);
     }
 
-          public function messages()
-{
+    public function messages() {
 
-    return[
-        'name.required' => 'El nombre es requerido',
-        // 'lastname.required' => 'El apellido es requerido',
-        // 'username.required' => 'El nombre de usuario es requerido',
-        'document.required' => 'El documento de identidad es requerido',
-        'email.required' => 'El email es requerido',
-        'email.unique' => 'El Email ya ha sido usado',
-        'username.unique' => 'El nombre de usuario ya existe',
-        'password.min' => 'La contraseña debe ser mínimo de 5 carácteres',
-        'password.confirmed' => 'No coinciden las contraseñas',
-        'telephone.unique' => 'El teléfono ya está en uso'
-    ];
-}
-
-
-
+        return[
+            'name.required' => 'El nombre es requerido',
+            'document.required' => 'El documento de identidad es requerido',
+            'email.required' => 'El email es requerido',
+            'email.unique' => 'El Email ya ha sido usado',
+            'username.unique' => 'El nombre de usuario ya existe',
+            'password.min' => 'La contraseña debe ser mínimo de 5 carácteres',
+            'password.confirmed' => 'No coinciden las contraseñas',
+            'telephone.unique' => 'El teléfono ya está en uso'
+        ];
+    }
 }

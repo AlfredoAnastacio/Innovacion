@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWalletPaymentChannelTable extends Migration
+class CreateContractsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateWalletPaymentChannelTable extends Migration
      */
     public function up()
     {
-        Schema::create('wallet_payment_channel', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('wallet');
+            $table->string('contract', 50);
+            $table->integer('range_id')->unsigned();
+            $table->foreign('range_id')->references('range_id')->on('ranges');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +31,6 @@ class CreateWalletPaymentChannelTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallet_payment_channel');
+        Schema::dropIfExists('contracts');
     }
 }

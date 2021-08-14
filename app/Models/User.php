@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'users';
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'name', 'email', 'password','document','rol','telephone','user_id','username','lastname','rol'
+        'user_id', 'sponsor_id', 'contract', 'name', 'rol', 'email', 'document','telephone', 'wallet', 'password'
     ];
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EfectyController extends Controller
+class ProfitabilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class EfectyController extends Controller
      */
     public function index()
     {
-        return view('User.paymentMethods.efecty.index');
+        return view('profitability.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class EfectyController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**

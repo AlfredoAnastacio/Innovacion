@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\FormPay;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use  Illuminate\Support\Facades\Storage;
+use App\FormPay;
+use App\Models\User;
+use DB;
 
 class FormPayController extends Controller
 {
@@ -24,17 +26,16 @@ class FormPayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() {
 
-
-    {
         $user_id = Auth::id();
-        $contents = Storage::disk('local')->get('banks.json');
-        $contents= json_decode($contents);
-        $length = count($contents);
+        // $contents = Storage::disk('local')->get('banks.json');
+        // $contents= json_decode($contents);
+        // $length = count($contents);
 
-  
-        return view('User.datapay',compact('contents','length','user_id'));
+        $wallet = User::where('user_id', $user_id)->pluck('wallet')->first();
+
+        return view('User.datapay',compact('wallet'));
     }
 
     /**
@@ -120,5 +121,37 @@ class FormPayController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //Método para store de inscribir wallet
+    public function wallet(Request $request) {
+
+        $user_id = Auth::id();
+        $wallet = $request->ewallet;
+        // dd($wallet);
+
+        DB::beginTransaction();
+
+        try {
+
+            if ($wallet != null || $wallet <> '') {
+
+                DB::table('users')->where('user_id', $user_id)->update(['wallet' => $wallet]);
+
+                DB::commit();
+
+                $wallet = User::where('user_id', $user_id)->pluck('wallet')->first();
+
+                return view('pages.GreetingRegisterWallet', compact('wallet'));
+            }
+        }catch (\PDOException $e){
+            DB::rollBack();
+            $wallet = User::where('user_id', $user_id)->pluck('wallet')->first();
+            $errors = array(
+                $error = "La billetera ingresada no es correcta"
+            );
+
+            return view('User.datapay',compact('errors', 'wallet'));
+        }
     }
 }

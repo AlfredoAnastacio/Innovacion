@@ -26,14 +26,23 @@ class RefersController extends Controller {
     public function index() {
 
         $id = Auth::id();
-
         $user = User::where('user_id', $id)->with('range')->first();
-        $range = Range::where('range_id',(int) $user->range->range)->first();
-        $sponsor = Refer::where('user_id',$id)->first();
-        $range_name = $range->range;
+
+        if ($user->sponsor_id == 1) {
+            $sponsor_id = 1;
+        } else {
+            $sponsor_id = Contract::where('contract', $user->contract)->pluck('user_id')->first();
+        }
+        $ranges = Range::all();
+
+
+
+
+
+
+
+
         $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-        //$investments = Investment::where('user_id', $id)->where('state',$range_name)->first();
-        // $investments_total = Investment::amountInvestment($investments);
         $commissions_total = Commission::amountCommission($id);
 
         if ($sponsorTree == NULL) {
@@ -52,9 +61,9 @@ class RefersController extends Controller {
             Alerts::investmentAlert($id,$refers);
             $rentabilidad_by_tree = AlertsPays::getRentabilidad($id, $t);   //Se obtiene la rentabilidad de cada estructura
             array_push($rentabilidad_tree, $rentabilidad_by_tree);
-            $investments = Investment::where('user_id', $id)->where('tree', $t)->where('state',$range_name)->first();
-            $investments_total = Investment::amountInvestment($investments, $t);
-            array_push($investment_tree, $investments_total);
+            // $investments = Investment::where('user_id', $id)->where('tree', $t)->where('state',$range_name)->first();
+            // $investments_total = Investment::amountInvestment($investments, $t);
+            // array_push($investment_tree, $investments_total);
         }
 
         for($t=1; $t <= $sponsorTree; $t++){    // Segmento para obtener el rango de cada estructura del usuario
@@ -71,8 +80,8 @@ class RefersController extends Controller {
 
         $total_refers = Refer::getRefers($id,1,$sponsorTree);
         $amount = count($refers);
-        $pays_completed= PaysCompleted::getPays($id,$user->range->range,1); //Se obtienen los pagos que se han realizado al lider
-        $total_pays= PaysCompleted::getPays($id,$user->range->range,2);     //Se obtiene la cantidad de pagos que se le han realizado
+        // $pays_completed= PaysCompleted::getPays($id,$user->range->range,1); //Se obtienen los pagos que se han realizado al lider
+        // $total_pays= PaysCompleted::getPays($id,$user->range->range,2);     //Se obtiene la cantidad de pagos que se le han realizado
 
         $refers_by_tree = array();                              //|
         $total_users_by_tree = 0;                               //|
@@ -93,9 +102,18 @@ class RefersController extends Controller {
             $total_users = $total_users + $value;
         }
 
-        return view('User.tree',compact('user','range','sponsor','investment_tree','commissions_total',
-                                                'pays_completed','amount','total_refers','total_pays','sponsorTree',
-                                                'refers_by_tree', 'total_users', 'rentabilidad_tree', 'rango_tree'));
+        return view('User.tree',compact('user',
+                                        'sponsor_id',
+                                        'ranges',
+                                        'investment_tree',
+                                        'commissions_total',
+                                        'amount',
+                                        'total_refers',
+                                        'sponsorTree',
+                                        'refers_by_tree',
+                                        'total_users',
+                                        'rentabilidad_tree',
+                                        'rango_tree'));
 
     //     $user = User::where('user_id', $id)->with('range')->first();
     //     $range = Range::where('range_id',(int) $user->range->range)->first();
@@ -318,5 +336,12 @@ class RefersController extends Controller {
         }
 
         return view('Refers.tree',compact('refers','tree', 'levels', 'total_users', 'range_lider'));
+    }
+
+    public function detailcontract($id) {
+        $id = 1;
+        $contract_range = Range::where('range_id', $id)->pluck('range')->first();
+
+        return view('Refers.resumeContracts', compact('contract_range'));
     }
 }

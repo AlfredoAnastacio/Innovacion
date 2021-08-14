@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','city','document','country','rol','telephone','user_id','username','lastname','rol'
+        'user_id', 'sponsor_id', 'contract', 'name', 'rol', 'email', 'document','telephone', 'wallet', 'password'
     ];
 
     protected $table ='users';
@@ -57,8 +57,6 @@ class User extends Authenticatable
         return Validator::make($data, [
 
             'name' => 'required',
-            // 'lastname' => 'required',
-            // 'username' => 'required| unique:users',
             'document' => 'required| unique:users',
             'email' => 'required|unique:users',
             'telephone' => 'required|unique:users',
@@ -72,8 +70,6 @@ class User extends Authenticatable
 
         return[
             'name.required' => 'El nombre es requerido',
-            // 'lastname.required' => 'El apellido es requerido',
-            // 'username.required' => 'El nombre de usuario es requerido',
             'document.required' => 'El documento de identidad es requerido',
             'email.required' => 'El email es requerido',
             'email.unique' => 'El Email ya ha sido usado',

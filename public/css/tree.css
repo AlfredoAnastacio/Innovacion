@@ -1,0 +1,17 @@
+.relleno_azul_personal_superio{
+    -webkit-border-radius: 9px 9px 0px 0px !important;
+    border-radius: 9px 9px 0px 0px !important;
+    background: #2699FB !important;
+}
+.relleno_azul_personal_inferior{
+    -webkit-border-radius: 0 0 9px 9px;
+    border-radius: 0 0 9px 9px;
+    background: #2699FB !important;
+}
+
+.round_pers_basico{
+    -webkit-box-shadow: 1px 1px 5px 0 #707070 !important;
+    box-shadow: 1px 1px 5px 0 #707070 !important;
+    -webkit-border-radius: 9px 9px 9px 9px !important;
+    border-radius: 9px 9px 9px 9px !important;
+}

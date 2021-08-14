@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Mis Estructuras</title>
+    <title>INNOVACIÓN FINANCIERA | MIS CONTRATOS </title>
     <link rel="shortcut icon" href="{{ asset('images/fav_ico.png') }}">
     <!-- Bootstrap core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" media="screen">
@@ -14,7 +14,7 @@
     <nav class="navbar navbar-dark sticky-top bg-blue2 flex-md-nowrap p-0 shadow">
         <div class="spacer"></div>
         <a class="flecha-atras" href="{{ route('tree') }}"><img src="{{ asset('images/regresar.png') }}"></a>
-        <h1 class="mx-auto mt-5">Mis estructuras</h1>
+        <h1 class="mx-auto mt-5"> MIS CONTRATOS </h1>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,54 +32,53 @@
                     <div class="">
                         <div class="contenido pt-5 ">
                             <div class="cuenta mx-auto">
-                                <h6 class="text-center text-uppercase azul"><b>Estructura #{{ $tree }}</b></h6>
                                 <div class="nivel">
                                     <div class="row">
                                         <div class="col-9 pr-0">
-                                            <h6 class="usuario azul pt-1"><b># USUARIO: {{ Auth::user()->user_id }}</b></h6>
+                                            <h6 class="usuario azul pt-1"><b>DETALLES: Contrato 12312</b></h6>
                                             <hr class="azul">
-                                            {{-- @dump($total_users) --}}
+                                            <p class="patrocinador fp-1 griz">USUARIOS EN TU CONTRATO: 124</p>
                                             @if ($total_users <= 2)
-                                                <p class="patrocinador fp-1 griz">Nivel: 1</p>
+                                                <p class="fp-1 griz">Nivel: 1</p>
                                             @endif
                                             @if ($total_users > 2 && $total_users <= 4)
-                                                <p class="patrocinador fp-1 griz">Nivel: 2</p>
+                                                <p class="fp-1 griz">Nivel: 2</p>
                                             @endif
                                             @if ($total_users > 4 && $total_users <= 8)
-                                                <p class="patrocinador fp-1 griz">Nivel: 3</p>
+                                                <p class="fp-1 griz">Nivel: 3</p>
                                             @endif
                                             @if ($total_users > 8 && $total_users <= 16)
-                                                <p class="patrocinador fp-1 griz">Nivel: 4</p>
+                                                <p class="fp-1 griz">Nivel: 4</p>
                                             @endif
                                             @if ($total_users > 16 && $total_users <= 32)
-                                                <p class="patrocinador fp-1 griz">Nivel: 5</p>
+                                                <p class="fp-1 griz">Nivel: 5</p>
                                             @endif
                                             @if ($total_users > 32 && $total_users <= 64)
-                                                <p class="patrocinador fp-1 griz">Nivel: 6</p>
+                                                <p class="fp-1 griz">Nivel: 6</p>
                                             @endif
                                             @if ($total_users > 64 && $total_users <= 128)
-                                                <p class="patrocinador fp-1 griz">Nivel: 7</p>
+                                                <p class="fp-1 griz">Nivel: 7</p>
                                             @endif
                                             @if ($total_users > 128 && $total_users <= 256)
-                                                <p class="patrocinador fp-1 griz">Nivel: 8</p>
+                                                <p class="fp-1 griz">Nivel: 8</p>
                                             @endif
                                             @if ($total_users > 256 && $total_users <= 512)
-                                                <p class="patrocinador fp-1 griz">Nivel: 9</p>
+                                                <p class="fp-1 griz">Nivel: 9</p>
                                             @endif
                                             @if ($total_users > 512 && $total_users <= 1024)
-                                                <p class="patrocinador fp-1 griz">Nivel: 10</p>
+                                                <p class="fp-1 griz">Nivel: 10</p>
                                             @endif
                                             @if ($total_users > 1024 && $total_users <= 2048)
-                                                <p class="patrocinador fp-1 griz">Nivel: 11</p>
+                                                <p class="fp-1 griz">Nivel: 11</p>
                                             @endif
                                             @if ($total_users > 2048 && $total_users <= 4096)
-                                                <p class="patrocinador fp-1 griz">Nivel: 12</p>
+                                                <p class="fp-1 griz">Nivel: 12</p>
                                             @endif
                                             @if ($total_users > 4096 && $total_users <= 8192)
-                                                <p class="patrocinador fp-1 griz">Nivel: 13</p>
+                                                <p class="fp-1 griz">Nivel: 13</p>
                                             @endif
                                             @if ($total_users > 8192 && $total_users <= 16384)
-                                                <p class="patrocinador fp-1 griz">Nivel: 14</p>
+                                                <p class="fp-1 griz">Nivel: 14</p>
                                             @endif
                                         </div>
                                         <div class="col-3 text-center pl-0">
@@ -106,12 +105,17 @@
                                 </div>
                                 <div class="row mb-5 pb-5">
                                     <div class="col-md-12">
-                                        <div class="afiliados w-100 d-flex align-items-center justify-content-end pt-3 pb-3 pl-3">
-                                            <p class="text-uppercase mb-3 pr-4 griz fp-1">Afiliados en estructura</p>
-                                            <a href="#" class="campana">
+                                        <div>
+                                            <p class="text-left mb-4">
+                                                <small>LISTADO DE USUARIOS</small>
+                                                <img src="{{ asset('images/Campana.png') }}" class="float-right">
+
+                                            </p>
+                                            {{-- <p class="fp-1 griz">LISTADO DE USUARIOS</p>
+                                            <a href="#" class="campana justify-content-end">
                                                 <img src="{{ asset('images/Campana.png') }}">
                                                 <span class="numero">1</span>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                         <div class="row mb-5 pb-5">
                                             <div class="col-md-12">
