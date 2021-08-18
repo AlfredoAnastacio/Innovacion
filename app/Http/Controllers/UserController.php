@@ -86,12 +86,17 @@ class UserController extends Controller
         return view('User.edit', compact('user','sponsor'));
     }
 
-    public function sh($id)
-    {
-        $user = User::findOrFail($id);
-        $sponsor = Refer::where('user_id',$id)->first();
+    public function sh($id) {
 
-        return view('User.show', compact('user','sponsor'));
+        $user = User::findOrFail($id);
+        // dd($user);
+
+        if ($user) {
+
+            $contract = User::where('user_id',$id)->pluck('contract')->first();
+
+            return view('User.show', compact('user', 'contract'));
+        }
     }
 
     /**

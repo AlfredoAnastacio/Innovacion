@@ -17,6 +17,7 @@ class CreateContractsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('contract', 50);
+            $table->boolean('status_contract')->default(0);
             $table->integer('range_id')->unsigned();
             $table->foreign('range_id')->references('range_id')->on('ranges');
             $table->timestamps();

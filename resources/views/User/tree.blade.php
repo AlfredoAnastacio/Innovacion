@@ -44,7 +44,7 @@
                                     <div class="col-9 pr-0">
                                         <h6 class="usuario azul pt-1"><b># USUARIO: {{Auth::user()->user_id}}</b></h6>
                                         <hr class="azul">
-                                        <p class="patrocinador"># Contrato Patrocinador: {{ $sponsor_id }}</p>
+                                        <p class="patrocinador"># Contrato Patrocinador: {{ $contract_sponsor }}</p>
                                     </div>
                                     <div class="col-3 text-center">
                                         <h3 class="pt-1 mb-1 griz"><b> 0 </b></h3>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <!-- Estructuras -->
-                            <div class="round_pers_basico mt-4">
+                            {{-- <div class="round_pers_basico mt-4">
                                 <section id="algo" class="mt-2">
                                     <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>Contratos Plata</strong></div>
                                     <div class="col-12 row mx-0 px-0">
@@ -64,7 +64,7 @@
                                             <p class="text-uppercase">Activo</p>
                                         </div>
                                         <div class="col-6 text-center mt-3 border-left mx-0 px-0">
-                                            <p class="text-uppercase" style="margin: auto;"> 100 </p><br>
+                                            <p class="text-uppercase" style="margin: auto;"> 0 </p><br>
                                             <p class="text-uppercase" style="margin: auto;">Estructuras</p>
                                             <p class="text-uppercase">Activas</p>
                                         </div>
@@ -72,7 +72,7 @@
                                     <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior"><a class="text-white" href="{{ route('contract.resume', 1) }}"> Más información > </a></div>
 
                                 </section>
-                            </div>
+                            </div> --}}
                             {{-- @if ($sponsorTree == 0)
                                 <div class="box">
                                     <h6 class="text-center text-uppercase pt-3 mb-3 pb-3 azulbg text-white"><b>Sin Estructuras</b></h6>

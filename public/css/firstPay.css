@@ -1,0 +1,31 @@
+.space-blue-midle{
+    border-top: 6px solid rgb(173 207 236) !important;
+}
+.text-dark {
+    color: #343a40 !important;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+.space-blue-midle{
+    border-top: 6px solid rgb(173 207 236) !important;
+}
+.text-orange_perso{
+    color: #E26517 !important;
+}
+
+.round_pers_btn2{
+    -webkit-border-radius: 13px 13px 13px 13px !important;
+    border-radius: 13px 13px 13px 13px !important;
+}
+
+.rounded {
+    border-radius: 0.25rem !important;
+}
+
+.div-section-basic{
+    -webkit-box-shadow: 1px 1px 5px 0 #707070;
+    box-shadow: 1px 1px 5px 0 #707070;
+    background: white !important;
+}

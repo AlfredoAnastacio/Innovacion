@@ -34,8 +34,8 @@ class StatusController extends Controller
             $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
 
             $user = $update_status->where('user_id',$id)->first();
-            $range = (int)$user->range;
-            $range_name=Range::where('range_id',$range)->first();
+            // $range = (int)$user->range;
+            // $range_name=Range::where('range_id',$range)->first();
 
             if($sponsorTree != NULL) {
 
@@ -92,8 +92,8 @@ class StatusController extends Controller
                 }
             }
 
-            $range_str = $range;
-            DB::table('status')->where('user_id','=',$id)->update(['state' => "Activo",'range' => $range_str]);
+            // $range_str = $range;
+            // DB::table('status')->where('user_id','=',$id)->update(['state' => "Activo",'range' => $range_str]);
 
             if (Auth::user()->isAdmin()) {
                 return redirect('admin/users');
@@ -104,6 +104,7 @@ class StatusController extends Controller
         }
 
         // return redirect()->action('UserController@show',$id);
-        return redirect()->action('RefersController@index');
+        // return redirect()->action('RefersController@index');
+        return redirect()->action('PaysController@displayForm');
     }
 }

@@ -24,129 +24,20 @@ class RefersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-
         $id = Auth::id();
-        $user = User::where('user_id', $id)->with('range')->first();
 
-        if ($user->sponsor_id == 1) {
-            $sponsor_id = 1;
+        $data_user = User::where('user_id', $id)->first();
+        $sponsor_id = $data_user->sponsor_id;
+
+
+        if ($sponsor_id == 1) {
+            $contract_sponsor = User::where('user_id', 1)->pluck('contract')->first();
         } else {
-            $sponsor_id = Contract::where('contract', $user->contract)->pluck('user_id')->first();
-        }
-        $ranges = Range::all();
-
-
-
-
-
-
-
-
-        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-        $commissions_total = Commission::amountCommission($id);
-
-        if ($sponsorTree == NULL) {
-            $sponsorTree =1;
-        } else {
-            $sponsorTree = $sponsorTree->tree_sponsor;
+            $contract_sponsor = $data_user->contract;
         }
 
-        $rentabilidad_tree = array();
-        $investment_tree = array();
-        $rango_tree = array();
-        $ranges = Range::count();
-        $exist_range = 1;
-        for($t=1; $t <= $sponsorTree; $t++) {
-            $refers = Refer::getRefers($id,0,$t);
-            Alerts::investmentAlert($id,$refers);
-            $rentabilidad_by_tree = AlertsPays::getRentabilidad($id, $t);   //Se obtiene la rentabilidad de cada estructura
-            array_push($rentabilidad_tree, $rentabilidad_by_tree);
-            // $investments = Investment::where('user_id', $id)->where('tree', $t)->where('state',$range_name)->first();
-            // $investments_total = Investment::amountInvestment($investments, $t);
-            // array_push($investment_tree, $investments_total);
-        }
 
-        for($t=1; $t <= $sponsorTree; $t++){    // Segmento para obtener el rango de cada estructura del usuario
-            for($i=1; $i<=$ranges; $i++) {
-                $pays_rango_completed = PaysCompleted::where('user_id', $id)->where('level_pay', 'Nivel 7')->where('range_id', $i)->where('tree', $t)->exists();
-
-                if ($pays_rango_completed) {
-                    $exist_range++;
-                }
-            }
-            array_push($rango_tree, $exist_range);
-            $exist_range = 1;
-        }
-
-        $total_refers = Refer::getRefers($id,1,$sponsorTree);
-        $amount = count($refers);
-        // $pays_completed= PaysCompleted::getPays($id,$user->range->range,1); //Se obtienen los pagos que se han realizado al lider
-        // $total_pays= PaysCompleted::getPays($id,$user->range->range,2);     //Se obtiene la cantidad de pagos que se le han realizado
-
-        $refers_by_tree = array();                              //|
-        $total_users_by_tree = 0;                               //|
-        $total_users = 0;                                       //|
-        for ($t=1; $t <= $sponsorTree; $t++) {                  //|
-            // dd($id);
-            $refers = Refer::getRefers($id,0,$t);               //|
-            foreach ($refers as $value) {                       //| Fragmento para obtener el total de users by tree
-                foreach ($value as $val) {                      //|
-                    $total_users_by_tree++;                     //|
-                }                                               //|
-            }                                                   //|
-            array_push($refers_by_tree, $total_users_by_tree);  //|
-            $total_users_by_tree = 0;                           //|
-        }                                                       //|
-
-        foreach ($refers_by_tree as $value) {   //se obtiene el total en general del usuario x.
-            $total_users = $total_users + $value;
-        }
-
-        return view('User.tree',compact('user',
-                                        'sponsor_id',
-                                        'ranges',
-                                        'investment_tree',
-                                        'commissions_total',
-                                        'amount',
-                                        'total_refers',
-                                        'sponsorTree',
-                                        'refers_by_tree',
-                                        'total_users',
-                                        'rentabilidad_tree',
-                                        'rango_tree'));
-
-    //     $user = User::where('user_id', $id)->with('range')->first();
-    //     $range = Range::where('range_id',(int) $user->range->range)->first();
-    //     $total_pays= PaysCompleted::getPays($id,$user->range->range,2);
-    //     $pays_completed= PaysCompleted::getPays($id,$user->range->range,1);
-
-    //     $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
-    //     if ($sponsorTree == NULL) {
-    //         $sponsorTree = 1;
-    //     } else {
-    //         $sponsorTree = $sponsorTree->tree_sponsor;
-    //     }
-
-    //    $refers = Refer::getRefers($id, 0,$sponsorTree);
-
-    //     $amount = count($refers);
-    //     $array = array();
-    //     $aux = collect();
-    //     for ($i = 1; $i <= $amount; $i++) {
-    //         foreach ($refers[$i] as $user) {
-    //             if (isset($user->user->name)) {
-    //                 $name = $user->user->name;
-    //                 $aux= $aux->push($name);
-    //             }
-    //         }
-    //         $array[$i] = $aux;
-    //     }
-
-    //     $array = json_encode($refers);
-
-    //     dd($refers);
-
-    //     return view('User.tree', compact('sponsorTree', 'range', 'total_pays', 'pays_completed', 'total_refers'));
+        return view('User.tree', compact('contract_sponsor'));
     }
 
     public function create() {

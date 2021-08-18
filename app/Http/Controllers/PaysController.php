@@ -22,18 +22,27 @@ use function GuzzleHttp\json_decode;
 class PaysController extends Controller {
 
     public function displayForm(){
-        // dd('hola');
+
         $id = Auth::id();
-        $total_pay= number_format(Pay::currencyExchange(), 2, ',', ' ');
-        $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
 
-        if ($sponsorTree == NULL) {
-            $sponsorTree = 1;
-        } else {
-            $sponsorTree = $sponsorTree->tree_sponsor;
+        $validate_investment = Investment::where('user_id', $id)->exists();
+        // dd($validate_investment);
+
+        if ($validate_investment) {
+            // $total_pay= number_format(Pay::currencyExchange(), 2, ',', ' ');
+            $sponsorTree = Refer::where('sponsor_id',$id)->orderBy('tree_sponsor','desc')->first();
+
+            if ($sponsorTree == NULL) {
+                $sponsorTree = 1;
+            } else {
+                $sponsorTree = $sponsorTree->tree_sponsor;
+            }
+
+            return view('User.pay', compact('sponsorTree'));
+
+        } else{
+            return view('User.firstPay');
         }
-
-        return view('User.pay', compact('total_pay', 'sponsorTree'));
     }
 
     public function annotateImage(Request $request){

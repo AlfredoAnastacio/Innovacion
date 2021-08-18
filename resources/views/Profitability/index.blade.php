@@ -46,7 +46,7 @@
                                     <div class="nivel">
                                         <div class="row">
                                             <div class="col-7 pr-0">
-                                                <h6 class="usuario azul pt-1"><b>Contratos activos 1</b></h6>
+                                                <h6 class="usuario azul pt-1"><b>Contratos activos 0</b></h6>
                                                 <hr class="azul">
                                                 <p class="patrocinador fp-1 griz">Contratos inactivos 0 </p>
                                             </div>
