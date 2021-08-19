@@ -8,6 +8,8 @@ use App\Models\Range;
 use Illuminate\Http\Request;
 use App\Models\Investment;
 use App\Models\Refer;
+use App\Models\User;
+use App\Models\Contract;
 
 class InvestmentsController extends Controller
 {
@@ -45,8 +47,19 @@ class InvestmentsController extends Controller
     public function create(Request $request) {
 
         $user_id = $request->user_id;
-        $state = Status::where('user_id',$user_id)->first()->range;
-        $pay = Range::where('range_id',$state)->first()->total_investment;
+        $user = User::where('user_id', $user_id)->first();
+        $investments = Investment::where('user_id', $user_id)->get();
+
+        $contract = $user->contract;
+
+        $data_contract = Contract::join('ranges', 'contracts.range_id', 'ranges.range_id')
+                            ->where('contract', $contract)
+                            ->first();
+        // dd($data_contract);
+
+
+        // $state = Status::where('user_id',$user_id)->first()->range;
+        // $pay = Range::where('range_id',$state)->first()->total_investment;
 
         // $verified_investment = Investment::where('user_id',$request->user_id)->where('pay',$pay)->latest()->exists();   // Este código válida si ya existe una inversión
 
@@ -56,21 +69,22 @@ class InvestmentsController extends Controller
         // }  //si es así, lo redirige al edit
 
         // Validación para ver si ya tiene una inversión en n estructura
-        $tree = Investment::where('user_id', $user_id)->get();
+        // $tree = Investment::where('user_id', $user_id)->get();
 
 
-        $sponsorTree = Refer::where('sponsor_id', $user_id)->orderBy('tree_sponsor','desc')->first();  //Se obtiene el total de estructuras
-        if ($sponsorTree == NULL) {
-            $sponsorTree =1;
-        } else {
-            $sponsorTree = $sponsorTree->tree_sponsor;
-        }
+        // $sponsorTree = Refer::where('sponsor_id', $user_id)->orderBy('tree_sponsor','desc')->first();  //Se obtiene el total de estructuras
+        // if ($sponsorTree == NULL) {
+        //     $sponsorTree =1;
+        // } else {
+        //     $sponsorTree = $sponsorTree->tree_sponsor;
+        // }
 
         // dd($sponsorTree);
 
-        $sinTree = count($tree);
+        // $sinTree = count($tree);
 
-        return view('Admin.Investments.create',compact('pay','user_id', 'sponsorTree', 'tree', 'sinTree'));
+        return view('Admin.Investments.create', compact('investments', 'user_id', 'data_contract'));
+        // return view('Admin.Investments.create',compact('pay','user_id', 'sponsorTree', 'tree', 'sinTree'));
     }
 
     /**
@@ -79,23 +93,23 @@ class InvestmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // dd(isset($request->tree));
+    public function store(Request $request) {
 
         if (isset($request->tree)) {
-            // dd('ho');
             $requestData = $request->all();
+            // dd($requestData);
 
-            $range_id = Status::where('user_id',$request->user_id)->first()->range;
-            $range = Range::where('range_id',$range_id)->first();
-            $range_name = $range->range;
-            $requestData= array_merge($requestData, ['state' => $range_name]);
+            // $range_id = Status::where('user_id',$request->user_id)->first();
+            // $range = 1;
+            // $range_name = $range;
+            // $requestData= array_merge($requestData, ['state' => $range_name]);
 
-            $verified_investment = Investment::where('user_id',$request->user_id)->where('state',$range_name)->where('tree', $request->tree)->latest()->exists();
+            $verified_investment = Investment::where('user_id',$request->user_id)->where('tree', $request->tree)->exists();
+            // dd($verified_investment);
 
             if (!$verified_investment) {
                 Investment::create($requestData);
+                Contract::where('contract', $request->tree)->update(['status_contract' => 1]);
             }
 
             return redirect()->action('StatusController@show', [$request->user_id]);

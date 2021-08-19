@@ -23,13 +23,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a id="tree-user" class="nav-link img-2" href="{{ route('tree') }}">
+                <a id="tree-user" class="nav-link img-2" href="{{ route('contract.index') }}">
                     <span data-feather="bar-chart-2"></span>
                     MIS CONTRATOS
                 </a>
             </li>
             <li class="nav-item">
-                <a id="profitability" class="nav-link img-2" href="{{ route('profitability.index') }}">
+                <a id="profitability-index" class="nav-link img-2" href="{{ route('profitability.index') }}">
                     <span data-feather="bar-chart-2"></span>
                     RENTABILIDAD
                 </a>

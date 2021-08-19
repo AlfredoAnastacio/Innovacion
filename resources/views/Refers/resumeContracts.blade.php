@@ -19,6 +19,7 @@
 <body>
     <nav class="navbar navbar-dark sticky-top bg-blue2 flex-md-nowrap p-0 shadow">
         <div class="spacer"></div>
+        <a class="flecha-atras" href="{{ route('contract.index') }}"><img src="{{ asset('images/regresar.png') }}"></a>
         <h1 class="mx-auto mt-5">MIS CONTRATOS</h1>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,52 +41,49 @@
                         <div class="cuenta mx-auto">
                             <h6 class="text-center text-uppercase azul"><b> CONTRATOS {{ $contract_range }}</b></h6>
                             <!-- Estructuras -->
-                            <div class="round_pers_basico mt-4">
-                                <section class="mt-2">
-                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>Contrato 12345678-AG</strong></div>
-                                    <div class="col-12 mx-0 px-0 row ">
-                                        {{-- <div class="col-6 border border-primary text-center x-0 px-0">
-                                            <img src="./images/imagcon1.png" class="mt-3" alt="" srcset="">
-                                            <p class="text-uppercase" style="margin: auto;">Usuario en tu</p>
-                                            <p class="text-uppercase">estructura</p>
-                                        </div> --}}
-                                        <div class="col-6 border border-primary text-center mx-0 px-0"><br>
-                                            <div class="progress mx-auto " data-value='90'>
-                                                <span class="progress-left">
-                                                    <span class="progress-bar border-primary"></span>
-                                                </span>
-                                                <span class="progress-right">
-                                                    <span class="progress-bar border-primary"></span>
-                                                </span>
-                                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                                    <div class="block text-center">
-                                                        <img class="b-block"src="{{asset('images/people.png')}}">
-                                                        <div class="h2 font-weight-bold griz"><b class="qrf"> 120 </b></div>
+                            @foreach ($contracts as $contract)
+                                <div class="round_pers_basico mt-4">
+                                    <section class="mt-2">
+                                        <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>Contrato {{ $contract->contract }}</strong></div>
+                                        <div class="col-12 mx-0 px-0 row ">
+                                            <div class="col-6 border border-primary text-center mx-0 px-0"><br>
+                                                <div class="progress mx-auto " data-value='90'>
+                                                    <span class="progress-left">
+                                                        <span class="progress-bar border-primary"></span>
+                                                    </span>
+                                                    <span class="progress-right">
+                                                        <span class="progress-bar border-primary"></span>
+                                                    </span>
+                                                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                                        <div class="block text-center">
+                                                            <img class="b-block"src="{{asset('images/people.png')}}">
+                                                            <div class="h2 font-weight-bold griz"><b class="qrf"> {{ $contract->users }} </b></div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
                                             </div>
-                                            <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
+                                            <div class="col-6 border border-primary text-center  mx-0 px-0"><br>
+                                                <img src="{{ asset('images/rango_plata.png') }}"><br><br>
+                                                <p class="text-uppercase" style="margin: auto;">nivel</p>
+                                                <p class="text-uppercase">0</p>
+                                            </div>
+                                            <div class="col-6 border border-primary text-center  mx-0 px-0"><br>
+                                                <img src="{{asset('images/inversion.png')}}"><br><br>
+                                                <h5><strong>US ${{ $contract->investment }}</strong></h5>
+                                                <p class="text-uppercase">inversión</p>
+                                            </div>
+                                            <div class="col-6 border border-primary text-center mx-0 px-0"><br>
+                                                <img src="{{asset('images/rentabilidad.png')}}"><br><br>
+                                                <h5><strong>US $0</strong></h5>
+                                                <p class="text-uppercase">Rentabilidad</p>
+                                            </div>
                                         </div>
-                                        <div class="col-6 border border-primary text-center  mx-0 px-0"><br>
-                                            <img src="{{ asset('images/rango_plata.png') }}"><br><br>
-                                            <p class="text-uppercase" style="margin: auto;">nivel</p>
-                                            <p class="text-uppercase">6</p>
-                                        </div>
-                                        <div class="col-6 border border-primary text-center  mx-0 px-0"><br>
-                                            <img src="{{asset('images/inversion.png')}}"><br><br>
-                                            <h5><strong>US$15</strong></h5>
-                                            <p class="text-uppercase">inversión</p>
-                                        </div>
-                                        <div class="col-6 border border-primary text-center mx-0 px-0"><br>
-                                            <img src="{{asset('images/rentabilidad.png')}}"><br><br>
-                                            <h5><strong>US$75</strong></h5>
-                                            <p class="text-uppercase">Rentabilidad</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior"><a class="text-white" href="{{ route('tree.detail', 1) }}"> Detalles > </a></div>
+                                        <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior"><a class="text-white" href="{{ route('contract.detail', $contract->id) }}"> Detalles > </a></div>
 
-                                </section>
-                            </div>
+                                    </section>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

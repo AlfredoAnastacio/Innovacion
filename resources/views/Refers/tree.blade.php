@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-dark sticky-top bg-blue2 flex-md-nowrap p-0 shadow">
         <div class="spacer"></div>
-        <a class="flecha-atras" href="{{ route('tree') }}"><img src="{{ asset('images/regresar.png') }}"></a>
+        <a class="flecha-atras" href="{{ URL::previous() }}"><img src="{{ asset('images/regresar.png') }}"></a>
         <h1 class="mx-auto mt-5"> MIS CONTRATOS </h1>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,10 +35,10 @@
                                 <div class="nivel">
                                     <div class="row">
                                         <div class="col-9 pr-0">
-                                            <h6 class="usuario azul pt-1"><b>DETALLES: Contrato 12312</b></h6>
+                                            <h6 class="usuario azul pt-1"><b>DETALLES: Contrato {{ $data_contract->contract }}</b></h6>
                                             <hr class="azul">
-                                            <p class="patrocinador fp-1 griz">USUARIOS EN TU CONTRATO: 124</p>
-                                            @if ($total_users <= 2)
+                                            <p class="patrocinador fp-1 griz">USUARIOS EN TU CONTRATO: {{ $total_users }}</p>
+                                            {{-- @if ($total_users <= 2)
                                                 <p class="fp-1 griz">Nivel: 1</p>
                                             @endif
                                             @if ($total_users > 2 && $total_users <= 4)
@@ -79,10 +79,10 @@
                                             @endif
                                             @if ($total_users > 8192 && $total_users <= 16384)
                                                 <p class="fp-1 griz">Nivel: 14</p>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         <div class="col-3 text-center pl-0">
-                                            @switch($range_lider)
+                                            {{-- @switch($range_lider)
                                                 @case(1)
                                                     <img class="mb-1" src="{{ asset('images/rango_plata.png') }}">
                                                     <p class="text-center griz fz">PLATA</p>
@@ -99,7 +99,7 @@
                                                     <img class="mb-1" src="{{ asset('images/rango_diamante.png') }}">
                                                     <p class="text-center griz fz">DIAMANTE</p>
                                                 @break
-                                            @endswitch
+                                            @endswitch --}}
                                         </div>
                                     </div>
                                 </div>
@@ -123,6 +123,7 @@
                                                     <tbody>
                                                         @foreach ($refers as $refer )
                                                             @foreach ($refer as $item )
+                                                                {{-- @dump($item) --}}
                                                                 <tr>
                                                                     <th scope="row">
                                                                         <p class="mb-0"><b>{{ strtoupper($item->name) }} </b></p>

@@ -47,16 +47,16 @@
                                         <p class="patrocinador"># Contrato Patrocinador: {{ $contract_sponsor }}</p>
                                     </div>
                                     <div class="col-3 text-center">
-                                        <h3 class="pt-1 mb-1 griz"><b> 0 </b></h3>
-                                        <p style="margin: auto;"> Contratos </p>
-                                        <p>Activos</p>
+                                        <h3 class="pt-1 mb-1 griz"><b> {{ $contracts_active }} </b></h3>
+                                        <p style="margin: auto;"> Contrato @if($contracts_active > 1) s @endif</p>
+                                        <p>Activo @if($contracts_active > 1) s @endif</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Estructuras -->
-                            {{-- <div class="round_pers_basico mt-4">
+                            <div class="round_pers_basico mt-4">
                                 <section id="algo" class="mt-2">
-                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>Contratos Plata</strong></div>
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>CONTRATOS PLATA</strong></div>
                                     <div class="col-12 row mx-0 px-0">
                                         <div class="col-6 text-center mt-3 border-right mx-0 px-0">
                                             <img src="{{ asset('images/rango_plata.png') }}">
@@ -64,79 +64,92 @@
                                             <p class="text-uppercase">Activo</p>
                                         </div>
                                         <div class="col-6 text-center mt-3 border-left mx-0 px-0">
-                                            <p class="text-uppercase" style="margin: auto;"> 0 </p><br>
+                                            <p class="text-uppercase" style="margin: auto;"> {{ count($contract_plata) }} </p><br>
                                             <p class="text-uppercase" style="margin: auto;">Estructuras</p>
                                             <p class="text-uppercase">Activas</p>
                                         </div>
                                     </div>
-                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior"><a class="text-white" href="{{ route('contract.resume', 1) }}"> Más información > </a></div>
-
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior">
+                                        @if (count($contract_plata) == 0)
+                                            <a class="text-white"> Sin información > </a>
+                                        @else
+                                            <a class="text-white" href="{{ route('contract.resume', 1) }}"> Más información > </a>
+                                        @endif
+                                    </div>
                                 </section>
-                            </div> --}}
-                            {{-- @if ($sponsorTree == 0)
-                                <div class="box">
-                                    <h6 class="text-center text-uppercase pt-3 mb-3 pb-3 azulbg text-white"><b>Sin Estructuras</b></h6>
-                                </div>
-                                <div class="row mb-5 scuare ml-0 mr-0"></div>
-                            @else
-                                <div class="box">
-                                    <h6 class="text-center text-uppercase pt-3 mb-3 pb-3 azulbg text-white"><b>Tus estructuras</b>
-                                    </h6>
-                                </div>
-                                @for($i = 0; $i < $sponsorTree; $i++)
-                                    <div class="arco azulbg mt-2 p-2">
-                                        <h6 class="title ml-5">ESTRUCTURA #{{ $i+1 }}
-                                            @if($refers_by_tree[$i] != 0)
-                                                <a class="vinculo" href="{{ route('tree.detail', $i+1) }}">Más info ></a>
-                                            @endif
-                                        </h6>
-                                    </div>
-                                    <div class="row mb-4 scuare ml-0 mr-0">
-                                        <div class="col-6 borde border-b text-center pt-2">
-                                            <div class="progress mx-auto " data-value='90'>
-                                                <span class="progress-left">
-                                                    <span class="progress-bar border-primary"></span>
-                                                </span>
-                                                <span class="progress-right">
-                                                    <span class="progress-bar border-primary"></span>
-                                                </span>
-                                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                                    <div class="block text-center">
-                                                        <img class="b-block"src="{{asset('images/people.png')}}">
-                                                        <div class="h2 font-weight-bold griz"><b class="qrf">{{ $refers_by_tree[$i] }}</b></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <h5 class="griz fz">USUARIOS EN TU ESTRUCTURA</h5>
+                            </div>
+                            <div class="round_pers_basico mt-4">
+                                <section id="algo" class="mt-2">
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>CONTRATOS ORO</strong></div>
+                                    <div class="col-12 row mx-0 px-0">
+                                        <div class="col-6 text-center mt-3 border-right mx-0 px-0">
+                                            <img src="{{ asset('images/rango_oro.png') }}">
+                                            <p class="text-uppercase" style="margin: auto;">Rango</p>
+                                            <p class="text-uppercase">Activo</p>
                                         </div>
-                                        <div class="col-6 border-b text-center pt-2"><br>
-                                            @if ($rango_tree[$i] == 1)
-                                                <img src="{{ asset('images/rango_plata.png') }}">
-                                                <h5 class="griz"><b class="fz">RANGO<br>PLATA</b></h5>
-                                            @elseif($rango_tree[$i] == 2)
-                                                <img src="{{ asset('images/rango_oro.png') }}">
-                                                <h5 class="griz"><b class="fz">RANGO<br>ORO</b></h5>
-                                            @elseif($rango_tree[$i] == 3)
-                                                <img src="{{ asset('images/rango_platino.png') }}">
-                                                <h5 class="griz"><b class="fz">RANGO<br> PLATINO </b></h5>
-                                            @elseif($rango_tree[$i] == 4)
-                                                <img src="{{ asset('images/rango_diamante.png') }}">
-                                                <h5 class="griz"><b class="fz">RANGO<br> DIAMANTE </b></h5>
-                                            @endif
-                                        </div>
-                                        <div class="col-6 borde text-center pt-2">
-                                            <img src="{{asset('images/inversion.png')}}">
-                                            <h2 class="pt-2 mb-1 griz"><b>US 10 </b></h2>
-                                            <h5 class="griz fz">INVERSION</h5>
-                                        </div>
-                                        <div class="col-6 text-center pt-2">
-                                            <img src="{{asset('images/rentabilidad.png')}}">
-                                            <h2 class="pt-2 mb-1 griz"><b> US 100 </b></h2>
-                                            <h5 class="griz fz">RENTABILIDAD</h5>
+                                        <div class="col-6 text-center mt-3 border-left mx-0 px-0">
+                                            <p class="text-uppercase" style="margin: auto;"> {{ count($contract_oro) }} </p><br>
+                                            <p class="text-uppercase" style="margin: auto;">Estructuras</p>
+                                            <p class="text-uppercase">Activas</p>
                                         </div>
                                     </div>
-                               @endfor
-                            @endif --}}
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior">
+                                        @if (count($contract_oro) == 0)
+                                            <a class="text-white"> Sin información > </a>
+                                        @else
+                                            <a class="text-white" href="{{ route('contract.resume', 2) }}"> Más información > </a>
+                                        @endif
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="round_pers_basico mt-4">
+                                <section id="algo" class="mt-2">
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>CONTRATOS PLATINO</strong></div>
+                                    <div class="col-12 row mx-0 px-0">
+                                        <div class="col-6 text-center mt-3 border-right mx-0 px-0">
+                                            <img src="{{ asset('images/rango_platino.png') }}">
+                                            <p class="text-uppercase" style="margin: auto;">Rango</p>
+                                            <p class="text-uppercase">Activo</p>
+                                        </div>
+                                        <div class="col-6 text-center mt-3 border-left mx-0 px-0">
+                                            <p class="text-uppercase" style="margin: auto;"> {{ count($contract_platino) }} </p><br>
+                                            <p class="text-uppercase" style="margin: auto;">Estructuras</p>
+                                            <p class="text-uppercase">Activas</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior">
+                                        @if (count($contract_platino) == 0)
+                                            <a class="text-white"> Sin información > </a>
+                                        @else
+                                            <a class="text-white" href="{{ route('contract.resume', 3) }}"> Más información > </a>
+                                        @endif
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="round_pers_basico mt-4">
+                                <section id="algo" class="mt-2">
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong> CONTRATOS DIAMANTE</strong></div>
+                                    <div class="col-12 row mx-0 px-0">
+                                        <div class="col-6 text-center mt-3 border-right mx-0 px-0">
+                                            <img src="{{ asset('images/rango_diamante.png') }}">
+                                            <p class="text-uppercase" style="margin: auto;">Rango</p>
+                                            <p class="text-uppercase">Activo</p>
+                                        </div>
+                                        <div class="col-6 text-center mt-3 border-left mx-0 px-0">
+                                            <p class="text-uppercase" style="margin: auto;"> {{ count($contract_diamante) }} </p><br>
+                                            <p class="text-uppercase" style="margin: auto;">Estructuras</p>
+                                            <p class="text-uppercase">Activas</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior">
+                                        @if (count($contract_diamante) == 0)
+                                            <a class="text-white"> Sin información > </a>
+                                        @else
+                                            <a class="text-white" href="{{ route('contract.resume', 4) }}"> Más información > </a>
+                                        @endif
+                                    </div>
+                                </section>
+                            </div><br><br><br>
                         </div>
                     </div>
                 </div>

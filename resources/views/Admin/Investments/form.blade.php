@@ -10,18 +10,9 @@
         <div class="form-group">
             <select class="form-control" id="tree" name="tree">
                 <option selected disabled>Selecciona una estructura</option>
-                @for ($Tree=0; $Tree < $sponsorTree; $Tree++) {
-                    {{--  @if($sinTree == 0)  --}}
-                        <option value="{{ $Tree + 1 }}">Estructura #{{ $Tree + 1}}</option>
-                    {{--  @else  --}}
-                        {{--  @foreach ($tree[$Tree] as $value)
-                            @if($value[$Tree] == 1)
-                            <option value="{{ $Tree + 1 }}">Estructurasdsdsd # {{ $value }}</option>
-
-                            @endif
-                        @endforeach  --}}
-                    {{--  @endif  --}}
-                @endfor
+                {{-- @for ($Tree=0; $Tree < $sponsorTree; $Tree++) { --}}
+                    <option value="{{ $data_contract->contract }}">Estructura #{{ $data_contract->contract}}</option>
+                {{-- @endfor --}}
             </select>
         </div><br>
     </div>
@@ -30,7 +21,7 @@
             <label for="username13">Inversión $</label>
             <div class="col">
                 <select name="pay" id="pay" class="form-control">
-                    <option>{{$pay}}</option>
+                    <option>{{ $data_contract->total_investment}}</option>
                 </select>
             </div>
         </div>

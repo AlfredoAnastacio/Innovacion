@@ -29,9 +29,7 @@ class UsersController extends Controller
      */
 
 
-    public function index(Request $request) //Lista todos los usuarios (Establecidad para sólo administrador)
-    {
-
+    public function index(Request $request) { //Lista todos los usuarios (Establecidad para sólo administrador)
 
         $keyword = $request->get('search');
         $perPage = 50;
@@ -45,11 +43,8 @@ class UsersController extends Controller
 
                 ->latest()->paginate($perPage);
         } else {
-            // $users = User::all();
-            $users = User::join('refers', 'users.user_id', 'refers.user_id')
-                        ->join('status', 'users.user_id', 'status.user_id')
-                        // ->join('pays', 'users.user_id', 'pays.user_id')
-                        ->get();
+
+            $users = User::all();
 
             for ($i=0; $i < count($users); $i++) {  //Se obtiene la cantidad de referidos
                 $totalRefers = Refer::where('sponsor_id', $users[$i]->user_id)->orderBy('tree_sponsor','desc')->count();

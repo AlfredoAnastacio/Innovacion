@@ -35,9 +35,9 @@ Route::resource('payform', 'FormPayController')->middleware('auth');
 
 
 
-Route::get('refers', 'RefersController@index')->middleware('auth')->name('tree');
-Route::get('refers/details/{id}', 'RefersController@detail')->middleware('auth')->name('tree.detail');  //Ver detalle de estructura n
+Route::get('refers', 'RefersController@index')->middleware('auth')->name('contract.index');
 Route::get('refers/contract/range/{id}', 'RefersController@detailcontract')->middleware('auth')->name('contract.resume');  //Ver detalle de cada contrato
+Route::get('refers/details/{id}', 'RefersController@detail')->middleware('auth')->name('contract.detail');  //Ver detalle del contrato n (ver referidos)
 Route::get('movements', 'MovementsController@index')->middleware('auth')->name('movement');
 Route::get('pay', 'PaysController@index')->middleware('auth')->name('pay');
 

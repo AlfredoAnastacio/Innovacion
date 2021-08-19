@@ -14,7 +14,6 @@
 <body>
     <nav class="navbar navbar-dark sticky-top bg-blue2 flex-md-nowrap p-0 shadow">
         <div class="spacer"></div>
-        <a class="flecha-atras" href="{{ route('tree') }}"><img src="{{ asset('images/regresar.png') }}"></a>
         <h1 class="mx-auto mt-5"> RENTABILIDAD </h1>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,7 +51,7 @@
                                             </div>
                                             <div class="col-5 text-center">
                                                 <div class="border border-dark bg-white">
-                                                    <h5 style="margin: auto;" class="text-primary font-weight-bold">$150.000</h5>
+                                                    <h5 style="margin: auto;" class="text-primary font-weight-bold">$0.00</h5>
                                                     <small style="margin: auto;" class="text-primary">Rentabilidad total</small>
                                                 </div>
                                             </div>
@@ -66,12 +65,12 @@
                                                     <div class="col-12 row mx-0 px-0 text-orange_perso">
                                                         <div class="col-6 text-center  border-right border-primary mx-0 px-0"><br>
                                                             <img class="img-fluid" src="{{asset('images/rentalider1.png')}}">
-                                                            <p class="text-uppercase" style="margin: auto;"><strong>US$300</strong></p>
+                                                            <p class="text-uppercase" style="margin: auto;"><strong>US$0</strong></p>
                                                             <p class="text-uppercase">RENTABILIDAD</p>
                                                         </div>
                                                         <div class="col-6 text-center  border-left border-primary mx-0 px-0"><br>
                                                             <img class="img-fluid" src="{{asset('images/rentalider2.png')}}">
-                                                            <p class="text-uppercase" style="margin: auto;"><strong>US $30</strong></p>
+                                                            <p class="text-uppercase" style="margin: auto;"><strong>US $0</strong></p>
                                                             <p class="text-uppercase">ULTIMO PAGO</p>
                                                         </div>
                                                     </div>
@@ -105,9 +104,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 text-center text-uppercase relleno_azul_personal_inferior text-white pt-3 pb-2">generando con 4 contratos</div>
-
                                         </section>
-                                    </div>
+                                    </div><br><br><br>
                                 </div>
                             </div>
                         </div>
@@ -128,6 +126,6 @@
     <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
     <script type="text/javascript">
-        $("#profitability").last().addClass("active");
+        $("#profitability-index").last().addClass("active");
     </script>
 </html>
