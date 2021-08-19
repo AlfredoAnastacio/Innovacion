@@ -3,7 +3,7 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Referidos</title>
+    <title>Administrador</title>
     <!-- ========== COMMON STYLES ========== -->
     @include('Admin.Layouts.head')
 
@@ -37,7 +37,7 @@
                     <div class="container-fluid">
                         <div class="page-header">
                             <div class="left">
-                                <h1 class="page-title">Usuarios</h1>
+                                <h1 class="page-title">Líder y Referidos</h1>
                             </div>
                             <div class="right">
                                 <div class="notification d-flex">
