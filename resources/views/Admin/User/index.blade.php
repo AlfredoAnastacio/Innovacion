@@ -19,11 +19,16 @@
             </div>
         </div>
         <div id="main_content">
-            {{-- @include('Admin.Layouts.navbar') --}}
+            
             <!-- Small icon top menu -->
             @include('Admin.Layouts.sidebar')
+    
             <!-- Notification and  Activity-->
             @include('Admin.Layouts.notificationandactivity')
+
+            <!-- start User detail -->
+            @include('Admin.Layouts.startuserdetail')
+        
             <!-- start User detail -->         
             @include('Admin.Layouts.startuserdetail')
            
