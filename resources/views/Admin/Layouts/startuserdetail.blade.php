@@ -17,18 +17,15 @@
     </div>
     
     <div class="tab-content">
-        <div class="tab-pane fade active show" id="all-tab">
+        <div class="tab-pane active show" id="all-tab">
             <nav class="sidebar-nav">
                 <ul class="metismenu ci-effect-1">                        
-                    <!-- <li class="active"><a href="usuarios.html"><i class="fa fa-play"></i><span data-hover="Usuarios">Usuarios</span></a></li> -->
-                    <li><a href="usuarios.html"><span data-hover="Todos">Todos</span></a></li>
-                    <li><a href="usuarios.html"><span data-hover="Inscrito">Inscrito</span></a></li>
-                    <!--<li><a href="usuarios.html"><span data-hover="Nuevos">Nuevos</span></a></li>-->
-                    <li><a href="usuarios.html"><span data-hover="Activos">Activos</span></a></li>
-                    <li>
-                        <a href="usuarios.html"><span data-hover="Inact. Referidos">Inactivos por referidos</span></a>                            
-                    </li>
-                    <li><a href="usuarios.html"><span data-hover="Inact. Permanente">Inactivo Permanente</span></a></li>
+                    
+                    <li><a href="#"><span data-hover="Todos">Todos</span></a></li>
+                    <li><a href="#"><span data-hover="Inscrito">Inscrito</span></a></li>                    
+                    <li><a href="#"><span data-hover="Activos">Activos</span></a></li>
+                    <li><a href="#"><span data-hover="Inact. Referidos">Inactivos por referidos</span></a></li>
+                    <li><a href="#"><span data-hover="Inact. Permanente">Inactivo Permanente</span></a></li>
                 </ul>
             </nav>
         </div>
