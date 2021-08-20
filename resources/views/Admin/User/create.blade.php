@@ -1,95 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Usuario</title>
+<!doctype html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Administrador</title>
     <!-- ========== COMMON STYLES ========== -->
     @include('Admin.Layouts.head')
-</head>
 
-<body class="top-navbar-fixed">
-    <div class="main-wrapper">
-        <!-- ========== TOP NAVBAR ========== -->
-        @include('Admin.Layouts.navbar')
-        <!-- ========== WRAPPER FOR BOTH SIDEBARS & MAIN CONTENT ========== -->
-        <div class="content-wrapper">
-            <div class="content-container">
-                <!-- ========== LEFT SIDEBAR ========== -->
-                <div class="left-sidebar bg-black-300 box-shadow">
-                    <div class="sidebar-content">
-                        <div class="user-info closed">
-                            <img src="http://placehold.it/90/c2c2c2?text=User" alt="John Doe" class="img-circle profile-img">
-                            <h6 class="title">Admin</h6>
-                            <small class="info">Innovacion</small>
-                        </div>
-                        <!-- /.user-info -->
-                       @include('Admin.Layouts.sidebar')
-                <!-- /.left-sidebar -->
-                <div class="main-page">
+    <body class="font-opensans">
+
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+            </div>
+        </div>
+
+        <!-- Start main html -->
+        <div id="main_content">
+            <!-- Small icon top menu -->
+            @include('Admin.Layouts.sidebar')
+          
+            <!-- Notification and  Activity-->
+            @include('Admin.Layouts.notificationandactivity')
+
+            <!-- start User detail -->
+            @include('Admin.Layouts.startuserdetail')
+       
+            <!-- start User detail -->         
+            @include('Admin.Layouts.startuserdetail')
+          
+
+            <!-- start main body part-->
+            <div class="page">
+                <!-- start body header -->
+                <div id="page_top" class="section-body">
                     <div class="container-fluid">
-                        <div class="row page-title-div">
-                            <div class="col-md-6">
-                                <h2 class="title">Agregar Usuario</h2>
-                                <!-- <p class="sub-title">One stop solution for perfect admin dashboard!</p> -->
+                        <div class="page-header">
+                            <div class="left">
+                                <h1 class="page-title">Agregar Usuario</h1>
+                            </div>
+                            <div class="right">
+                                <div class="notification d-flex">
+                                    <!-- <button type="button" class="btn btn-facebook"><i class="fa fa-info-circle mr-2"></i>Need Help</button>
+                                    <button type="button" class="btn btn-facebook"><i class="fa fa-file-text mr-2"></i>Data export</button> -->
+                                    <button type="button" class="btn btn-facebook"><i class="fa fa-power-off mr-2"></i>Cerrar Sesión</button>
+                                </div>
                             </div>
                         </div>
-                        <!-- /.row -->
                     </div>
-                    <!-- /.container-fluid -->
-                    <section class="section">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h5 class="underline mt-n">
-                                        <div class="btn-group" role="group">
-                                            <a href="{{url('admin/users')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
+                </div>
+                <div class="section-body">
+                    <div class="container-fluid">
+                        <!-- Formulario -->
+                        <div class="row clearfix">
+                            <div class="col-lg-12">
+                                <!-- For future options -->
+                            </div>
+                        </div>
+                        <!-- Tabla -->
+                    <div class="row clearfix">
+                            <div class="col-lg-12 mt-5">
+                                <div class="table-responsive mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="col-md-12">
+                                                <h5 class="underline mt-n">
+                                                    <div class="btn-group" role="group">
+                                                        <a href="{{url('admin/users')}}">  <button type="button" class="btn bg-primary btn-wide"><i class="fa fa-arrow-left"></i>Volver</button></a>
+            
+                                                    </div>
+                                                </h5>
+            
+                                                <form class="p-20" method="POST" action="{{ url('admin/users/') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+            
+                                                    @include ('Admin.User.form', ['formMode' => 'create'])
+            
+                                                </form>
+                                            </div>
+
+
 
                                         </div>
-                                    </h5>
-
-                                    <form class="p-20" method="POST" action="{{ url('admin/users/') }}" accept-charset="UTF-8" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
-
-                                        @include ('Admin.User.form', ['formMode' => 'create'])
-
-                                    </form>
-                            </div>
+                                    </div>
+                                </div>
+                            </div>  
                         </div>
-                        <!-- /.col-md-12 -->
+                    </div>
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-            </section>
-            <!-- /.section -->
         </div>
-        <!-- /.main-page -->
-    </div>
-    <!-- /.content-container -->
-    </div>
-    <!-- /.content-wrapper -->
-    </div>
-    <!-- /.main-wrapper -->
-    <!-- ========== COMMON JS FILES ========== -->
-    @include('Admin.Layouts.scripts')
-    <!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
+        @include('Admin.Layouts.scripts')
+        <!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
 
-    <script>
-
-
-        $(document).ready(function(){
-
-
-
-        $("#user").addClass("active");
-
-
-
-        });
-                  </script>
-</body>
-
+        <script>
+            $("#refer").last().addClass("active");
+        </script>
+    </body>
 </html>
+
