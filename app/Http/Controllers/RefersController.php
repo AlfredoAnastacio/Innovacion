@@ -104,7 +104,11 @@ class RefersController extends Controller {
         $user_id = Auth::id();
         $data_contract = Contract::where('id', $id)->first();
         $refers = Contract::getRefers($user_id, 0, $data_contract->contract);
-        $total_users = count($refers);
+        $total_users = 0;
+
+        for ($i=1; $i <= count($refers); $i++) {
+            $total_users = $total_users + count($refers[$i]);
+        }
 
         foreach ($refers as $refer) {
             foreach ($refer as $value) {
@@ -112,6 +116,7 @@ class RefersController extends Controller {
                 $value->name_sponsor = strtoupper($name_sponsor);
                 $num_users = Refer::where('sponsor_id', $value->user_id)->get();
                 $value->num_users = count($num_users);
+                // dd($value->num_users);
                 $name = User::where('user_id', $value->user_id)->pluck('name')->first();
                 $value->name = strtoupper($name);
 
@@ -354,12 +359,19 @@ class RefersController extends Controller {
         $contracts = Contract::where('user_id', $user_id)->where('range_id', $id)->get();
 
         foreach ($contracts as $contract) {
+
             $investment = Investment::where('tree', $contract->contract)->sum('pay');
             $contract->investment = $investment;
-            $users = count(User::where('contract', $contract->contract)->where('user_id', '!=' , $user_id)->get());
-            $contract->users = $users;
+            $refers = Contract::getRefers($user_id, 0, $contract->contract);
+            $total_users = 0;
+
+            for ($i=1; $i <= count($refers); $i++) {
+                $total_users = $total_users + count($refers[$i]);
+            }
+
+            $contract->users = $total_users;
         }
 
-        return view('Refers.resumeContracts', compact('contract_range', 'contracts', ));
+        return view('Refers.resumeContracts', compact('contract_range', 'contracts'));
     }
 }

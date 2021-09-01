@@ -56,7 +56,12 @@
                             <!-- Estructuras -->
                             <div class="round_pers_basico mt-4">
                                 <section id="algo" class="mt-2">
-                                    <div class="col-12 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>CONTRATOS PLATA</strong></div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-8 text-center text-uppercase relleno_azul_personal_superio text-white pt-2 pb-3"><strong>CONTRATOS PLATA</strong></div>
+                                        <div class="col-md-4">
+                                            <button> + contrato</button>
+                                        </div>
+                                    </div>
                                     <div class="col-12 row mx-0 px-0">
                                         <div class="col-6 text-center mt-3 border-right mx-0 px-0">
                                             <img src="{{ asset('images/rango_plata.png') }}">
